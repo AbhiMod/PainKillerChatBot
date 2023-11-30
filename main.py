@@ -31,12 +31,25 @@ AMBOT = [
 
 
 @client.on_message(
-    filters.command("start", prefixes=["/", ".", "?", "-"])
+    filters.command("ambot", prefixes=["/", ".", "?", "-",""])
     & ~filters.private)
 async def start_command(client, message):
-    await message.reply_text(f"Hello! I'm your chatbot. Use /alive to check if I'm alive!")
-    
+    random_message = random.choice(AMBOT)
+    await message.reply_text(random_message)
+@client.on_message(
+    filters.command("AMBOT", prefixes=["/", ".", "?", "-",""])
+    & ~filters.private)
+async def start_command(client, message):
+    random_message = random.choice(AMBOT)
+    await message.reply_text(random_message)
 
+@client.on_message(
+    filters.command("am", prefixes=["/", ".", "?", "-",""])
+    & ~filters.private)
+async def start_command(client, message):
+    random_message = random.choice(AMBOT)
+    await message.reply_text(random_message)
+    
 @client.on_message(
     filters.command("alive", prefixes=["/", ".", "?", "-"])
     & ~filters.private)
