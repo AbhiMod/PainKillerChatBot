@@ -32,7 +32,7 @@ ALIVE_MESSAGES = [
     "lol am pro",
 ]
 @client.on_message(
-    filters.command("alive", prefixes=["/", ".", "?", "-"])
+    filters.command("alive", prefixes=["/", ".", "?", "-",""])
     & ~filters.private)
 async def start(client, message):
     random_message = random.choice(ALIVE_MESSAGES)
