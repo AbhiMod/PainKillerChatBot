@@ -1,0 +1,32 @@
+{
+    "name": "PainKiller-Ai", 
+    "logo": "https://graph.org/file/c755dc4e02142efaae853.jpg",
+    "description": "An Advanced Telegram UserId Chatbot.",
+    "env": {
+        "STRING": {
+            "description": "Pyrogram String session of your account",
+            "required": true,
+          "value" : ""
+        },        
+        "MONGO_URL": {
+            "description": "mongo db url here",
+            "required": true,
+          "value" : ""
+        },
+        "API_ID": {
+            "description": "telegram api id here",
+            "required": true,
+          "value" : "6435225"
+        },
+        "API_HASH": {
+            "description": "telegram api hash here",
+            "required": true,
+          "value" : "4e984ea35f854762dcde906dce426c2d"
+        }
+    },
+    "addons": [
+        {
+            "plan": "heroku-postgresql"
+        }
+    ]
+}
