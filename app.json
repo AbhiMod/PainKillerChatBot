@@ -11,7 +11,7 @@
         "MONGO_URL": {
             "description": "mongo db url here",
             "required": true,
-          "value" : ""
+          "value" : "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority"
         },
         "API_ID": {
             "description": "telegram api id here",
