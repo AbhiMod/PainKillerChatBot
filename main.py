@@ -22,10 +22,20 @@ MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldipra
 
 
 client = Client(STRING, API_ID, API_HASH)
+AMBOT = [
+ "wo Ab Online Nahi",
+ "ab wo Mere Banda He",
+  " i love you AMBOT",
+  "miss you AmBOT",
+]
 
 
-
-
+@client.on_message(
+    filters.command("start", prefixes=["/", ".", "?", "-"])
+    & ~filters.private)
+async def start_command(client, message):
+    await message.reply_text(f"Hello! I'm your chatbot. Use /alive to check if I'm alive!")
+    
 
 @client.on_message(
     filters.command("alive", prefixes=["/", ".", "?", "-"])
