@@ -133,6 +133,9 @@ async def vickprivate(client: Client, message: Message):
             if not Yo == "sticker":
                 await message.reply_text(f"{hey}")
 
+    # ... rest of your code ...
+
+
    
    if message.reply_to_message:  
        vickdb = MongoClient(MONGO_URL)
