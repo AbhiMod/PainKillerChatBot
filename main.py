@@ -23,12 +23,20 @@ MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldipra
 
 client = Client(STRING, API_ID, API_HASH)
 
-
+ALIVE_MESSAGES = [
+    "I love U AMBOT",
+    "I Miss U AMBOT",
+    "Wo OffLine He AB",
+    "Oi Kya Usko tag matt karr",
+    "aree ",
+    "lol am pro",
+]
 @client.on_message(
     filters.command("alive", prefixes=["/", ".", "?", "-"])
     & ~filters.private)
 async def start(client, message):
-    await message.reply_text(f"** ᴀɪ ᴜsᴇʀʙᴏᴛ ғᴏʀ ᴄʜᴀᴛᴛɪɴɢ ɪs ᴡᴏʀᴋɪɴɢ**")
+    random_message = random.choice(ALIVE_MESSAGES)
+    await message.reply_text(random_message)
     
     
 @client.on_message(
