@@ -29,27 +29,13 @@ AMBOT = [
   "miss you AmBOT",
 ]
 
-
 @client.on_message(
-    filters.command("ambot", prefixes=["/", ".", "?", "-",""])
-    & ~filters.private)
-async def start_command(client, message):
-    random_message = random.choice(AMBOT)
-    await message.reply_text(random_message)
-@client.on_message(
-    filters.command("AMBOT", prefixes=["/", ".", "?", "-",""])
+    filters.command("AMBOT", prefixes=["/", ".", "?", "-"])
     & ~filters.private)
 async def start_command(client, message):
     random_message = random.choice(AMBOT)
     await message.reply_text(random_message)
 
-@client.on_message(
-    filters.command("am", prefixes=["/", ".", "?", "-",""])
-    & ~filters.private)
-async def start_command(client, message):
-    random_message = random.choice(AMBOT)
-    await message.reply_text(random_message)
-    
 @client.on_message(
     filters.command("alive", prefixes=["/", ".", "?", "-"])
     & ~filters.private)
