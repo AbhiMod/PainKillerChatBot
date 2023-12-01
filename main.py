@@ -212,7 +212,7 @@ async def tag_all_users(_, message):
     except Exception:
         pass
 
-@client.on_chat_member_update()
+@client.on_chat_member_updated()
 async def welcome_message(_, update):
     chat_member = update.new_chat_member
     if chat_member and chat_member.is_user and chat_member.id != client.me.id:
