@@ -82,7 +82,9 @@ async def cancelcmd(_, message):
         return
 #JoinVc
 async def vc_reply(message, text, firstmsg=False):
-    
+    # Add some logic or leave it indented to fix the issue
+    pass
+
 @client.on_message(filters.command(["joinvc", "vcjoin"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.group)
 async def joinVoicechat(client, message):
     chat_id = message.chat.id
