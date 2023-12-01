@@ -24,9 +24,16 @@
           "value" : "4e984ea35f854762dcde906dce426c2d"
         }
     },
-    "addons": [
+  "buildpacks": [
         {
-            "plan": "heroku-postgresql"
+            "url": "heroku/python"
+        },
+        {
+            "url": "heroku/nodejs"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
         }
-    ]
+    ],
+    "stack": "container"
 }
