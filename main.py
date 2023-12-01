@@ -29,6 +29,13 @@ AMTAGS= [
     "ᴋᴏɪ ɪꜱᴋᴏ @AM_YTBOTT ɢꜰ ᴅɪʟᴀᴅᴏ..😢😢😢",
     "𝘼𝙗 𝘼𝙗 𝙊𝙛𝙡𝙞𝙣𝙚 𝙂𝙖𝙮𝙖 𝙒𝙤 𝙅𝙖𝙤 𝘾𝙖𝙡𝙡 𝙆𝙖𝙧𝙡𝙤 𝙖𝙖𝙟𝙖𝙮𝙖 𝙜𝙖 𝙊𝙣𝙡𝙞𝙣𝙚 😜😜"
 ]
+HELP = ["""
+Here Is Cmds For Tagall
+use cmds prefixes : . / ? ! -
+user,invite - To Random tags to users
+no,cancle,stopall,off - to tagall stop 
+"""
+]
 SPAM_CHATS = []
 TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐎𝐲𝐞 𝐒𝐨 𝐆𝐲𝐞 𝐊𝐲𝐚 𝐎𝐧𝐥𝐢𝐧𝐞 𝐀𝐚𝐨😊** ",
@@ -118,7 +125,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
 @client.on_message(
-    filters.command(["cancel", "no","stop"], prefixes=["/", ".", "?", "-"])
+    filters.command(["cancel", "no","stop","stopall","off"], prefixes=["/", ".", "?", "-","","!"])
     & ~filters.private
 )
 async def cancelcmd(_, message):
@@ -134,7 +141,7 @@ async def cancelcmd(_, message):
         await message.reply_text("**ɴᴏ ᴘʀᴏᴄᴇss ᴏɴɢᴏɪɴɢ!**")  
         return      
 @client.on_message(
-    filters.command(["user", "invite"], prefixes=["/", ".", "?", "-"])
+    filters.command(["user", "invite"], prefixes=["/", ".", "?", "-","","!"])
     & ~filters.private
 )
 async def tag_all_users(_, message):
@@ -179,7 +186,14 @@ async def tag_all_users(_, message):
 async def start(client, message):
     random_message = random.choice(AMTAGS)
     await message.reply_text(random_message)
-            
+    
+  @client.on_message(
+    filters.command(["help"], prefixes=["/", ".", "?", "-",""])
+    & ~filters.private)
+async def start(client, message):
+    random_message = random.choice(HELP)
+    await message.reply_text(random_message)    
+    
 @client.on_message(
  (
         filters.text
