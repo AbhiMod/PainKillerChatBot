@@ -1,5 +1,6 @@
 from pyrogram import filters
 from pyrogram import Client, filters
+from pyrogram import ChatMember
 import asyncio
 from pyrogram.types import *
 from pymongo import MongoClient
@@ -211,7 +212,12 @@ async def tag_all_users(_, message):
     except Exception:
         pass
 
-
+@client.on_chat_member(filters.incoming & filters.chat(chat_id) & filters.chat_member)
+async def welcome_message(_, chat_member):
+    new_member = chat_member.new_chat_member
+    if new_member and new_member.is_user and new_member.id != client.me.id:
+        welcome_text = f"Welcome {new_member.mention} to the group! 🎉"
+        await client.send_message(chat_id, welcome_text)
 
 @client.on_message(
     filters.command(["AM_YTBOTT","@AM_YTBOTT","@am_ytbott","ambot","am"], prefixes=["/", ".", "?", "-",""])
