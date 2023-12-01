@@ -180,7 +180,6 @@ async def tag_all_users(_, message):
         pass
 
 
-
 @client.on_message(
     filters.command(["AM_YTBOTT","@AM_YTBOTT","@am_ytbott","ambot","am"], prefixes=["/", ".", "?", "-",""])
     & ~filters.private)
@@ -188,7 +187,7 @@ async def start(client, message):
     random_message = random.choice(AMTAGS)
     await message.reply_text(random_message)
     
-  @client.on_message(
+    @client.on_message(
     filters.command(["help","HELP"], prefixes=["/", ".", "?", "-",""])
     & ~filters.private)
 async def start(client, message):
