@@ -125,7 +125,7 @@ async def cancelcmd(_, message):
     chat_id = message.chat.id
     if chat_id in SPAM_CHATS:
         try :
-            TAGMES.remove(chat_id)
+            SPAM_CHATS.remove(chat_id)
         except Exception:
             pass   
         return await message.reply_text("**ᴛᴀɢ ᴀʟʟ sᴜᴄᴄᴇssғᴜʟʟʏ sᴛᴏᴘᴘᴇᴅ!**")     
