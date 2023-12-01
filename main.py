@@ -42,6 +42,7 @@ AAA = [
     "Puch Lo AMBOT Se Me Kon Hu 🙈",
     "Me Insaan Hu Reee Aaj Tumko Pitna He sayad 😏",
 ]
+sudos = 6204761408
 REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 
 <u>𝗖𝗥𝗘𝗗𝗜𝗧 ❥︎ ᴀᴍʙᴏᴛ:</u>
@@ -163,20 +164,55 @@ async def cancelcmd(_, message):
         await message.reply_text("**No ongoing process!**")
         return
 
-#JoinVc
-@client.on_message(filters.command(["joinvc","vcjoin"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.group)
-async def join_vc_command(_, message):
+# JoinVc
+@client.on_message(filters.command(["joinvc", "vcjoin"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.group)
+async def joinVoicechat(event):
+    if not vc_player.PUBLICMODE and event.sender_id not in sudos:
+        return
+    chat_param = event.pattern_match.group(1)
+    joinas = event.pattern_match.group(2)
+
+    reply_message = await vc_reply(event, "𝓐𝓜𝓑𝓞𝓣 𝓐𝓼𝓼𝓲𝓽𝓪𝓷𝓽 𝓙𝓸𝓲𝓷𝓲𝓷𝓰 𝓥𝓬...", firstmsg=True)
+
+    if chat_param and chat_param != "-as":
+        if chat_param.strip("-").isnumeric():
+            chat_id = int(chat_param)
+        else:
+            return await vc_reply(reply_message, "Invalid chat ID specified.")
+    else:
+        chat_id = event.chat_id
+
+    if vc_player.app.active_calls:
+        return await vc_reply(
+            reply_message, f"𝓨𝓸𝓾 𝓱𝓪𝓿𝓮 𝓪𝓵𝓻𝓮𝓪𝓭𝔂 𝓙𝓸𝓲𝓷𝓮𝓭 𝓲𝓷 {vc_player.CHAT_NAME}"
+        )
+
     try:
-        chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
-        if chat_member.status not in ["administrator", "creator"]:
-            return await message.reply_text("**Only admins can use this command!**")
-        
-        await client.join_chat(message.chat.id)
-        await message.reply_text("**Me V Vc Me Aarahi ab !**")
-    except ChatWriteForbidden:
-        await message.reply_text("**I don't have the necessary permissions to join the voice chat. Please check the permissions.**")
+        vc_chat = await catub.get_entity(chat_id)
     except Exception as e:
-        await message.reply_text(f"**An error occurred: {str(e)}**")
+        return await vc_reply(reply_message, f'ERROR : \n{e or "UNKNOWN CHAT"}')
+
+    if isinstance(vc_chat, User):
+        return await vc_reply(reply_message, "𝓥𝓸𝓲𝓬𝓮 𝓒𝓱𝓪𝓽𝓼 𝓪𝓻𝓮 𝓷𝓸𝓽 𝓪𝓿𝓪𝓲𝓵𝓪𝓫𝓵𝓮 𝓲𝓷 𝓟𝓻𝓲𝓿𝓪𝓽𝓮 𝓒𝓱𝓪𝓽𝓼")
+
+    if joinas and not vc_chat.username:
+        await vc_reply(
+            reply_message,
+            "𝓤𝓷𝓪𝓫𝓵𝓮 𝓽𝓸 𝓾𝓼𝓮 𝓙𝓸𝓲𝓷 𝓪𝓼 𝓲𝓷 𝓟𝓻𝓲𝓿𝓪𝓽𝓮 𝓒𝓱𝓪𝓽. 𝓙𝓸𝓲𝓷𝓲𝓷𝓰 𝓪𝓼 𝓨𝓸𝓾𝓻𝓼𝓮𝓵𝓯...",
+        )
+        joinas = False
+
+    if STRING:
+        check = await check_vcassis(reply_message)
+
+        if not check:
+            return
+
+    out = await vc_player.join_vc(vc_chat, joinas)
+    await vc_reply(reply_message, out)
+
+
+
 #help
 @client.on_message(
     filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
