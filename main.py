@@ -130,20 +130,24 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
 @client.on_message(
-    filters.command(["cancel","stopall","off"], prefixes=["/", ".", "?", "-","","!"])
-    & ~filters.private
+    filters.command(["cancel", "stopall", "off"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
 )
 async def cancelcmd(_, message):
     chat_id = message.chat.id
+    # Check if the user is an admin
+    if await client.get_chat_member(chat_id, message.from_user.id).status not in ["administrator", "creator"]:
+        return await message.reply_text("**Only admins can use this command!**")
+
     if chat_id in SPAM_CHATS:
-        try :
+        try:
             SPAM_CHATS.remove(chat_id)
         except Exception:
-            pass   
-        return await message.reply_text("**ᴛᴀɢ ᴀʟʟ sᴜᴄᴄᴇssғᴜʟʟʏ sᴛᴏᴘᴘᴇᴅ!**")     
-                                     
-    else :
-        await message.reply_text("**ɴᴏ ᴘʀᴏᴄᴇss ᴏɴɢᴏɪɴɢ!**")  
+            pass
+        return await message.reply_text("**Tag all successfully stopped!**")
+
+    else:
+        await message.reply_text("**No ongoing process!**")
         return
 
 @client.on_message(
@@ -167,13 +171,17 @@ async def help_command(_, message):
 
 
 @client.on_message(
-    filters.command(["user", "invite"], prefixes=["/", ".", "?", "-","","!"])
-    & ~filters.private
+    filters.command(["user", "invite"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
 )
 async def tag_all_users(_, message):
+    # Check if the user is an admin
+    if await client.get_chat_member(message.chat.id, message.from_user.id).status not in ["administrator", "creator"]:
+        return await message.reply_text("**Only admins can use this command!**")
+
     replied = message.reply_to_message
     if len(message.command) < 2 and not replied:
-        await message.reply_text("**ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴏʀ ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴛᴀɢ ᴀʟʟ**")
+        await message.reply_text("**Reply to a message or give some text to tag all!**")
         return
 
     text = random.choice(TAGMES)
@@ -203,6 +211,7 @@ async def tag_all_users(_, message):
         SPAM_CHATS.remove(message.chat.id)
     except Exception:
         pass
+
 
 
 @client.on_message(
