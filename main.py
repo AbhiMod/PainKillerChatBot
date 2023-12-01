@@ -29,9 +29,9 @@ AMTAGS= [
     "ᴋᴏɪ ɪꜱᴋᴏ @AM_YTBOTT ɢꜰ ᴅɪʟᴀᴅᴏ..😢😢😢",
     "𝘼𝙗 𝘼𝙗 𝙊𝙛𝙡𝙞𝙣𝙚 𝙂𝙖𝙮𝙖 𝙒𝙤 𝙅𝙖𝙤 𝘾𝙖𝙡𝙡 𝙆𝙖𝙧𝙡𝙤 𝙖𝙖𝙟𝙖𝙮𝙖 𝙜𝙖 𝙊𝙣𝙡𝙞𝙣𝙚 😜😜"
 ]
-    up_r = f"[𝗥𝗘𝗣𝗢](t.me/About_AMBot)"
-    sp_c = f"[ɢʙᴀɴꜱ ʟᴏɢꜱ](https://t.me/AM_YTBOTT)"
-    ow_i = f"[ᴀᴍʙᴏᴛ](https://t.me/AM_YTBOTT)"
+    up_r = "[𝗥𝗘𝗣𝗢](t.me/About_AMBot)"
+    sp_c = "[ɢʙᴀɴꜱ ʟᴏɢꜱ](https://t.me/AM_YTBOTT)"
+    ow_i = "[ᴀᴍʙᴏᴛ](https://t.me/AM_YTBOTT)"
 REPO = f"""ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 
 <u>𝗖𝗥𝗘𝗗𝗜𝗧 ❥︎ ᴀᴍʙᴏᴛ:</u>
