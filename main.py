@@ -10,6 +10,7 @@ from pyrogram.errors import (
     PeerIdInvalid,
     ChatWriteForbidden
 )
+from pytgcalls import GroupCall
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
@@ -19,7 +20,7 @@ from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
 
-
+group_calls = GroupCall(None, path_to_log_file='')
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
 STRING = os.environ.get("STRING", "")
@@ -81,56 +82,17 @@ async def cancelcmd(_, message):
         await message.reply_text("**No ongoing process!**")
         return
 #JoinVc
-async def vc_reply(message, text, firstmsg=False):
-    # Add some logic or leave it indented to fix the issue
-    pass
-
-@client.on_message(filters.command(["joinvc", "vcjoin"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.group)
-async def joinVoicechat(client, message):
-    chat_id = message.chat.id
-    chat_member = await client.get_chat_member(chat_id, message.from_user.id)
-    
-    if chat_member.status not in ["administrator", "creator"]:
-        return await message.reply_text("**Only admins can use this command!**")
-
-    chat_param = message.command[1] if len(message.command) > 1 else None
-    joinas = message.command[2] if len(message.command) > 2 else None
-
-    reply_message = await vc_reply(message, "𝓐𝓜𝓑𝓞𝓣 𝓐𝓼𝓼𝓲𝓽𝓪𝓷𝓽 𝓙𝓸𝓲𝓷𝓲𝓷𝓰 𝓥𝓬...", firstmsg=True)
-
-    if chat_param and chat_param.strip("-").isnumeric():
-        chat_id = int(chat_param)
-    elif chat_param:
-        return await vc_reply(reply_message, "Invalid chat ID specified.")
-
-    if vc_player.app.active_calls:
-        return await vc_reply(reply_message, f"𝓨𝓸𝓾 𝓱𝓪𝓿𝓮 𝓪𝓵𝓻𝓮𝓪𝓭𝔂 𝓙𝓸𝓲𝓷𝓮𝓭 𝓲𝓷")
-
-    try:
-        vc_chat = await client.get_chat(chat_id)
-    except Exception as e:
-        return await vc_reply(reply_message, f'ERROR : \n{e or "UNKNOWN CHAT"}')
-
-    if isinstance(vc_chat, User):
-        return await vc_reply(reply_message, "𝓥𝓸𝓲𝓬𝓮 𝓒𝓱𝓪𝓽𝓼 𝓪𝓻𝓮 𝓷𝓸𝓽 𝓪𝓿𝓪𝓲𝓵𝓪𝓫𝓵𝓮 𝓲𝓷 𝓟𝓻𝓲𝓷𝓬𝓮 𝓒𝓱𝓪𝓽𝓼")
-
-    if joinas and not vc_chat.username:
-        await vc_reply(
-            reply_message,
-            "𝓤𝓷𝓪𝓫𝓵𝓮 𝓽𝓸 𝓾𝓼𝓮 𝓙𝓸𝓲𝓷 𝓪𝓼 𝓲𝓷 𝓟𝓻𝓲𝓿𝓪𝓽𝓮 𝓒𝓱𝓪𝓽𝓼. 𝓙𝓸𝓲𝓷𝓲𝓷𝓰 𝓪𝓼 𝓨𝓸𝓾𝓻𝓼𝓮𝓵𝓯...",
-        )
-        joinas = None
-
-    if STRING:
-        check = await check_vcassis(reply_message)
-
-        if not check:
-            return
-
-    out = await vc_player.join_vc(vc_chat, joinas)
-    await vc_reply(reply_message, out)
-
-
+@client.on_message(
+    filters.command(["joinvc","vcjoin"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def join(_, message):
+    if group_calls.is_connected:
+        await message.reply_text('Bot already joined!')
+        return
+    group_calls.client = client
+    await group_calls.start(message.chat.id)
+    await message.reply_text('Succsessfully joined!')
 #help
 @client.on_message(
     filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
