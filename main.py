@@ -51,6 +51,16 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
 
            ]
 
+@Welcome
+@client.on_chat_member_updated()
+async def welcome_message(_, update):
+    new_chat_member = update.new_chat_member
+    if new_chat_member and new_chat_member.status == "member":
+        mention = new_chat_member.mention
+        welcome_text = f"Welcome {mention} to our group. 🎉"
+        await client.send_message(update.chat.id, welcome_text)
+   
+#TagOff     
 @client.on_message(
     filters.command(["cancel", "stopall", "off"], prefixes=["/", ".", "?", "-", "", "!"])
     & filters.group
@@ -71,7 +81,7 @@ async def cancelcmd(_, message):
         await message.reply_text("**No ongoing process!**")
         return
 
-
+#help
 @client.on_message(
     filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
@@ -83,7 +93,7 @@ async def help_command(_, message):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[button]])
     await message.reply_text(HELP, reply_markup=keyboard)
 
-    
+  #Repo  
 @client.on_message(
     filters.command(["repo","source","code"], prefixes=["/", ".", "?", "-", "", "!",""])
     & ~filters.private
@@ -91,7 +101,7 @@ async def help_command(_, message):
 async def help_command(_, message):
     await message.reply_text(REPO)
 
-
+#Tagall
 @client.on_message(
     filters.command(["user", "invite"], prefixes=["/", ".", "?", "-", "", "!"])
     & filters.group
@@ -140,7 +150,7 @@ async def welcome_message(_, update):
         await client.send_message(update.chat.id, welcome_text)
 
 
-
+#AM
 @client.on_message(
     filters.command(["AM_YTBOTT","@AM_YTBOTT","@am_ytbott","ambot","am"], prefixes=["/", ".", "?", "-",""])
     & ~filters.private)
@@ -365,14 +375,4 @@ async def Daxxprivatesticker(client: Client, message: Message):
                await message.reply_text(f"{hey}")
            if not Yo == "text":
                await message.reply_sticker(f"{hey}")
-
-@client.on_chat_member_updated()
-async def welcome_message(_, update):
-    new_chat_member = update.new_chat_member
-    if new_chat_member and new_chat_member.status == "member":
-        mention = new_chat_member.mention
-        welcome_text = f"Welcome {mention} to our group. 🎉"
-        await client.send_message(update.chat.id, welcome_text)
-
-
 client.run()
