@@ -33,7 +33,7 @@ from pyrogram import *
 from pyrogram.types import *
 
 app = Client('pytgcalls')
-group_call = GroupCallFactory(app).get_file_group_call('input.raw')
+group_call = pytgcalls(app).get_file_group_call('input.raw')
 
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
