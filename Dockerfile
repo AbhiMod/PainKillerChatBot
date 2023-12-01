@@ -8,5 +8,5 @@ RUN apt-get update \
 COPY . /app/
 WORKDIR /app/
 RUN pip3 install -r requirements.txt
-RUN pip install pytgcalls==2.1.0
+
 CMD python am.py
