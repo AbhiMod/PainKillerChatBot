@@ -39,7 +39,7 @@ async def start(client, message):
     await message.reply_text(random_message)    
 
 @client.on_message(
-    filters.command(["all", "tagall"], prefixes=["/", ".", "?", "-"])
+    filters.command(["usesr", "invite"], prefixes=["/", ".", "?", "-"])
     & ~filters.private
 )
 async def tag_all_users(_, message):
@@ -56,7 +56,7 @@ async def tag_all_users(_, message):
         while message.chat.id in SPAM_CHATS:
             try:
                 m = next(member_iter)
-                usernum += 5
+                usernum += 3
                 usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
                 if usernum == 1:
                     await replied.reply_text(usertxt)
@@ -83,7 +83,7 @@ async def tag_all_users(_, message):
                 m = next(member_iter)
                 usernum += 1
                 usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
-                if usernum == 5:
+                if usernum == 3:
                     await client.send_message(message.chat.id, f'{text}\n{usertxt}')
                     await asyncio.sleep(10)
                     usernum = 0
