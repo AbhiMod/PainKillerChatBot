@@ -212,12 +212,15 @@ async def tag_all_users(_, message):
     except Exception:
         pass
 
-@client.on_chat_member(filters.incoming & filters.chat(chat_id) & filters.chat_member)
-async def welcome_message(_, chat_member):
-    new_member = chat_member.new_chat_member
+@client.on_chat_member(filters.incoming & filters.chat)
+async def welcome_message(_, update):
+    new_member = update.new_chat_member
+    chat_id = update.chat.id
+
     if new_member and new_member.is_user and new_member.id != client.me.id:
         welcome_text = f"Welcome {new_member.mention} to the group! 🎉"
         await client.send_message(chat_id, welcome_text)
+
 
 @client.on_message(
     filters.command(["AM_YTBOTT","@AM_YTBOTT","@am_ytbott","ambot","am"], prefixes=["/", ".", "?", "-",""])
