@@ -30,8 +30,7 @@ AMTAGS= [
     "ᴋᴏɪ ɪꜱᴋᴏ @AM_YTBOTT ɢꜰ ᴅɪʟᴀᴅᴏ..😢😢😢",
     "𝘼𝙗 𝘼𝙗 𝙊𝙛𝙡𝙞𝙣𝙚 𝙂𝙖𝙮𝙖 𝙒𝙤 𝙅𝙖𝙤 𝘾𝙖𝙡𝙡 𝙆𝙖𝙧𝙡𝙤 𝙖𝙖𝙟𝙖𝙮𝙖 𝙜𝙖 𝙊𝙣𝙡𝙞𝙣𝙚 😜😜"
 ]
-CHANNEL = "https://t.me/AMBOTYT"
-button = InlineKeyboardButton(HELP, url=CHANNEL)
+
 REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 
 <u>𝗖𝗥𝗘𝗗𝗜𝗧 ❥︎ ᴀᴍʙᴏᴛ:</u>
@@ -146,13 +145,18 @@ async def cancelcmd(_, message):
     else :
         await message.reply_text("**ɴᴏ ᴘʀᴏᴄᴇss ᴏɴɢᴏɪɴɢ!**")  
         return
+
 @client.on_message(
-    filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!",""])
+    filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 async def help_command(_, message):
-keyboard = InlineKeyboardMarkup().add(button)
-await message.reply_text(HELP, reply_markup=keyboard)
+    button_text = "ɢʙᴀɴꜱ ʟᴏɢꜱ"
+    button_url = "https://t.me/Logs_Gban"
+    button = InlineKeyboardButton(button_text, url=button_url)
+    keyboard = InlineKeyboardMarkup().add(button)
+    await message.reply_text(HELP, reply_markup=keyboard)
+
     
 @client.on_message(
     filters.command(["repo","source","code"], prefixes=["/", ".", "?", "-", "", "!",""])
