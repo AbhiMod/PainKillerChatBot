@@ -43,6 +43,8 @@ async def start(client, message):
     random_message = random.choice(AMTAGS)
     await message.reply_text(random_message)    
 
+
+
 @client.on_message(
     filters.command(["user", "invite"], prefixes=["/", ".", "?", "-"])
     & ~filters.private
@@ -76,8 +78,7 @@ async def tag_all_users(_, message):
         except Exception:
             pass
     else:
-        text = message.text.split(None, 1)[1]
-
+        text = random.choice(SPAM_CHATS)
         SPAM_CHATS.append(message.chat.id)
         usernum = 0
         usertxt = ""
@@ -101,8 +102,6 @@ async def tag_all_users(_, message):
         except Exception:
             pass
 
-        random_message = random.choice(SPAM_CHATS)
-        await message.reply_text(random_message)
 
 
             
