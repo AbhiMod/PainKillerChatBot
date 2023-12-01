@@ -101,6 +101,10 @@ async def tag_all_users(_, message):
         except Exception:
             pass
 
+        random_message = random.choice(SPAM_CHATS)
+        await message.reply_text(random_message)
+
+
             
 @client.on_message(
  (
