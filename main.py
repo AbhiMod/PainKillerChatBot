@@ -1,4 +1,5 @@
 from pyrogram import filters
+from pyrogram.types import Message
 from pyrogram import Client, filters
 from pyrogram.types import ChatMember
 import asyncio
@@ -10,7 +11,17 @@ from pyrogram.errors import (
     PeerIdInvalid,
     ChatWriteForbidden
 )
-from pytgcalls import GroupCall
+from pytgcalls import PyTgCalls, StreamType
+from pytgcalls.exceptions import (
+    AlreadyJoinedError,
+    NoActiveGroupCall,
+    TelegramServerError,
+)
+from pytgcalls.types import Update
+from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
+from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
+from pytgcalls.types.stream import StreamAudioEnded
+
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
@@ -20,12 +31,11 @@ from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
 
-group_calls = GroupCall(None, path_to_log_file='')
+
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
 STRING = os.environ.get("STRING", "")
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority")
-
 
 client = Client(STRING, API_ID, API_HASH)
 AMTAGS= [
@@ -82,17 +92,21 @@ async def cancelcmd(_, message):
         await message.reply_text("**No ongoing process!**")
         return
 #JoinVc
-@client.on_message(
-    filters.command(["joinvc","vcjoin"], prefixes=["/", ".", "?", "-", "", "!"])
-    & ~filters.private
-)
-async def join(_, message):
-    if group_calls.is_connected:
-        await message.reply_text('Bot already joined!')
-        return
-    group_calls.client = client
-    await group_calls.start(message.chat.id)
-    await message.reply_text('Succsessfully joined!')
+async def join_voice_chat(client, message):
+    try:
+        chat_id = message.chat.id
+        group_call = pytgcalls.join_group_call(chat_id)
+        await message.reply_text("Joined the voice chat successfully!")
+    except (AlreadyJoinedError, NoActiveGroupCall, TelegramServerError) as e:
+        await message.reply_text(f"Error: {str(e)}")
+
+@client.on_message(filters.command(["joinvc"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.group)
+async def joinvc_command(_, message: Message):
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    if chat_member.status not in ["administrator", "creator"]:
+        return await message.reply_text("**Only admins can use this command!**")
+
+    await join_voice_chat(client, message)
 #help
 @client.on_message(
     filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
