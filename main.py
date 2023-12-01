@@ -151,7 +151,6 @@ async def cancelcmd(_, message):
         return
 
 
-
 @client.on_message(
     filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
@@ -177,8 +176,9 @@ async def help_command(_, message):
     & filters.group
 )
 async def tag_all_users(_, message):
-chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
-if chat_member.status not in ["administrator", "creator"]:
+    chat_id = message.chat.id
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    if chat_member.status not in ["administrator", "creator"]:
         return await message.reply_text("**Only admins can use this command!**")
     replied = message.reply_to_message
     if len(message.command) < 2 and not replied:
