@@ -18,6 +18,7 @@ from pytgcalls.exceptions import (
     NoActiveGroupCall,
     TelegramServerError,
 )
+from pytgcalls import GroupCallFactory
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
@@ -32,6 +33,8 @@ from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
 
+app = Client('pytgcalls')
+group_call = GroupCallFactory(app).get_file_group_call('input.raw')
 
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
