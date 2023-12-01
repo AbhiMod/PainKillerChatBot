@@ -187,13 +187,6 @@ async def start(client, message):
     random_message = random.choice(AMTAGS)
     await message.reply_text(random_message)
     
-    @client.on_message(
-    filters.command(["help","HELP"], prefixes=["/", ".", "?", "-",""])
-    & ~filters.private)
-async def help(client, message):
-    random_message = random.choice(HELP)
-    await message.reply_text(random_message)    
-    
 @client.on_message(
     filters.text
     | filters.sticker
