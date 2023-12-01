@@ -30,20 +30,11 @@ AMTAGS= [
     "𝘼𝙗 𝘼𝙗 𝙊𝙛𝙡𝙞𝙣𝙚 𝙂𝙖𝙮𝙖 𝙒𝙤 𝙅𝙖𝙤 𝘾𝙖𝙡𝙡 𝙆𝙖𝙧𝙡𝙤 𝙖𝙖𝙟𝙖𝙮𝙖 𝙜𝙖 𝙊𝙣𝙡𝙞𝙣𝙚 😜😜"
 ]
 SPAM_CHATS = [
-"𝙝𝙚𝙡𝙡𝙤 🤗🤗",
-"𝗞𝗮𝗵𝗮 𝗕𝘂𝘀𝘆 𝗛𝗼 😏😏",
-"𝗩𝗰 𝗔𝗮𝗼 𝗡𝗮 😜😜",
-"𝗔𝗮𝗷𝗮𝗸𝗮𝗹 𝗞𝗮𝗵𝗮 𝗕𝘂𝘀𝘆 𝗛𝗼 😢😢"
+    "𝙝𝙚𝙡𝙡𝙤 🤗🤗",
+    "𝗞𝗮𝗵𝗮 𝗕𝘂𝘀𝘆 𝗛𝗼 😏😏",
+    "𝗩𝗰 𝗔𝗮𝗼 𝗡𝗮 😜😜",
+    "𝗔𝗮𝗷𝗮𝗸𝗮𝗹 𝗞𝗮𝗵𝗮 𝗕𝘂𝘀𝘆 𝗛𝗼 😢😢"
 ]
-
-@client.on_message(
-    filters.command(["AM_YTBOTT","@AM_YTBOTT","@am_ytbott","ambot","am"], prefixes=["/", ".", "?", "-",""])
-    & ~filters.private)
-async def start(client, message):
-    random_message = random.choice(AMTAGS)
-    await message.reply_text(random_message)    
-
-
 
 @client.on_message(
     filters.command(["user", "invite"], prefixes=["/", ".", "?", "-"])
@@ -54,56 +45,43 @@ async def tag_all_users(_, message):
     if len(message.command) < 2 and not replied:
         await message.reply_text("**ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴏʀ ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴛᴀɢ ᴀʟʟ**")
         return
-    if replied:
-        SPAM_CHATS.append(message.chat.id)
-        usernum = 0
-        usertxt = ""
-        members = await client.get_chat_members(message.chat.id)
-        member_iter = iter(members)
-        while message.chat.id in SPAM_CHATS:
-            try:
-                m = next(member_iter)
-                usernum += 1
-                usertxt += f"  [{m.user.first_name}](tg://user?id={m.user.id})\n"
-                if usernum == 1:
+
+    text = random.choice(SPAM_CHATS)
+    SPAM_CHATS.append(message.chat.id)
+    usernum = 0
+    usertxt = ""
+    members = await client.get_chat_members(message.chat.id)
+    member_iter = iter(members)
+
+    while message.chat.id in SPAM_CHATS:
+        try:
+            m = next(member_iter)
+            usernum += 1
+            usertxt += f" [{m.user.first_name}](tg://user?id={m.user.id})\n"
+            if usernum == 1:
+                if replied:
                     await replied.reply_text(usertxt)
-                    await asyncio.sleep(10)
-                    usernum = 0
-                    usertxt = ""
-            except StopIteration:
-                break
-
-        try:
-            SPAM_CHATS.remove(message.chat.id)
-        except Exception:
-            pass
-    else:
-        text = random.choice(SPAM_CHATS)
-        SPAM_CHATS.append(message.chat.id)
-        usernum = 0
-        usertxt = ""
-        members = await client.get_chat_members(message.chat.id)
-        member_iter = iter(members)
-        while message.chat.id in SPAM_CHATS:
-            try:
-                m = next(member_iter)
-                usernum += 1
-                usertxt += f" [{m.user.first_name}](tg://user?id={m.user.id})\n"
-                if usernum == 1:
+                else:
                     await client.send_message(message.chat.id, f'{text}\n{usertxt}')
-                    await asyncio.sleep(10)
-                    usernum = 0
-                    usertxt = ""
-            except StopIteration:
-                break
+                await asyncio.sleep(10)
+                usernum = 0
+                usertxt = ""
+        except StopIteration:
+            break
 
-        try:
-            SPAM_CHATS.remove(message.chat.id)
-        except Exception:
-            pass
+    try:
+        SPAM_CHATS.remove(message.chat.id)
+    except Exception:
+        pass
 
 
 
+@client.on_message(
+    filters.command(["AM_YTBOTT","@AM_YTBOTT","@am_ytbott","ambot","am"], prefixes=["/", ".", "?", "-",""])
+    & ~filters.private)
+async def start(client, message):
+    random_message = random.choice(AMTAGS)
+    await message.reply_text(random_message)
             
 @client.on_message(
  (
