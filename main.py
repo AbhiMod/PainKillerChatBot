@@ -126,7 +126,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
 @client.on_message(
-    filters.command(["cancel", "no","stopall","off"], prefixes=["/", ".", "?", "-","","!"])
+    filters.command(["cancel","stopall","off"], prefixes=["/", ".", "?", "-","","!"])
     & ~filters.private
 )
 async def cancelcmd(_, message):
