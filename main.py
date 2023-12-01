@@ -140,7 +140,15 @@ async def cancelcmd(_, message):
                                      
     else :
         await message.reply_text("**ɴᴏ ᴘʀᴏᴄᴇss ᴏɴɢᴏɪɴɢ!**")  
-        return      
+        return
+@client.on_message(
+    filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!",""])
+    & ~filters.private
+)
+async def help_command(_, message):
+    await message.reply_text(HELP)
+
+
 @client.on_message(
     filters.command(["user", "invite"], prefixes=["/", ".", "?", "-","","!"])
     & ~filters.private
