@@ -135,19 +135,20 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
 )
 async def cancelcmd(_, message):
     chat_id = message.chat.id
-chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
-if chat_member.status not in ["administrator", "creator"]:
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    if chat_member.status not in ["administrator", "creator"]:
         return await message.reply_text("**Only admins can use this command!**")
+
     if chat_id in SPAM_CHATS:
         try:
             SPAM_CHATS.remove(chat_id)
         except Exception:
             pass
         return await message.reply_text("**Tag all successfully stopped!**")
-
     else:
         await message.reply_text("**No ongoing process!**")
         return
+
 
 @client.on_message(
     filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
