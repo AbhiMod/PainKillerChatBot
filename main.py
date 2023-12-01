@@ -1,4 +1,4 @@
-
+from pyrogram import filters
 from pyrogram import Client, filters
 import asyncio
 from pyrogram.types import *
@@ -58,7 +58,7 @@ async def tag_all_users(_, message):
             usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
             if usernum == 1:
                 await replied.reply_text(usertxt)
-                await asyncio.sleep(2)
+                await asyncio.sleep(10)
                 usernum = 0
                 usertxt = ""
         try:
@@ -78,7 +78,7 @@ async def tag_all_users(_, message):
             usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
             if usernum == 5:
                 await client.send_message(message.chat.id, f'{text}\n{usertxt}')
-                await asyncio.sleep(2)
+                await asyncio.sleep(10)
                 usernum = 0
                 usertxt = ""
         try:
