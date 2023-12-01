@@ -51,7 +51,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
 
            ]
 
-@Welcome
+
 @client.on_chat_member_updated()
 async def welcome_message(_, update):
     new_chat_member = update.new_chat_member
