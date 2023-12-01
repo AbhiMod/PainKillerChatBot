@@ -32,9 +32,6 @@ from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
 
-app = Client('pytgcalls')
-group_call = pytgcalls(app).get_file_group_call('input.raw')
-
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
 STRING = os.environ.get("STRING", "")
@@ -95,21 +92,7 @@ async def cancelcmd(_, message):
         await message.reply_text("**No ongoing process!**")
         return
 #JoinVc
-async def join_voice_chat(client, message):
-    try:
-        chat_id = message.chat.id
-        group_call = pytgcalls.join_group_call(chat_id)
-        await message.reply_text("Joined the voice chat successfully!")
-    except (AlreadyJoinedError, NoActiveGroupCall, TelegramServerError) as e:
-        await message.reply_text(f"Error: {str(e)}")
 
-@client.on_message(filters.command(["joinvc"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.group)
-async def joinvc_command(_, message: Message):
-    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
-    if chat_member.status not in ["administrator", "creator"]:
-        return await message.reply_text("**Only admins can use this command!**")
-
-    await join_voice_chat(client, message)
 #help
 @client.on_message(
     filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
