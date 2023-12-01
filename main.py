@@ -34,7 +34,12 @@ AMTAGS= [
     "ᴋᴏɪ ɪꜱᴋᴏ @AM_YTBOTT ɢꜰ ᴅɪʟᴀᴅᴏ..😢😢😢",
     "𝘼𝙗 𝘼𝙗 𝙊𝙛𝙡𝙞𝙣𝙚 𝙂𝙖𝙮𝙖 𝙒𝙤 𝙅𝙖𝙤 𝘾𝙖𝙡𝙡 𝙆𝙖𝙧𝙡𝙤 𝙖𝙖𝙟𝙖𝙮𝙖 𝙜𝙖 𝙊𝙣𝙡𝙞𝙣𝙚 😜😜"
 ]
-
+AAA = [
+    "Nahi Me To Cute Mikashaa hu ☺️😊",
+    "Tumko Kya Lagta He 😢😒",
+    "Nahi U Bot 😂",
+    "Are Kuch V 😳😂",
+]
 REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 
 <u>𝗖𝗥𝗘𝗗𝗜𝗧 ❥︎ ᴀᴍʙᴏᴛ:</u>
@@ -176,6 +181,14 @@ async def help_command(_, message):
 async def help_command(_, message):
     await message.reply_text(REPO)
 
+#Bot
+@client.on_message(
+    filters.command(["bot"], prefixes=["/", ".", "?", "-", "", "!",""])
+    & ~filters.private
+)
+async def help_command(_, message):
+    text = random.choice(AAA)
+    await message.reply_text(text)
 #Tagall
 @client.on_message(
     filters.command(["user", "invite"], prefixes=["/", ".", "?", "-", "", "!"])
