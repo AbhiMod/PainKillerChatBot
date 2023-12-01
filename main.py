@@ -138,7 +138,6 @@ async def cancelcmd(_, message):
 chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
 if chat_member.status not in ["administrator", "creator"]:
         return await message.reply_text("**Only admins can use this command!**")
-
     if chat_id in SPAM_CHATS:
         try:
             SPAM_CHATS.remove(chat_id)
@@ -177,22 +176,17 @@ async def help_command(_, message):
 async def tag_all_users(_, message):
 chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
 if chat_member.status not in ["administrator", "creator"]:
-    # Your code here
-
         return await message.reply_text("**Only admins can use this command!**")
-
     replied = message.reply_to_message
     if len(message.command) < 2 and not replied:
         await message.reply_text("**Reply to a message or give some text to tag all!**")
         return
-
     text = random.choice(TAGMES)
     SPAM_CHATS.append(message.chat.id)
     usernum = 0
     usertxt = ""
     members = await client.get_chat_members(message.chat.id)
     member_iter = iter(members)
-
     while message.chat.id in SPAM_CHATS:
         try:
             m = next(member_iter)
