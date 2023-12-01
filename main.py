@@ -135,8 +135,8 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
 )
 async def cancelcmd(_, message):
     chat_id = message.chat.id
-    # Check if the user is an admin
-    if await client.get_chat_member(chat_id, message.from_user.id).status not in ["administrator", "creator"]:
+chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+if chat_member.status not in ["administrator", "creator"]:
         return await message.reply_text("**Only admins can use this command!**")
 
     if chat_id in SPAM_CHATS:
@@ -175,8 +175,10 @@ async def help_command(_, message):
     & filters.group
 )
 async def tag_all_users(_, message):
-    # Check if the user is an admin
-    if await client.get_chat_member(message.chat.id, message.from_user.id).status not in ["administrator", "creator"]:
+chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+if chat_member.status not in ["administrator", "creator"]:
+    # Your code here
+
         return await message.reply_text("**Only admins can use this command!**")
 
     replied = message.reply_to_message
