@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram import Client, filters
-from pyrogram import ChatMember
+from pyrogram.types import ChatMember
 import asyncio
 from pyrogram.types import *
 from pymongo import MongoClient
