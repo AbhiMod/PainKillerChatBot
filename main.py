@@ -504,7 +504,10 @@ def welcomepic(pic, user, chat, id, uname):
     background.save(f"downloads/welcome#{id}.png")
     return f"downloads/welcome#{id}.png"
     
-@app.on_message(filters.command("wel") & ~filters.private)
+@client.on_message(
+    filters.command(["wel", "come"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
+)
 async def auto_state(_, message):
     usage = "**Usage:**\n⦿/wel [on|off]\n➤sᴀʟᴏɴ ᴀᴜʀ ʜᴀᴀɴ sᴛʏʟɪsʜ ғᴏɴᴛ ɴᴏᴛ ᴀʟʟᴏᴡᴇᴅ ɪɴ ᴛʜᴇ ᴛʜᴜᴍʙɴᴀɪʟ.!"
     if len(message.command) == 1:
