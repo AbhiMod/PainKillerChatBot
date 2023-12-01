@@ -33,9 +33,7 @@ HELP = ["""
 Here Is Cmds For Tagall
 use cmds prefixes : . / ? ! -
 user,invite - To Random tags to users
-no,cancle,stopall,off - to tagall stop 
-""",
-"ab cmds nahi dunga hehehe"
+no,cancle,stopall,off - to tagall stop """
 ]
 SPAM_CHATS = []
 TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
