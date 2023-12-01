@@ -158,7 +158,7 @@ async def cancelcmd(_, message):
             SPAM_CHATS.remove(chat_id)
         except Exception:
             pass
-        return await message.reply_text("**Tag all successfully stopped!**")
+        return await message.reply_text("**Ok Yrr Ab Yesa Lagraha me spam karr jesa ab nahi tag karraha me kisi ko!**")
     else:
         await message.reply_text("**No ongoing process!**")
         return
