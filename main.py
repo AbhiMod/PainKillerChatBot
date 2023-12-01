@@ -11,6 +11,7 @@ from pyrogram.errors import (
     PeerIdInvalid,
     ChatWriteForbidden
 )
+from pytgcalls import PyTgCalls
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.exceptions import (
     AlreadyJoinedError,
