@@ -123,7 +123,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
 )
 async def cancelcmd(_, message):
     chat_id = message.chat.id
-    if chat_id in TAGMES:
+    if chat_id in SPAM_CHATS:
         try :
             TAGMES.remove(chat_id)
         except Exception:
