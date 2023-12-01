@@ -510,7 +510,7 @@ async def auto_state(_, message):
     if len(message.command) == 1:
         return await message.reply_text(usage)
     chat_id = message.chat.id
-    user = await app.get_chat_member(message.chat.id, message.from_user.id)
+    user = await client.get_chat_member(message.chat.id, message.from_user.id)
     if user.status in (
         enums.ChatMemberStatus.ADMINISTRATOR,
         enums.ChatMemberStatus.OWNER,
@@ -547,7 +547,7 @@ async def greet_group(_, member: ChatMemberUpdated):
         return
     user = member.new_chat_member.user if member.new_chat_member else member.from_user
     try:
-        pic = await app.download_media(
+        pic = await client.download_media(
             user.photo.big_file_id, file_name=f"pp{user.id}.png"
         )
     except AttributeError:
@@ -561,7 +561,7 @@ async def greet_group(_, member: ChatMemberUpdated):
         welcomeimg = welcomepic(
             pic, user.first_name, member.chat.title, user.id, user.username
         )
-        temp.MELCOW[f"welcome-{member.chat.id}"] = await app.send_photo(
+        temp.MELCOW[f"welcome-{member.chat.id}"] = await client.send_photo(
             member.chat.id,
             photo=welcomeimg,
             caption=f"""
@@ -584,8 +584,8 @@ Usᴇʀɴᴀᴍᴇ ✧ @{user.username}
 @client.on_message(filters.new_chat_members & filters.group, group=-1)
 async def bot_wel(_, message):
     for u in message.new_chat_members:
-        if u.id == app.me.id:
-            await app.send_message(LOG_CHANNEL_ID, f"""
+        if u.id == client.me.id:
+            await client.send_message(LOG_CHANNEL_ID, f"""
 **NEW GROUP
 ➖➖➖➖➖➖➖➖➖➖➖➖
 NAME: {message.chat.title}
