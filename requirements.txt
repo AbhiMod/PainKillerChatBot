@@ -6,3 +6,5 @@ tgcrypto==1.2.2
 motor==3.0.0
 pillow==9.5.0
 psutil
+ffmpeg-python
+pytgcalls
