@@ -39,6 +39,8 @@ AAA = [
     "Tumko Kya Lagta He 😢😒",
     "Nahi U Bot 😂",
     "Are Kuch V 😳😂",
+    "Puch Lo AMBOT Se Me Kon Hu 🙈",
+    "Me Insaan Hu Reee Aaj Tumko Pitna He sayad 😏",
 ]
 REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 
