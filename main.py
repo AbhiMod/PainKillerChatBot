@@ -51,16 +51,21 @@ async def tag_all_users(_, message):
         SPAM_CHATS.append(message.chat.id)
         usernum = 0
         usertxt = ""
-        async for m in client.get_chat_members(message.chat.id):
-            if message.chat.id not in SPAM_CHATS:
+        members = await client.get_chat_members(message.chat.id)
+        member_iter = iter(members)
+        while message.chat.id in SPAM_CHATS:
+            try:
+                m = next(member_iter)
+                usernum += 5
+                usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
+                if usernum == 1:
+                    await replied.reply_text(usertxt)
+                    await asyncio.sleep(10)
+                    usernum = 0
+                    usertxt = ""
+            except StopIteration:
                 break
-            usernum += 5
-            usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
-            if usernum == 1:
-                await replied.reply_text(usertxt)
-                await asyncio.sleep(10)
-                usernum = 0
-                usertxt = ""
+
         try:
             SPAM_CHATS.remove(message.chat.id)
         except Exception:
@@ -71,20 +76,26 @@ async def tag_all_users(_, message):
         SPAM_CHATS.append(message.chat.id)
         usernum = 0
         usertxt = ""
-        async for m in client.get_chat_members(message.chat.id):
-            if message.chat.id not in SPAM_CHATS:
+        members = await client.get_chat_members(message.chat.id)
+        member_iter = iter(members)
+        while message.chat.id in SPAM_CHATS:
+            try:
+                m = next(member_iter)
+                usernum += 1
+                usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
+                if usernum == 5:
+                    await client.send_message(message.chat.id, f'{text}\n{usertxt}')
+                    await asyncio.sleep(10)
+                    usernum = 0
+                    usertxt = ""
+            except StopIteration:
                 break
-            usernum += 1
-            usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
-            if usernum == 5:
-                await client.send_message(message.chat.id, f'{text}\n{usertxt}')
-                await asyncio.sleep(10)
-                usernum = 0
-                usertxt = ""
+
         try:
             SPAM_CHATS.remove(message.chat.id)
         except Exception:
             pass
+
             
 @client.on_message(
  (
