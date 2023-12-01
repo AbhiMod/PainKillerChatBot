@@ -29,7 +29,9 @@ AMTAGS= [
     "ᴋᴏɪ ɪꜱᴋᴏ @AM_YTBOTT ɢꜰ ᴅɪʟᴀᴅᴏ..😢😢😢",
     "𝘼𝙗 𝘼𝙗 𝙊𝙛𝙡𝙞𝙣𝙚 𝙂𝙖𝙮𝙖 𝙒𝙤 𝙅𝙖𝙤 𝘾𝙖𝙡𝙡 𝙆𝙖𝙧𝙡𝙤 𝙖𝙖𝙟𝙖𝙮𝙖 𝙜𝙖 𝙊𝙣𝙡𝙞𝙣𝙚 😜😜",
 ]
-SPAM_CHATS = []
+SPAM_CHATS = [
+    "𝙝𝙚𝙡𝙡𝙤",
+]
 
 @client.on_message(
     filters.command(["AM_YTBOTT","@AM_YTBOTT","@am_ytbott","ambot","am"], prefixes=["/", ".", "?", "-",""])
@@ -39,7 +41,7 @@ async def start(client, message):
     await message.reply_text(random_message)    
 
 @client.on_message(
-    filters.command(["usesr", "invite"], prefixes=["/", ".", "?", "-"])
+    filters.command(["user", "invite"], prefixes=["/", ".", "?", "-"])
     & ~filters.private
 )
 async def tag_all_users(_, message):
@@ -56,8 +58,8 @@ async def tag_all_users(_, message):
         while message.chat.id in SPAM_CHATS:
             try:
                 m = next(member_iter)
-                usernum += 3
-                usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
+                usernum += 1
+                usertxt += f"  [{m.user.first_name}](tg://user?id={m.user.id})\n"
                 if usernum == 1:
                     await replied.reply_text(usertxt)
                     await asyncio.sleep(10)
@@ -82,8 +84,8 @@ async def tag_all_users(_, message):
             try:
                 m = next(member_iter)
                 usernum += 1
-                usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
-                if usernum == 3:
+                usertxt += f" [{m.user.first_name}](tg://user?id={m.user.id})\n"
+                if usernum == 1:
                     await client.send_message(message.chat.id, f'{text}\n{usertxt}')
                     await asyncio.sleep(10)
                     usernum = 0
