@@ -214,9 +214,9 @@ async def tag_all_users(_, message):
 
 @client.on_chat_member_updated()
 async def welcome_message(_, update):
-    chat_member = update.new_chat_member
-    if chat_member and chat_member.is_user and chat_member.id != client.me.id:
-        welcome_text = f"Welcome {chat_member.mention} to the group! 🎉"
+    new_chat_member = update.new_chat_member
+    if new_chat_member and new_chat_member.status == "member":
+        welcome_text = f"Welcome {new_chat_member.mention} to the group! 🎉"
         await client.send_message(update.chat.id, welcome_text)
 
 
