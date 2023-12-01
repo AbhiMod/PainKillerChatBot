@@ -9,6 +9,7 @@ from pyrogram.errors import (
     PeerIdInvalid,
     ChatWriteForbidden
 )
+
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 import os
@@ -29,6 +30,8 @@ AMTAGS= [
     "ᴋᴏɪ ɪꜱᴋᴏ @AM_YTBOTT ɢꜰ ᴅɪʟᴀᴅᴏ..😢😢😢",
     "𝘼𝙗 𝘼𝙗 𝙊𝙛𝙡𝙞𝙣𝙚 𝙂𝙖𝙮𝙖 𝙒𝙤 𝙅𝙖𝙤 𝘾𝙖𝙡𝙡 𝙆𝙖𝙧𝙡𝙤 𝙖𝙖𝙟𝙖𝙮𝙖 𝙜𝙖 𝙊𝙣𝙡𝙞𝙣𝙚 😜😜"
 ]
+CHANNEL = "https://t.me/AMBOTYT"
+button = InlineKeyboardButton(HELP, url=CHANNEL)
 REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 
 <u>𝗖𝗥𝗘𝗗𝗜𝗧 ❥︎ ᴀᴍʙᴏᴛ:</u>
@@ -148,7 +151,8 @@ async def cancelcmd(_, message):
     & ~filters.private
 )
 async def help_command(_, message):
-    await message.reply_text(HELP)
+keyboard = InlineKeyboardMarkup().add(button)
+await message.reply_text(HELP, reply_markup=keyboard)
     
 @client.on_message(
     filters.command(["repo","source","code"], prefixes=["/", ".", "?", "-", "", "!",""])
