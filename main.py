@@ -536,7 +536,7 @@ async def auto_state(_, message):
             await message.reply_text(usage)
     else:
         await message.reply("Only Admins Can Use This Command")
-@app.on_chat_member_updated(filters.group, group=-3)
+@client.on_chat_member_updated(filters.group, group=-3)
 async def greet_group(_, member: ChatMemberUpdated):
     chat_id = member.chat.id
     A = await wlcm.find_one(chat_id)  # Corrected this line
@@ -584,7 +584,7 @@ Usᴇʀɴᴀᴍᴇ ✧ @{user.username}
         os.remove(f"downloads/pp{user.id}.png")
     except Exception as e:
         pass
-@app.on_message(filters.new_chat_members & filters.group, group=-1)
+@client.on_message(filters.new_chat_members & filters.group, group=-1)
 async def bot_wel(_, message):
     for u in message.new_chat_members:
         if u.id == app.me.id:
