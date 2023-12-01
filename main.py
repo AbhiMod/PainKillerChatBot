@@ -154,7 +154,7 @@ async def help_command(_, message):
     button_text = "ɢʙᴀɴꜱ ʟᴏɢꜱ"
     button_url = "https://t.me/Logs_Gban"
     button = InlineKeyboardButton(button_text, url=button_url)
-    keyboard = InlineKeyboardMarkup().add(button)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[[button]])
     await message.reply_text(HELP, reply_markup=keyboard)
 
     
