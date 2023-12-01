@@ -10,7 +10,7 @@ from pyrogram.errors import (
     PeerIdInvalid,
     ChatWriteForbidden
 )
-
+from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 import os
@@ -163,6 +163,20 @@ async def cancelcmd(_, message):
         await message.reply_text("**No ongoing process!**")
         return
 
+#JoinVc
+@client.on_message(filters.command(["joinvc","vcjoin"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.group)
+async def join_vc_command(_, message):
+    try:
+        chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+        if chat_member.status not in ["administrator", "creator"]:
+            return await message.reply_text("**Only admins can use this command!**")
+        
+        await client.join_chat(message.chat.id)
+        await message.reply_text("**Me V Vc Me Aarahi ab !**")
+    except ChatWriteForbidden:
+        await message.reply_text("**I don't have the necessary permissions to join the voice chat. Please check the permissions.**")
+    except Exception as e:
+        await message.reply_text(f"**An error occurred: {str(e)}**")
 #help
 @client.on_message(
     filters.command(["help"], prefixes=["/", ".", "?", "-", "", "!"])
