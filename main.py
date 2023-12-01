@@ -34,7 +34,8 @@ Here Is Cmds For Tagall
 use cmds prefixes : . / ? ! -
 user,invite - To Random tags to users
 no,cancle,stopall,off - to tagall stop 
-"""
+""",
+"ab cmds nahi dunga hehehe"
 ]
 SPAM_CHATS = []
 TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
@@ -188,17 +189,15 @@ async def start(client, message):
     await message.reply_text(random_message)
     
   @client.on_message(
-    filters.command(["help"], prefixes=["/", ".", "?", "-",""])
+    filters.command(["help","HELP"], prefixes=["/", ".", "?", "-",""])
     & ~filters.private)
 async def start(client, message):
     random_message = random.choice(HELP)
     await message.reply_text(random_message)    
     
 @client.on_message(
- (
-        filters.text
-        | filters.sticker
-    )
+    filters.text
+    | filters.sticker
     & ~filters.private
     & ~filters.me
     & ~filters.bot,
