@@ -30,6 +30,10 @@ from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQuality
 from pytgcalls.types.stream import StreamAudioEnded
 
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
+from pyrogram.types import Chat, Channel, User
+from pyrogram.raw import functions
+from pyrogram.raw.types import InputChannelEmpty
+from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 import os
@@ -161,33 +165,32 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐊𝐚𝐡𝐚 𝐊𝐡𝐨𝐲𝐞 𝐇𝐨 𝐉𝐚𝐚𝐧😜** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
+botStartTime = datetime.now()
+button_data = {}
+@client.on_message(
+    filters.command(["start"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def start(_, message):
+    await message.reply_text(
+        text=f"Hello {message.from_user.mention}!\nI am a tag all bot, created by [ᴀᴍʙᴏᴛ](https://t.me/AM_YTBOTT).\n\nUse .help to see the available commands.",
+        disable_web_page_preview=True
+    )
+    
 #User Stats
-stats_data = {
-    'group_count': 0,
-    'channel_count': 0,
-    'pm_user_count': 0,
-    'bot_count': 0,
-}
-
 @client.on_message(
     filters.command(["stats"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def stats_command(_, message):
-    stats_data['group_count'] += 1 if message.chat.type == "supergroup" else 0
-    stats_data['channel_count'] += 1 if message.chat.type == "channel" else 0
-    stats_data['pm_user_count'] += 1 if message.chat.type == "private" else 0
-    stats_data['bot_count'] += 1 if message.from_user and message.from_user.is_bot else 0
-
-    stats_text = (
-        f"**Group Count:** {stats_data['group_count']}\n"
-        f"**Channel Count:** {stats_data['channel_count']}\n"
-        f"**PM User Count:** {stats_data['pm_user_count']}\n"
-        f"**Bot Count:** {stats_data['bot_count']}\n\n"
+async def stats(_, message):
+    global botStartTime
+    uptime = datetime.now() 
+    formatted_uptime = "{:0>8}".format(
+        "{}d {}h {}m {}s".format(uptime.days, uptime.seconds // 3600, (uptime.seconds // 60) % 60, uptime.seconds % 60)
     )
-
-    await message.reply_text(stats_text)
-
+    await message.reply_text(
+        f"**Bot Uptime:** {formatted_uptime}\n**Total Chat Queues:** {len(chatQueue)}\n**Stop Process:** {stopProcess}"
+    )
 #Tr
 trans = Translator()
 
