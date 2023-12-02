@@ -236,7 +236,7 @@ async def remove(client, message):
                 await temp.delete()  
               chatQueue.remove(message.chat.id)
     else:
-      await message.reply("👮🏻 | sᴏʀʀʏ, **ᴏɴʟʏ ᴀᴅᴍɪɴ** ᴄᴀɴ ᴇxᴇᴄᴜᴛᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ.")  
+      await message.reply("👮🏻 | sᴏʀʀʏ, ᴏɴʟʏ ᴀᴅᴍɪɴ ᴄᴀɴ ᴇxᴇᴄᴜᴛᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ.")  
   except FloodWait as e:
     await asyncio.sleep(e.value)                               
         
@@ -250,7 +250,7 @@ async def admins(client, message):
   try: 
     adminList = []
     ownerList = []
-    async for admin in client.get_chat_members(message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS):
+    async for admin in client.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
       if admin.privileges.is_anonymous == False:
         if admin.user.is_bot == True:
           pass
