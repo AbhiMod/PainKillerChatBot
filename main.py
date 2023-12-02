@@ -684,7 +684,7 @@ async def chat_watcher_func(_, message):
 )
 async def start(_, message):
     await message.reply_text(
-        text=f"Hello {message.from_user.mention}!\nI am a tag all bot, created by [ᴀᴍʙᴏᴛ](https://t.me/AM_YTBOTT).\n\nUse `.help` to see the available commands.",
+        text=f"ʜᴇʟʟᴏ {message.from_user.mention}!\n ɪ ᴀᴍ ᴀ ᴄʜᴀᴛ + ᴛᴀɢ ᴀʟʟ ʙᴏᴛ, ᴄʀᴇᴀᴛᴇᴅ ʙʏ [ᴀᴍʙᴏᴛ](https://t.me/AM_YTBOTT).\n\nUse `help` ᴛᴏ ꜱᴇᴇ ᴛʜᴇ ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅꜱ.",
         disable_web_page_preview=True
     )
     
@@ -805,7 +805,7 @@ async def list_bots(_, message):
 
 #My Id 
 @client.on_message(
-    filters.command(["info","me","id"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["info","id"], prefixes=["/", ".", "?", "-", "", "!"])
     & filters.group
 )
 def group_status(client, message):
