@@ -178,7 +178,7 @@ async def cancelcmd(_, message):
 
 # Command handler to get group status
 @client.on_message(
-    filters.command(["info"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["info","me","id"], prefixes=["/", ".", "?", "-", "", "!"])
     & filters.group
 )
 def group_status(client, message):
