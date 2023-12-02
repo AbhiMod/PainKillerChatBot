@@ -13,7 +13,6 @@ from pyrogram.errors import (
 )
 import pyrogram
 from pyrogram.methods import chats
-from pyrogram.methods import GetChatMembers
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 from pytgcalls import PyTgCalls
