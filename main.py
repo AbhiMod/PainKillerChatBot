@@ -186,12 +186,12 @@ def group_status(client, message):
     title = chat_info.title
     description = chat_info.description
     member_count = chat_info.members_count
-    status_text = f"Group ID: {chat.id}\nTitle: {title}\nType: {chat.type}\nDescription: {description}\nMembers Count: {member_count}"
+    status_text = f"ᴄʜᴀᴛ ɪᴅ : `{chat.id}`\nᴄʜᴀᴛ ɴᴀᴍᴇ : {title}\nᴛʏᴘᴇ : `{chat.type}`\nᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ : `{description}`\nᴍᴇᴍʙᴇʀꜱ ᴄᴏᴜɴᴛ : `{member_count}`\n"
                   
     if chat.username:  # Not all groups have a username
-        status_text += f"Username: @{chat.username}"
+        status_text += f"ᴜꜱᴇʀɴᴀᴍᴇ : @{chat.username}"
     else:
-        status_text += "Username: None"
+        status_text += "ᴜꜱᴇʀɴᴀᴍᴇ : `ɴᴏɴᴇ`"
 
     message.reply_text(status_text)
 
