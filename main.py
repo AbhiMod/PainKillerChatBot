@@ -175,20 +175,6 @@ nightmodedb = db.nightmode
 notesdb = db.notes
 filtersdb = db.filters
 #Ping 
-def supp_markup(_):
-    upl = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(
-                    text="💕 ᴏᴡɴᴇʀ",
-
-                url=f"https://t.me/AM_YTBOTT",
-
-            ),
-            ]
-        ]
-    )
-    return upl
 async def bot_sys_stats():
     bot_uptime = int(time.time() - _boot_)
     UP = f"{get_readable_time(bot_uptime)}"
@@ -207,12 +193,11 @@ async def ping_com(client, message: Message, _):
         photo=PING_IMG_URL,
         caption=_["ping_1"].format(client.mention),
     )
-    pytgping = await DAXX.ping()
+    pytgping = await client.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
     await response.edit_text(
         _["ping_2"].format(resp, client.mention, UP, RAM, CPU, DISK, pytgping),
-        reply_markup=supp_markup(_),
     )
 #MONGO
 async def _get_lovers(cid: int):
