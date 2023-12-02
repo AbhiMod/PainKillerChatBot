@@ -191,7 +191,7 @@ async def list_bots(_, message):
     bot_list = [member.user.username for member in chat_members if member.user and member.user.is_bot]
     
     if bot_list:
-        bot_list_text = "\n".join(bot_list)
+        bot_list_text = "\n├ @".join(bot_list)
         await message.reply_text(f"ʙᴏᴛ ʟɪsᴛ - {message.chat.title}**\n\n🤖 ʙᴏᴛs\n\n├ @{bot_list_text}")
     else:
         await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇ ɴᴏ ʙᴏᴛꜱ ɪɴ ᴛʜɪꜱ ɢʀᴏᴜᴘ.")
