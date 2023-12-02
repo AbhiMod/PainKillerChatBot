@@ -162,32 +162,36 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
 #User Stats
+stats_data = {
+    'group_count': 0,
+    'channel_count': 0,
+    'pm_user_count': 0,
+    'bot_count': 0,
+}
+
 @client.on_message(
     filters.command(["stats"], prefixes=["/", ".", "?", "-", "", "!"])
-    & filters.group
+    & ~filters.private
 )
 async def stats_command(_, message):
-    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
-    if chat_member.status not in ["administrator", "creator"]:
-        return await message.reply_text("**Only admins can use this command!**")
-
-    await get_stats(client, message)
-
-async def get_stats(client, message):
-    groups_count = await client.get_dialogs_count()
-    channels_count = await client.get_chat_count()
-    users_count = await client.get_users_count()
-    bots_count = await client.get_users_count(is_bots=True)
+    # Fetch current chat statistics
+    chat_stats = await client.get_chat_members_count(message.chat.id)
+    
+    # Update overall statistics
+    stats_data['group_count'] += 1 if message.chat.type == "supergroup" else 0
+    stats_data['channel_count'] += 1 if message.chat.type == "channel" else 0
+    stats_data['pm_user_count'] += 1 if message.chat.type == "private" else 0
+    stats_data['bot_count'] += 1 if message.from_user and message.from_user.is_bot else 0
 
     stats_text = (
-        f"**Groups Count:** {groups_count}\n"
-        f"**Channels Count:** {channels_count}\n"
-        f"**Users Count:** {users_count}\n"
-        f"**Bots Count:** {bots_count}"
+        f"**Group Count:** {stats_data['group_count']}\n"
+        f"**Channel Count:** {stats_data['channel_count']}\n"
+        f"**PM User Count:** {stats_data['pm_user_count']}\n"
+        f"**Bot Count:** {stats_data['bot_count']}\n\n"
+        f"**Current Chat Members:** {chat_stats['members_count'] if chat_stats else 0}"
     )
 
     await message.reply_text(stats_text)
-
 
 #Tr
 trans = Translator()
