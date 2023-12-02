@@ -195,6 +195,20 @@ async def list_admins(_, message):
         await message.reply_text(f"ᴀᴅᴍɪɴ ʟɪsᴛ - {message.chat.title}**\n\n👮‍♂️ ᴀᴅᴍɪɴs\n\n├ @{admin_list_text}")
     else:
         await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇ ɴᴏ ᴀᴅᴍɪɴs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")
+#Owner
+@client.on_message(
+    filters.command(["owner"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
+)
+async def get_group_owner(_, message):
+    chat_id = message.chat.id
+    chat_info = await client.get_chat(chat_id)
+    owner_id = chat_info.owner_id
+
+    owner = await client.get_users(owner_id)
+    owner_username = owner.username if owner.username else f"{owner.first_name} {owner.last_name}"
+
+    await message.reply_text(f"💕 ɢʀᴏᴜᴘ ᴏᴡɴᴇʀ\n├ @{owner_username}")
 
 #Bots
 @client.on_message(
