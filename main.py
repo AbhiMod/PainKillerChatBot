@@ -6,6 +6,9 @@ import asyncio
 from pyrogram.types import *
 from pymongo import MongoClient
 import requests
+import os, time
+import openai
+from gtts import gTTS
 import random
 from pyrogram.errors import (
     PeerIdInvalid,
@@ -159,43 +162,30 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
 
+openai.api_key  = os.environ.get("OPENAI_KEY","")
 
-@client.on_message(
-    filters.command(["zombies","clean"], prefixes=["/", ".", "?", "-", "", "!"])
-    & filters.group
-)
-async def remove_zombies(_, message):
-    chat_id = message.chat.id
-    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
-    if chat_member.status not in ["administrator", "creator"]:
-        return await message.reply_text("**Only admins can use this command!**")
 
-    # Get the list of members
-    members = await client.get_chat_members(chat_id)
-    deleted_accounts = []
 
-    # Check each member for deletion
-    for member in members:
-        if member.user and await is_deleted_account(client, member.user.id):
-            deleted_accounts.append(member.user.id)
-
-    # Remove deleted accounts
-    for user_id in deleted_accounts:
-        try:
-            await client.kick_chat_member(chat_id, user_id)
-        except pyrogram.errors.FloodWait as e:
-            await asyncio.sleep(e.x)
-
-    await message.reply_text(f"Removed {len(deleted_accounts)} deleted accounts.")
+@client.on_message(filters.command(["chatgpt","ai","ask"],  prefixes=["+", ".", "/", "-", "?", "$","#","&"]))
+async def chat(app :app, message):
     
-async def is_deleted_account(client, user_id):
     try:
-        user = await client.get_users(user_id)
-        return False  # User exists, not deleted
-    except pyrogram.errors.UserNotParticipant:
-        return True  # User is deleted
-    except Exception:
-        return False  # An error occurred, consider the user as not deleted to avoid false positives
+        start_time = time.time()
+        await client.send_chat_action(message.chat.id, ChatAction.TYPING)
+        if len(message.command) < 2:
+            await message.reply_text(
+            "**ʜᴇʟʟᴏ sɪʀ**\n**ᴇxᴀᴍᴘʟᴇ:-**`.ask How to set girlfriend ?`")
+        else:
+            a = message.text.split(' ', 1)[1]
+            MODEL = "gpt-3.5-turbo"
+            resp = openai.ChatCompletion.create(model=MODEL,messages=[{"role": "user", "content": a}],
+    temperature=0.2)
+            x=resp['choices'][0]["message"]["content"]
+            await message.reply_text(f"{x}")     
+    except Exception as e:
+        await message.reply_text(f"**ᴇʀʀᴏʀ**: {e} ")        
+
+
 #TagOff     
 @client.on_message(
     filters.command(["cancel", "stopall", "off"], prefixes=["/", ".", "?", "-", "", "!"])
