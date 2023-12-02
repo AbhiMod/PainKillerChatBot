@@ -15,6 +15,8 @@ from pyrogram.errors import (
     PeerIdInvalid,
     ChatWriteForbidden
 )
+from telegraph import upload_file
+from pyrogram.types import InputMediaPhoto
 import pyrogram
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
@@ -174,31 +176,23 @@ afkdb = db.afk
 nightmodedb = db.nightmode
 notesdb = db.notes
 filtersdb = db.filters
-#Ping 
-async def bot_sys_stats():
-    bot_uptime = int(time.time() - _boot_)
-    UP = f"{get_readable_time(bot_uptime)}"
-    CPU = f"{psutil.cpu_percent(interval=0.5)}%"
-    RAM = f"{psutil.virtual_memory().percent}%"
-    DISK = f"{psutil.disk_usage('/').percent}%"
-    return UP, CPU, RAM, DISK
-    
+
+#TGM 
 @client.on_message(
-    filters.command(["ping"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["tgm","link"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def ping_com(client, message: Message, _):
-    start = datetime.now()
-    response = await message.reply_photo(
-        photo=PING_IMG_URL,
-        caption=_["ping_1"].format(client.mention),
-    )
-    pytgping = await client.ping()
-    UP, CPU, RAM, DISK = await bot_sys_stats()
-    resp = (datetime.now() - start).microseconds / 1000
-    await response.edit_text(
-        _["ping_2"].format(resp, client.mention, UP, RAM, CPU, DISK, pytgping),
-    )
+def ul(_, message):
+    reply = message.reply_to_message
+    if reply.media:
+        i = message.reply("ᴘʟꜱ ᴡᴀɪᴛ ᴀ ᴍɪɴ...")
+        path = reply.download()
+        fk = upload_file(path)
+        for x in fk:
+            url = "https://telegra.ph" + x
+
+        i.edit(f' 🇾ᴏᴜʀ🇹ᴇʟᴇɢʀᴀᴘʜ `{url}`')
+        
 #MONGO
 async def _get_lovers(cid: int):
     lovers = await coupledb.find_one({"chat_id": cid})
