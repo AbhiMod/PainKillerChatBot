@@ -213,7 +213,10 @@ def group_status(client, message):
 
 
 ####
-@app.on_message(filters.command('groupinfo') & filters.group)
+@client.on_message(
+    filters.command(["Groupinfo"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
+)
 def group_info(client, message):
     chat_id = message.chat.id
     chat_info = app.get_chat(chat_id)
