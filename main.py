@@ -186,7 +186,6 @@ def group_status(client, message):
     title = chat_info.title
     description = chat_info.description
     member_count = chat_info.members_count
-    message.reply_text(info_text)
     status_text = f"Group ID: {chat.id}\nTitle: {title}\nType: {chat.type}\nDescription: {description}\nMembers Count: {member_count}"
                   
     if chat.username:  # Not all groups have a username
