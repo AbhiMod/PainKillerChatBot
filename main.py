@@ -7,7 +7,7 @@ from pyrogram.types import *
 from pymongo import MongoClient
 import requests
 import os, time
-import openai
+from gpytranslate import Translator
 from gtts import gTTS
 import random
 from pyrogram.errors import (
@@ -162,29 +162,38 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
 
-openai.api_key  = os.environ.get("OPENAI_KEY","")
+trans = Translator()
 
-
-
-@client.on_message(filters.command(["chatgpt","ai","ask"],  prefixes=["+", ".", "/", "-", "?", "$","#","&"]))
-async def chat(client :client, message):
-    
+@client.on_message(
+    filters.command(["tr","Translator","Translat","Trt"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def translate(_, message) -> None:
+    reply_msg = message.reply_to_message
+    if not reply_msg:
+        await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴛʀᴀɴsʟᴀᴛᴇ ɪᴛ !")
+        return
+    if reply_msg.caption:
+        to_translate = reply_msg.caption
+    elif reply_msg.text:
+        to_translate = reply_msg.text
     try:
-        start_time = time.time()
-        await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-        if len(message.command) < 2:
-            await message.reply_text(
-            "**ʜᴇʟʟᴏ sɪʀ**\n**ᴇxᴀᴍᴘʟᴇ:-**`.ask How to set girlfriend ?`")
+        args = message.text.split()[1].lower()
+        if "//" in args:
+            source = args.split("//")[0]
+            dest = args.split("//")[1]
         else:
-            a = message.text.split(' ', 1)[1]
-            MODEL = "gpt-3.5-turbo"
-            resp = openai.ChatCompletion.create(model=MODEL,messages=[{"role": "user", "content": a}],
-    temperature=0.2)
-            x=resp['choices'][0]["message"]["content"]
-            await message.reply_text(f"{x}")     
-    except Exception as e:
-        await message.reply_text(f"**ᴇʀʀᴏʀ**: {e} ")        
-
+            source = await trans.detect(to_translate)
+            dest = args
+    except IndexError:
+        source = await trans.detect(to_translate)
+        dest = "en"
+    translation = await trans(to_translate, sourcelang=source, targetlang=dest)
+    reply = (
+        f"ᴛʀᴀɴsʟᴀᴛᴇᴅ ғʀᴏᴍ {source} to {dest}:\n"
+        f"{translation.text}"
+    )
+    await message.reply_text(reply)
 
 #TagOff     
 @client.on_message(
