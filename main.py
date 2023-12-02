@@ -203,12 +203,15 @@ async def list_admins(_, message):
 async def get_group_owner(_, message):
     chat_id = message.chat.id
     chat_info = await client.get_chat(chat_id)
-    owner_id = chat_info.owner_id
-
-    owner = await client.get_users(owner_id)
-    owner_username = owner.username if owner.username else f"{owner.first_name} {owner.last_name}"
-
-    await message.reply_text(f"💕 ɢʀᴏᴜᴘ ᴏᴡɴᴇʀ\n├ @{owner_username}")
+    
+    try:
+        # Use get_chat_member method to get information about the chat owner
+        owner = await client.get_chat_member(chat_id, chat_info.owner_id)
+        owner_username = owner.user.username if owner.user.username else f"{owner.user.first_name} {owner.user.last_name}"
+        await message.reply_text(f"💕 ɢʀᴏᴜᴘ ᴏᴡɴᴇʀ\n├ @{owner_username}")
+    except Exception as e:
+        print(f"Error retrieving group owner: {e}")
+        await message.reply_text("Error retrieving group owner information.")
 
 #Bots
 @client.on_message(
