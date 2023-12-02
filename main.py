@@ -12,8 +12,8 @@ from pyrogram.errors import (
     ChatWriteForbidden
 )
 import pyrogram
-from pyrogram.enums import *
-from pyrogram.enums import ChatMemberStatus
+from pyrogram.methods import chats
+from pyrogram.methods import GetChatMembers
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 from pytgcalls import PyTgCalls
@@ -197,7 +197,7 @@ async def remove(client, message):
       has_permissions = message.sender_chat  
     if has_permissions:
       bot = await client.get_chat_member(message.chat.id, "self")
-      if bot.status == ChatMemberStatus.MEMBER:
+      if bot.status == GetChatMembers.MEMBER:
         await message.reply("➠ | ɪ ɴᴇᴇᴅ ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴs ᴛᴏ ʀᴇᴍᴏᴠᴇ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛs.")  
       else:  
         if len(chatQueue) > 30 :
@@ -252,11 +252,11 @@ async def admins(client, message):
   try: 
     adminList = []
     ownerList = []
-    async for admin in client.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+    async for admin in client.get_chat_members(message.chat.id, filter=methods.GetChatMembers.ADMINISTRATORS):
       if admin.privileges.is_anonymous == False:
         if admin.user.is_bot == True:
           pass
-        elif admin.status == ChatMemberStatus.OWNER:
+        elif admin.status == GetChatMembers.OWNER:
           ownerList.append(admin.user)
         else:  
           adminList.append(admin.user)
@@ -302,7 +302,7 @@ async def admins(client, message):
 async def bots(client, message):  
   try:    
     botList = []
-    async for bot in client.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.BOTS):
+    async for bot in client.get_chat_members(message.chat.id, filter=methods.GetChatMembers.BOTS):
       botList.append(bot.user)
     lenBotList = len(botList) 
     text3  = f"**ʙᴏᴛ ʟɪsᴛ - {message.chat.title}**\n\n🤖 ʙᴏᴛs\n"
