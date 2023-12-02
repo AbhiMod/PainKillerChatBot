@@ -8,3 +8,7 @@ pillow==9.5.0
 psutil
 ffmpeg-python
 py-tgcalls==0.9.7
+gpytranslate
+openai==1.3.6
+gtts
+telegraph
