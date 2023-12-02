@@ -3,6 +3,7 @@ from pyrogram.types import Message
 from pyrogram import Client, filters
 from pyrogram.types import ChatMember
 import asyncio
+import psutil
 from pyrogram.types import *
 from pymongo import MongoClient
 import requests
@@ -54,9 +55,7 @@ AMTAGS= [
     "ᴋᴏɪ ɪꜱᴋᴏ @AM_YTBOTT ɢꜰ ᴅɪʟᴀᴅᴏ..😢😢😢",
     "𝘼𝙗 𝘼𝙗 𝙊𝙛𝙡𝙞𝙣𝙚 𝙂𝙖𝙮𝙖 𝙒𝙤 𝙅𝙖𝙤 𝘾𝙖𝙡𝙡 𝙆𝙖𝙧𝙡𝙤 𝙖𝙖𝙟𝙖𝙮𝙖 𝙜𝙖 𝙊𝙣𝙡𝙞𝙣𝙚 😜😜"
 ]
-chatQueue = []
 
-stopProcess = False
 AAA = [
     "Nahi Me To Cute Mikashaa hu ☺️😊",
     "Tumko Kya Lagta He 😢😒",
@@ -164,7 +163,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐊𝐚𝐡𝐚 𝐊𝐡𝐨𝐲𝐞 𝐇𝐨 𝐉𝐚𝐚𝐧😜** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
-botStartTime = datetime.now()
+
 button_data = {}
 @client.on_message(
     filters.command(["start"], prefixes=["/", ".", "?", "-", "", "!"])
@@ -176,20 +175,34 @@ async def start(_, message):
         disable_web_page_preview=True
     )
     
-#User Stats
+#Bot Stats
+start_time = time.time()
+
+def time_formatter(milliseconds):
+    minutes, seconds = divmod(int(milliseconds / 1000), 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
+    weeks, days = divmod(days, 7)
+    tmp = (((str(weeks) + "ᴡ:") if weeks else "") +
+           ((str(days) + "ᴅ:") if days else "") +
+           ((str(hours) + "ʜ:") if hours else "") +
+           ((str(minutes) + "ᴍ:") if minutes else "") +
+           ((str(seconds) + "s") if seconds else ""))
+    if not tmp:
+        return "0s"
+    if tmp.endswith(":"):
+        return tmp[:-1]
+    return tmp
+    
 @client.on_message(
     filters.command(["stats"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def stats(_, message):
-    global botStartTime
-    uptime = datetime.now() 
-    formatted_uptime = "{:0>8}".format(
-        "{}d {}h {}m {}s".format(uptime.days, uptime.seconds // 3600, (uptime.seconds // 60) % 60, uptime.seconds % 60)
-    )
-    await message.reply_text(
-        f"**Bot Uptime:** {formatted_uptime}\n**Total Chat Queues:** {len(chatQueue)}\n**Stop Process:** {stopProcess}"
-    )
+async def activevc(_, message: Message):
+    uptime = time_formatter((time.time() - start_time) * 1000)
+    cpu = psutil.cpu_percent()
+    TEXT = f"**ᴜᴘᴛɪᴍᴇ** : {uptime} | **ᴄᴘᴜ** : {cpu}%"
+    await message.reply(TEXT)
 #Tr
 trans = Translator()
 
