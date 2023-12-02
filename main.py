@@ -13,7 +13,6 @@ from pyrogram.errors import (
 )
 import pyrogram
 from pyrogram.types import Message
-from pyrogram import enums
 from pyrogram.errors import FloodWait
 from pytgcalls import PyTgCalls
 from pytgcalls import PyTgCalls, StreamType
