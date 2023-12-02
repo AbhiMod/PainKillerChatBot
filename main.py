@@ -174,10 +174,6 @@ stats_data = {
     & ~filters.private
 )
 async def stats_command(_, message):
-    # Fetch current chat statistics
-    chat_stats = await client.get_chat_members_count(message.chat.id)
-    
-    # Update overall statistics
     stats_data['group_count'] += 1 if message.chat.type == "supergroup" else 0
     stats_data['channel_count'] += 1 if message.chat.type == "channel" else 0
     stats_data['pm_user_count'] += 1 if message.chat.type == "private" else 0
@@ -188,7 +184,6 @@ async def stats_command(_, message):
         f"**Channel Count:** {stats_data['channel_count']}\n"
         f"**PM User Count:** {stats_data['pm_user_count']}\n"
         f"**Bot Count:** {stats_data['bot_count']}\n\n"
-        f"**Current Chat Members:** {chat_stats['members_count'] if chat_stats else 0}"
     )
 
     await message.reply_text(stats_text)
