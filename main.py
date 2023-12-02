@@ -180,6 +180,22 @@ async def cancelcmd(_, message):
     else:
         await message.reply_text("**No ongoing process!**")
         return
+# Admins
+@client.on_message(
+    filters.command(["admins"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
+)
+async def list_admins(_, message):
+    chat_id = message.chat.id
+    chat_members = await client.get_chat_members(chat_id, filter="administrators")
+    admin_list = [member.user.username for member in chat_members if member.user and member.user.is_bot is False]
+
+    if admin_list:
+        admin_list_text = "\n├ @".join(admin_list)
+        await message.reply_text(f"ᴀᴅᴍɪɴ ʟɪsᴛ - {message.chat.title}**\n\n👮‍♂️ ᴀᴅᴍɪɴs\n\n├ @{admin_list_text}")
+    else:
+        await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇ ɴᴏ ᴀᴅᴍɪɴs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")
+
 #Bots
 @client.on_message(
     filters.command(["bots"], prefixes=["/", ".", "?", "-", "", "!"])
