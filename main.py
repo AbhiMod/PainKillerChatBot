@@ -42,6 +42,8 @@ import re
 from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
+from mongo.readable_time import get_readable_time
+from mongo.db import add_afk, is_afk, remove_afk
 
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
