@@ -41,7 +41,6 @@ from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForb
 import os
 import re
 from typing import Dict, Union
-from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
 from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
