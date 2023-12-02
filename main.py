@@ -12,7 +12,6 @@ from pyrogram.errors import (
     ChatWriteForbidden
 )
 import pyrogram
-from pyrogram.methods import chats
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 from pytgcalls import PyTgCalls
@@ -301,7 +300,7 @@ async def admins(client, message):
 async def bots(client, message):  
   try:    
     botList = []
-    async for bot in client.get_chat_members(message.chat.id, filter=methods.GetChatMembers.BOTS):
+async for bot in client.get_chat_members(message.chat.id, filter="bots"):
       botList.append(bot.user)
     lenBotList = len(botList) 
     text3  = f"**ʙᴏᴛ ʟɪsᴛ - {message.chat.title}**\n\n🤖 ʙᴏᴛs\n"
