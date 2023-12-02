@@ -187,15 +187,15 @@ async def cancelcmd(_, message):
 )
 async def list_bots(_, message):
     chat_id = message.chat.id
+    title = chat_info.title
     chat_members = await client.get_chat_members(chat_id)
     bot_list = [member.user.username for member in chat_members if member.user and member.user.is_bot]
     
     if bot_list:
         bot_list_text = "\n".join(bot_list)
-        await message.reply_text(f"List of bots in the group:\n\n{bot_list_text}")
-    else:
+        await message.reply_text(f"*ʙᴏᴛ ʟɪsᴛ - {message.chat.title}**\n\n🤖 ʙᴏᴛs\n :\n\n├ @{bot_list_text}")    
+     else:
         await message.reply_text("There are no bots in this group.")
-
 #My Id 
 @client.on_message(
     filters.command(["info","me","id"], prefixes=["/", ".", "?", "-", "", "!"])
