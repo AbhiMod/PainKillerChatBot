@@ -219,7 +219,7 @@ def group_status(client, message):
 )
 def group_info(client, message):
     chat_id = message.chat.id
-    chat_info = app.get_chat(chat_id)
+    chat_info = client.get_chat(chat_id)
     title = chat_info.title
     description = chat_info.description
     member_count = chat_info.members_count
