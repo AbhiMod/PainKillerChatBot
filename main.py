@@ -11,8 +11,8 @@ from pyrogram.errors import (
     PeerIdInvalid,
     ChatWriteForbidden
 )
+import pyrogram
 from pyrogram.types import Message
-from pyrogram import enums
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import FloodWait
 from pytgcalls import PyTgCalls
