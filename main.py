@@ -176,7 +176,7 @@ async def cancelcmd(_, message):
         return
 # Command handler to get group status
 @client.on_message(
-    filters.command(["Groupinfo"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["info"], prefixes=["/", ".", "?", "-", "", "!"])
     & filters.group
 )
 def group_status(client, message):
@@ -188,7 +188,7 @@ def group_status(client, message):
     member_count = chat_info.members_count
     message.reply_text(info_text)
     status_text = f"Group ID: {chat.id}\n"
-                  f"Title: {chat.title}\n"
+                  f"Title: {title}\n"
                   f"Type: {chat.type}\n"
                   f"Description: {description}\nMembers Count: {member_count}"
                   
