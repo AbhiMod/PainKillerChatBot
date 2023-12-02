@@ -177,8 +177,8 @@ async def cancelcmd(_, message):
         return
 #My Id 
 @client.on_message(
-    filters.command(["me"], prefixes=["/", ".", "?", "-", "", "!"])
-    & ~filters.private
+    filters.command(["id"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
 )
 def ids(_, message):
     reply = message.reply_to_message
