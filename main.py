@@ -250,7 +250,7 @@ async def admins(client, message):
   try: 
     adminList = []
     ownerList = []
-    async for admin in client.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+    async for admin in client.get_chat_members(message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS):
       if admin.privileges.is_anonymous == False:
         if admin.user.is_bot == True:
           pass
