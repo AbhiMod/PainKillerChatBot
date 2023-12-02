@@ -175,20 +175,6 @@ async def cancelcmd(_, message):
         await message.reply_text("**No ongoing process!**")
         return
 #My Id 
-@client.on_message(
-    filters.command(["id"], prefixes=["/", ".", "?", "-", "", "!"])
-    & filters.group
-)
-def ids(_, message):
-    reply = message.reply_to_message
-    if reply:
-        message.reply_text(
-            f"ʏᴏᴜʀ ɪᴅ : `{message.from_user.id}`\n`{reply.from_user.first_name}`'s ɪᴅ: `{reply.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"
-        )
-    else:
-        message.reply(
-            f"ʏᴏᴜʀ ɪᴅ: `{message.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"
-        )
 
 # Command handler to get group status
 @client.on_message(
@@ -202,7 +188,12 @@ def group_status(client, message):
     title = chat_info.title
     description = chat_info.description
     member_count = chat_info.members_count
-    status_text = f"ᴄʜᴀᴛ ɪᴅ : `{chat.id}`\nᴄʜᴀᴛ ɴᴀᴍᴇ : `{title}`\nᴛʏᴘᴇ : `{chat.type}`\nᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ : `{description}`\nᴍᴇᴍʙᴇʀꜱ ᴄᴏᴜɴᴛ : `{member_count}`\n"
+    reply = message.reply_to_message
+    status_text = f"ᴄʜᴀᴛ ɪᴅ : `{chat.id}`\nᴄʜᴀᴛ ɴᴀᴍᴇ : `{title}`\nᴛʏᴘᴇ : `{chat.type}`\nᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ : `{description}`\nᴍᴇᴍʙᴇʀꜱ ᴄᴏᴜɴᴛ : `{member_count}`\nʏᴏᴜʀ ɪᴅ: `{message.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"         
+    if reply:
+        message.reply_text(
+            f"ʏᴏᴜʀ ɪᴅ : `{message.from_user.id}`\n`{reply.from_user.first_name}`'s ɪᴅ: `{reply.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`\nʏᴏᴜʀ ɪᴅ: `{message.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"
+        )
                   
     if chat.username:  # Not all groups have a username
         status_text += f"ᴜꜱᴇʀɴᴀᴍᴇ : @{chat.username}"
