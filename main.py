@@ -159,7 +159,42 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
 
-   
+   async def is_deleted_account(client, user_id):
+    try:
+        user = await client.get_users(user_id)
+        return False  # User exists, not deleted
+    except pyrogram.errors.UserNotParticipant:
+        return True  # User is deleted
+    except Exception:
+        return False  # An error occurred, consider the user as not deleted to avoid false positives
+@client.on_message(
+    filters.command(["zombies","clean"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
+)
+async def remove_zombies(_, message):
+    chat_id = message.chat.id
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    if chat_member.status not in ["administrator", "creator"]:
+        return await message.reply_text("**Only admins can use this command!**")
+
+    # Get the list of members
+    members = await client.get_chat_members(chat_id)
+    deleted_accounts = []
+
+    # Check each member for deletion
+    for member in members:
+        if member.user and await is_deleted_account(client, member.user.id):
+            deleted_accounts.append(member.user.id)
+
+    # Remove deleted accounts
+    for user_id in deleted_accounts:
+        try:
+            await client.kick_chat_member(chat_id, user_id)
+        except pyrogram.errors.FloodWait as e:
+            await asyncio.sleep(e.x)
+
+    await message.reply_text(f"Removed {len(deleted_accounts)} deleted accounts.")
+
 #TagOff     
 @client.on_message(
     filters.command(["cancel", "stopall", "off"], prefixes=["/", ".", "?", "-", "", "!"])
@@ -195,23 +230,7 @@ async def list_admins(_, message):
         await message.reply_text(f"ᴀᴅᴍɪɴ ʟɪsᴛ - {message.chat.title}**\n\n👮‍♂️ ᴀᴅᴍɪɴs\n\n├ @{admin_list_text}")
     else:
         await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇ ɴᴏ ᴀᴅᴍɪɴs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")
-#Owner
-@client.on_message(
-    filters.command(["owner"], prefixes=["/", ".", "?", "-", "", "!"])
-    & filters.group
-)
-async def get_group_owner(_, message):
-    chat_id = message.chat.id
-    chat_info = await client.get_chat(chat_id)
-    
-    try:
-        # Use get_chat_member method to get information about the chat owner
-        owner = await client.get_chat_member(chat_id, chat_info.owner_id)
-        owner_username = owner.user.username if owner.user.username else f"{owner.user.first_name} {owner.user.last_name}"
-        await message.reply_text(f"💕 ɢʀᴏᴜᴘ ᴏᴡɴᴇʀ\n├ @{owner_username}")
-    except Exception as e:
-        print(f"Error retrieving group owner: {e}")
-        await message.reply_text("Error retrieving group owner information.")
+
 
 #Bots
 @client.on_message(
