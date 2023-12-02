@@ -192,7 +192,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            ]
 
 button_data = {}
-mongo = MongoCli(MONGO_URL)
+mongo = MongoClient(MONGO_URL)
 db = mongo.DAXXMUSIC
 coupledb = db.couple
 afkdb = db.afk
