@@ -161,7 +161,35 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐊𝐚𝐡𝐚 𝐊𝐡𝐨𝐲𝐞 𝐇𝐨 𝐉𝐚𝐚𝐧😜** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
+#User Stats
+@client.on_message(
+    filters.command(["stats"], prefixes=["/", ".", "?", "-", "", "!"])
+    & filters.group
+)
+async def stats_command(_, message):
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    if chat_member.status not in ["administrator", "creator"]:
+        return await message.reply_text("**Only admins can use this command!**")
 
+    await get_stats(client, message)
+
+async def get_stats(client, message):
+    groups_count = await client.get_dialogs_count()
+    channels_count = await client.get_chat_count()
+    users_count = await client.get_users_count()
+    bots_count = await client.get_users_count(is_bots=True)
+
+    stats_text = (
+        f"**Groups Count:** {groups_count}\n"
+        f"**Channels Count:** {channels_count}\n"
+        f"**Users Count:** {users_count}\n"
+        f"**Bots Count:** {bots_count}"
+    )
+
+    await message.reply_text(stats_text)
+
+
+#Tr
 trans = Translator()
 
 @client.on_message(
