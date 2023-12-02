@@ -192,7 +192,7 @@ def group_status(client, message):
     status_text = f"ᴄʜᴀᴛ ɪᴅ : `{chat.id}`\nᴄʜᴀᴛ ɴᴀᴍᴇ : `{title}`\nᴛʏᴘᴇ : `{chat.type}`\nᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ : `{description}`\nᴍᴇᴍʙᴇʀꜱ ᴄᴏᴜɴᴛ : `{member_count}`\nʏᴏᴜʀ ɪᴅ: `{message.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"         
     if reply:
         message.reply_text(
-            f"ʏᴏᴜʀ ɪᴅ : `{message.from_user.id}`\n`{reply.from_user.first_name}`'s ɪᴅ: `{reply.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`\nʏᴏᴜʀ ɪᴅ: `{message.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"
+            f"ᴄʜᴀᴛ ɪᴅ : `{chat.id}`\nᴄʜᴀᴛ ɴᴀᴍᴇ : `{title}`\nᴛʏᴘᴇ : `{chat.type}`\nᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ : `{description}`\nᴍᴇᴍʙᴇʀꜱ ᴄᴏᴜɴᴛ : `{member_count}`\nʏᴏᴜʀ ɪᴅ : `{message.from_user.id}`\n`{reply.from_user.first_name}`'s ɪᴅ: `{reply.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`\nʏᴏᴜʀ ɪᴅ: `{message.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"
         )
                   
     if chat.username:  # Not all groups have a username
