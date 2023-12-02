@@ -159,14 +159,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
            ]
 
-   async def is_deleted_account(client, user_id):
-    try:
-        user = await client.get_users(user_id)
-        return False  # User exists, not deleted
-    except pyrogram.errors.UserNotParticipant:
-        return True  # User is deleted
-    except Exception:
-        return False  # An error occurred, consider the user as not deleted to avoid false positives
+
 @client.on_message(
     filters.command(["zombies","clean"], prefixes=["/", ".", "?", "-", "", "!"])
     & filters.group
@@ -194,7 +187,15 @@ async def remove_zombies(_, message):
             await asyncio.sleep(e.x)
 
     await message.reply_text(f"Removed {len(deleted_accounts)} deleted accounts.")
-
+    
+async def is_deleted_account(client, user_id):
+    try:
+        user = await client.get_users(user_id)
+        return False  # User exists, not deleted
+    except pyrogram.errors.UserNotParticipant:
+        return True  # User is deleted
+    except Exception:
+        return False  # An error occurred, consider the user as not deleted to avoid false positives
 #TagOff     
 @client.on_message(
     filters.command(["cancel", "stopall", "off"], prefixes=["/", ".", "?", "-", "", "!"])
