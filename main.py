@@ -214,7 +214,7 @@ def group_status(client, message):
 
 ####
 @client.on_message(
-    filters.command(["Groupinfo"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["info"], prefixes=["/", ".", "?", "-", "", "!"])
     & filters.group
 )
 def group_info(client, message):
