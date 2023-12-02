@@ -38,11 +38,11 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 import os
 import re
+from typing import Dict, Union
+from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
 from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
-from mongo.readable_time import get_readable_time
-from mongo.db import add_afk, is_afk, remove_afk
 
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
@@ -167,9 +167,47 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            ]
 
 button_data = {}
-
+mongo = MongoCli(MONGO_URL)
+db = mongo.DAXXMUSIC
+coupledb = db.couple
 afkdb = db.afk
+nightmodedb = db.nightmode
+notesdb = db.notes
+filtersdb = db.filters
 
+#MONGO
+async def _get_lovers(cid: int):
+    lovers = await coupledb.find_one({"chat_id": cid})
+    if lovers:
+        lovers = lovers["couple"]
+    else:
+        lovers = {}
+    return lovers
+
+async def _get_image(cid: int):
+    lovers = await coupledb.find_one({"chat_id": cid})
+    if lovers:
+        lovers = lovers["img"]
+    else:
+        lovers = {}
+    return lovers
+
+async def get_couple(cid: int, date: str):
+    lovers = await _get_lovers(cid)
+    if date in lovers:
+        return lovers[date]
+    else:
+        return False
+
+
+async def save_couple(cid: int, date: str, couple: dict, img: str):
+    lovers = await _get_lovers(cid)
+    lovers[date] = couple
+    await coupledb.update_one(
+        {"chat_id": cid},
+        {"$set": {"couple": lovers, "img": img}},
+        upsert=True,
+    )
 
 async def is_afk(user_id: int) -> bool:
     user = await afkdb.find_one({"user_id": user_id})
@@ -198,7 +236,31 @@ async def get_afk_users() -> list:
     for user in await users.to_list(length=1000000000):
         users_list.append(user)
     return users_list
-    
+    #Time
+def get_readable_time(seconds: int) -> str:
+    count = 0
+    readable_time = ""
+    time_list = []
+    time_suffix_list = ["s", "ᴍ", "ʜ", "ᴅᴀʏs"]
+
+    while count < 4:
+        count += 1
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
+        if seconds == 0 and remainder == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+
+    for x in range(len(time_list)):
+        time_list[x] = str(time_list[x]) + time_suffix_list[x]
+    if len(time_list) == 4:
+        readable_time += time_list.pop() + ", "
+
+    time_list.reverse()
+    readable_time += ":".join(time_list)
+
+    return readable_time
+#AFK
 @client.on_message(
     filters.command(["afk","brb"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
