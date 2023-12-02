@@ -3,6 +3,7 @@ from pyrogram.types import Message
 from pyrogram import Client, filters
 from pyrogram.types import ChatMember
 import asyncio
+from pyrogram.enums import ParseMode
 from pyrogram.types import *
 from pymongo import MongoClient
 import requests
@@ -174,6 +175,22 @@ async def cancelcmd(_, message):
     else:
         await message.reply_text("**No ongoing process!**")
         return
+#My Id 
+@client.on_message(
+    filters.command(["me"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+def ids(_, message):
+    reply = message.reply_to_message
+    if reply:
+        message.reply_text(
+            f"ʏᴏᴜʀ ɪᴅ : `{message.from_user.id}`\n`{reply.from_user.first_name}`'s ɪᴅ: `{reply.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"
+        )
+    else:
+        message.reply(
+            f"ʏᴏᴜʀ ɪᴅ: `{message.from_user.id}`\nᴄʜᴀᴛ ɪᴅ: `{message.chat.id}`"
+        )
+
 # Command handler to get group status
 @client.on_message(
     filters.command(["info"], prefixes=["/", ".", "?", "-", "", "!"])
@@ -186,7 +203,7 @@ def group_status(client, message):
     title = chat_info.title
     description = chat_info.description
     member_count = chat_info.members_count
-    status_text = f"ᴄʜᴀᴛ ɪᴅ : `{chat.id}`\nᴄʜᴀᴛ ɴᴀᴍᴇ : {title}\nᴛʏᴘᴇ : `{chat.type}`\nᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ : `{description}`\nᴍᴇᴍʙᴇʀꜱ ᴄᴏᴜɴᴛ : `{member_count}`\n"
+    status_text = f"ᴄʜᴀᴛ ɪᴅ : `{chat.id}`\nᴄʜᴀᴛ ɴᴀᴍᴇ : `{title}`\nᴛʏᴘᴇ : `{chat.type}`\nᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ : `{description}`\nᴍᴇᴍʙᴇʀꜱ ᴄᴏᴜɴᴛ : `{member_count}`\n"
                   
     if chat.username:  # Not all groups have a username
         status_text += f"ᴜꜱᴇʀɴᴀᴍᴇ : @{chat.username}"
