@@ -300,7 +300,9 @@ async def admins(client, message):
 async def bots(client, message):  
   try:    
     botList = []
-async for bot in client.get_chat_members(message.chat.id, filter="bots"):
+try:
+    async for bot in client.get_chat_members(message.chat.id, filter="bots"):
+except SomeException as e:
       botList.append(bot.user)
     lenBotList = len(botList) 
     text3  = f"**ʙᴏᴛ ʟɪsᴛ - {message.chat.title}**\n\n🤖 ʙᴏᴛs\n"
