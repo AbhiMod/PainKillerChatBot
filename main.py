@@ -30,7 +30,6 @@ from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQuality
 from pytgcalls.types.stream import StreamAudioEnded
 
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
-from pyrogram.types import Chat, Channel, User
 from pyrogram.raw import functions
 from pyrogram.raw.types import InputChannelEmpty
 from datetime import datetime
