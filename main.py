@@ -167,7 +167,7 @@ openai.api_key  = os.environ.get("OPENAI_KEY","")
 
 
 @client.on_message(filters.command(["chatgpt","ai","ask"],  prefixes=["+", ".", "/", "-", "?", "$","#","&"]))
-async def chat(app :app, message):
+async def chat(client :client, message):
     
     try:
         start_time = time.time()
