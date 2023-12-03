@@ -27,6 +27,7 @@ from pytgcalls.exceptions import (
     NoActiveGroupCall,
     TelegramServerError,
 )
+from pyrogram.handlers import MessageHandler
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
@@ -188,19 +189,56 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
 @client.on_message(
-    filters.command(["pinned","pins"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["dice"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def pinned(_, message):
-    chat = await client.get_chat(message.chat.id)
-    if not chat.pinned_message:
-        return await message.reply_text("**ɴᴏ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇ ғᴏᴜɴᴅ**")
-    try:        
-        await message.reply_text("ʜᴇʀᴇ ɪs ᴛʜᴇ ʟᴀᴛᴇsᴛ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇ",reply_markup=
-        InlineKeyboardMarkup([[InlineKeyboardButton(text="📝 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=chat.pinned_message.link)]]))  
-    except Exception as er:
-        await message.reply_text(er)
-        
+async def dice(bot, message):
+    x=await bot.send_dice(message.chat.id)
+    m=x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
+
+@client.on_message(
+    filters.command(["dart"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def dart(bot, message):
+    x=await bot.send_dice(message.chat.id, "🎯")
+    m=x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
+
+@client.on_message(
+    filters.command(["basket"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def basket(bot, message):
+    x=await bot.send_dice(message.chat.id, "🏀")
+    m=x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
+@client.on_message(
+    filters.command(["jackpot"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def basket(bot, message):
+    x=await bot.send_dice(message.chat.id, "🎰")
+    m=x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
+    @client.on_message(
+    filters.command(["ball"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def basket(bot, message):
+    x=await bot.send_dice(message.chat.id, "🎳")
+    m=x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
+    @client.on_message(
+    filters.command(["football"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def basket(bot, message):
+    x=await bot.send_dice(message.chat.id, "⚽")
+    m=x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
+    
 @client.on_message(
     filters.command(["math"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
