@@ -191,6 +191,31 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           
            ]
 
+# vc on
+@client.on_message(filters.video_chat_started)
+async def brah(_, msg):
+       await msg.reply("ᴠᴏɪᴄᴇ ᴄʜᴀᴛ sᴛᴀʀᴛᴇᴅ")
+# vc off
+@client.on_message(filters.video_chat_ended)
+async def brah2(_, msg):
+       await msg.reply("**ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ᴇɴᴅᴇᴅ**")
+
+# invite members on vc
+@client.on_message(filters.video_chat_members_invited)
+async def brah3(client :client, message:Message):
+           text = f"{message.from_user.mention} ɪɴᴠɪᴛᴇᴅ "
+           x = 0
+           for user in message.video_chat_members_invited.users:
+             try:
+               text += f"[{user.first_name}](tg://user?id={user.id}) "
+               x += 1
+             except Exception:
+               pass
+           try:
+             await message.reply(f"{text} 😉")
+           except:
+             pass
+               
 button_data = {}
 mongo = MongoClient(MONGO_URL)
 db = mongo.DAXXMUSIC
@@ -427,7 +452,7 @@ async def tag_all_users(_, message):
                     await replied.reply_text(usertxt)
                 else:
                     await client.send_message(message.chat.id, f'{random.choice(TAGMES)}\n{usertxt}')
-                await asyncio.sleep(10)
+                await asyncio.sleep(15)
                 usernum = 0
                 usertxt = ""
         except StopIteration:
