@@ -211,33 +211,37 @@ async def dart(client, message):
     & ~filters.private
 )
 async def basket(client, message):
-    x=await client.send_dice(message.chat.id, "🏀")
-    m=x.dice.value
-    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
+    x = await client.send_dice(message.chat.id, "🏀")
+    m = x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}", quote=True)
+
 @client.on_message(
     filters.command(["jackpot"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def basket(client, message):
-    x=await client.send_dice(message.chat.id, "🎰")
-    m=x.dice.value
-    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
-    @client.on_message(
+async def jackpot(client, message):
+    x = await client.send_dice(message.chat.id, "🎰")
+    m = x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}", quote=True)
+
+@client.on_message(
     filters.command(["ball"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def basket(client, message):
-    x=await client.send_dice(message.chat.id, "🎳")
-    m=x.dice.value
-    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
-    @client.on_message(
+async def ball(client, message):
+    x = await client.send_dice(message.chat.id, "🎳")
+    m = x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}", quote=True)
+
+@client.on_message(
     filters.command(["football"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def basket(client, message):
-    x=await client.send_dice(message.chat.id, "⚽")
-    m=x.dice.value
-    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
+async def football(client, message):
+    x = await client.send_dice(message.chat.id, "⚽")
+    m = x.dice.value
+    await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}", quote=True)
+
     
 @client.on_message(
     filters.command(["math"], prefixes=["/", ".", "?", "-", "", "!"])
