@@ -192,20 +192,20 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            ]
 
 # vc on
-@client.on_message(filters.video_chat_started)
+@client.on_message(filters.voice_chat_started)
 async def brah(_, msg):
        await msg.reply("ᴠᴏɪᴄᴇ ᴄʜᴀᴛ sᴛᴀʀᴛᴇᴅ")
 # vc off
-@client.on_message(filters.video_chat_ended)
+@client.on_message(filters.voice_chat_ended)
 async def brah2(_, msg):
        await msg.reply("**ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ᴇɴᴅᴇᴅ**")
 
 # invite members on vc
-@client.on_message(filters.video_chat_members_invited)
+@client.on_message(filters.voice_chat_members_invited)
 async def brah3(client :client, message:Message):
            text = f"{message.from_user.mention} ɪɴᴠɪᴛᴇᴅ "
            x = 0
-           for user in message.video_chat_members_invited.users:
+           for user in message.voice_chat_members_invited.users:
              try:
                text += f"[{user.first_name}](tg://user?id={user.id}) "
                x += 1
