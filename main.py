@@ -187,7 +187,32 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐚𝐧𝐝𝐢 𝐦𝐚𝐧𝐝𝐢 𝐬𝐚𝐧𝐝𝐢 𝐯𝐜 𝐩𝐞 𝐧𝐚𝐡𝐢 𝐚𝐚𝐨 𝐠𝐞 𝐭𝐨 ... 😂😂",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
-
+@client.on_message(
+    filters.command(["pinned","pins"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+async def pinned(_, message):
+    chat = await client.get_chat(message.chat.id)
+    if not chat.pinned_message:
+        return await message.reply_text("**ɴᴏ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇ ғᴏᴜɴᴅ**")
+    try:        
+        await message.reply_text("ʜᴇʀᴇ ɪs ᴛʜᴇ ʟᴀᴛᴇsᴛ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇ",reply_markup=
+        InlineKeyboardMarkup([[InlineKeyboardButton(text="📝 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=chat.pinned_message.link)]]))  
+    except Exception as er:
+        await message.reply_text(er)
+        
+@client.on_message(
+    filters.command(["math"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+def calculate_math(client, message):   
+    expression = message.text.split("/math ", 1)[1]
+    try:        
+        result = eval(expression)
+        response = f"ᴛʜᴇ ʀᴇsᴜʟᴛ ɪs : {result}"
+    except:
+        response = "ɪɴᴠᴀʟɪᴅ ᴇxᴘʀᴇssɪᴏɴ"
+    message.reply(response)
 # vc on
 @client.on_message(filters.voice_chat_started)
 async def brah(_, msg):
