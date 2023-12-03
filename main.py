@@ -206,7 +206,7 @@ async def pinned(_, message):
     & ~filters.private
 )
 def calculate_math(client, message):   
-    expression = message.text.split("/math ", 1)[1]
+    expression = message.text.split("math ", 1)[1]
     try:        
         result = eval(expression)
         response = f"ᴛʜᴇ ʀᴇsᴜʟᴛ ɪs : {result}"
