@@ -192,8 +192,8 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
     filters.command(["dice"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def dice(bot, message):
-    x=await bot.send_dice(message.chat.id)
+async def dice(client, message):
+    x=await client.send_dice(message.chat.id)
     m=x.dice.value
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
 
@@ -201,8 +201,8 @@ async def dice(bot, message):
     filters.command(["dart"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def dart(bot, message):
-    x=await bot.send_dice(message.chat.id, "🎯")
+async def dart(client, message):
+    x=await client.send_dice(message.chat.id, "🎯")
     m=x.dice.value
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
 
@@ -210,32 +210,32 @@ async def dart(bot, message):
     filters.command(["basket"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def basket(bot, message):
-    x=await bot.send_dice(message.chat.id, "🏀")
+async def basket(client, message):
+    x=await client.send_dice(message.chat.id, "🏀")
     m=x.dice.value
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
 @client.on_message(
     filters.command(["jackpot"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def basket(bot, message):
-    x=await bot.send_dice(message.chat.id, "🎰")
+async def basket(client, message):
+    x=await client.send_dice(message.chat.id, "🎰")
     m=x.dice.value
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
     @client.on_message(
     filters.command(["ball"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def basket(bot, message):
-    x=await bot.send_dice(message.chat.id, "🎳")
+async def basket(client, message):
+    x=await client.send_dice(message.chat.id, "🎳")
     m=x.dice.value
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
     @client.on_message(
     filters.command(["football"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
-async def basket(bot, message):
-    x=await bot.send_dice(message.chat.id, "⚽")
+async def basket(client, message):
+    x=await client.send_dice(message.chat.id, "⚽")
     m=x.dice.value
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
     
@@ -394,22 +394,6 @@ async def cancelcmd(_, message):
     else:
         await message.reply_text("**No ongoing process!**")
         return
-# Admins
-@client.on_message(
-    filters.command(["admins"], prefixes=["/", ".", "?", "-", "", "!"])
-    & filters.group
-)
-async def list_admins(_, message):
-    chat_id = message.chat.id
-    chat_members = await client.get_chat_members(chat_id, filter="administrators")
-    admin_list = [member.user.username for member in chat_members if member.user and member.user.is_bot is False]
-
-    if admin_list:
-        admin_list_text = "\n├ @".join(admin_list)
-        await message.reply_text(f"ᴀᴅᴍɪɴ ʟɪsᴛ - {message.chat.title}**\n\n👮‍♂️ ᴀᴅᴍɪɴs\n\n├ @{admin_list_text}")
-    else:
-        await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇ ɴᴏ ᴀᴅᴍɪɴs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")
-
 
 #Bots
 @client.on_message(
