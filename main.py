@@ -189,7 +189,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
 @client.on_message(
-    filters.command(["dice"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["dice","Dice"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 async def dice(client, message):
@@ -198,7 +198,7 @@ async def dice(client, message):
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
 
 @client.on_message(
-    filters.command(["dart"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["dart","Dart"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 async def dart(client, message):
@@ -207,7 +207,7 @@ async def dart(client, message):
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}",quote=True)
 
 @client.on_message(
-    filters.command(["basket"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["basket","Basket"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 async def basket(client, message):
@@ -216,7 +216,7 @@ async def basket(client, message):
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}", quote=True)
 
 @client.on_message(
-    filters.command(["jackpot"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["jackpot","Jackpot"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 async def jackpot(client, message):
@@ -225,7 +225,7 @@ async def jackpot(client, message):
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}", quote=True)
 
 @client.on_message(
-    filters.command(["ball"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["ball","Ball"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 async def ball(client, message):
@@ -234,7 +234,7 @@ async def ball(client, message):
     await message.reply_text(f"Hey {message.from_user.mention} your Score is : {m}", quote=True)
 
 @client.on_message(
-    filters.command(["football"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["football","Football","FootBall"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 async def football(client, message):
@@ -244,7 +244,7 @@ async def football(client, message):
 
     
 @client.on_message(
-    filters.command(["math"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["math","Math"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 def calculate_math(client, message):   
