@@ -72,7 +72,7 @@ AAA = [
     "Me Insaan Hu Reee Aaj Tumko Pitna He sayad 😏",
 ]
 PING_IMG_URL = "https://graph.org/file/8b7ebf25c70040bd26485.jpg"
-sudos = 6204761408
+SUDOERS = 6204761408
 REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 <u>𝗖𝗥𝗘𝗗𝗜𝗧 ❥︎ ᴀᴍʙᴏᴛ:</u>
 
@@ -191,8 +191,19 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐚𝐧𝐝𝐢 𝐦𝐚𝐧𝐝𝐢 𝐬𝐚𝐧𝐝𝐢 𝐯𝐜 𝐩𝐞 𝐧𝐚𝐡𝐢 𝐚𝐚𝐨 𝐠𝐞 𝐭𝐨 ... 😂😂",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
-
-
+@client.on_message(filters.command(["restart"]) & filters.user(SUDOERS))
+async def restart(client, message):
+    await message.reply_text("Restarting...")
+    try:
+        shutil.rmtree("downloads")
+        shutil.rmtree("raw_files")
+        shutil.rmtree("cache")
+    except:
+        pass
+    await response.edit_text(
+        "» ʀᴇsᴛᴀʀᴛ ᴘʀᴏᴄᴇss sᴛᴀʀᴛᴇᴅ, ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ғᴏʀ ғᴇᴡ sᴇᴄᴏɴᴅs ᴜɴᴛɪʟ ᴛʜᴇ ʙᴏᴛ sᴛᴀʀᴛs..."
+    )
+    os.system(f"kill -9 {os.getpid()} && python3 main.py")
 @client.on_message(
     filters.command(["dart","Dart"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
