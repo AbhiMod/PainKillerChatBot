@@ -192,12 +192,12 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
 
-@client.on_message(filters.command(["song"], ["/", "!", "."]))
+@client.on_message(filters.command(["song"], ["/", "!", ".",""]))
 async def song(client: client, message: Message):
-    aux = await message.reply_text("**🔄 𝐏𝐫𝐨𝐜𝐞𝐬𝐬𝐢𝐧𝐠 ...**")
+    aux = await message.reply_text("**🔄 Wait Bb ...**")
     if len(message.command) < 2:
         return await aux.edit(
-            "**🤖 𝐆𝐢𝐯𝐞 🙃 𝐌𝐮𝐬𝐢𝐜 💿 𝐍𝐚𝐦𝐞 😍\n💞 𝐓𝐨 🔊 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 🥀 𝐒𝐨𝐧𝐠❗**"
+            "**Give Me Song Name**"
         )
     try:
         song_name = message.text.split(None, 1)[1]
@@ -234,7 +234,7 @@ async def song(client: client, message: Message):
 ###### INSTAGRAM REELS DOWNLOAD
 
 
-@client.on_message(filters.command(["ig"], ["/", "!", "."]))
+@client.on_message(filters.command(["ig","Ig"], ["/", "!", ".",""]))
 async def download_instareels(c: client, m: Message):
     try:
         reel_ = m.command[1]
@@ -264,7 +264,7 @@ async def download_instareels(c: client, m: Message):
 
 ######
 
-@client.on_message(filters.command(["reel"], ["/", "!", "."]))
+@client.on_message(filters.command(["reel","Reel","reels"], ["/", "!", ".",""]))
 async def instagram_reel(client, message):
     if len(message.command) == 2:
         url = message.command[1]
