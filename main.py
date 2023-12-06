@@ -9,6 +9,8 @@ from pyrogram.types import *
 from pymongo import MongoClient
 import requests
 import os, time
+from datetime import datetime
+import pytz
 from gpytranslate import Translator
 from gtts import gTTS
 import random
@@ -191,26 +193,18 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐚𝐧𝐝𝐢 𝐦𝐚𝐧𝐝𝐢 𝐬𝐚𝐧𝐝𝐢 𝐯𝐜 𝐩𝐞 𝐧𝐚𝐡𝐢 𝐚𝐚𝐨 𝐠𝐞 𝐭𝐨 ... 😂😂",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
-pytgcalls = PyTgCalls(client)
+def get_current_time():
+    tz = pytz.timezone('Asia/Kolkata')  # Setting the timezone to India (Kolkata)
+    current_time = datetime.now(tz)
+    return current_time.strftime("%Y-%m-%d %H:%M:%S %Z%z")
 
-@Client.on_message(filters.command(["joinvc"]))
-async def join_vc(_, message):
-    chat_id = message.chat.id
-
-    # Check if the bot is already in a call in the same chat
-    if pytgcalls.is_chat_joined(chat_id):
-        await message.reply_text("Already in the voice call!")
-        return
-
-    # Join the voice call
-    try:
-        await pytgcalls.join_group_call(chat_id)
-        await message.reply_text("Joined the voice call!")
-    except AlreadyJoinedError:
-        await message.reply_text("Already in the voice call!")
-    except Exception as e:
-        await message.reply_text(f"Failed to join the voice call: {str(e)}")
-
+@client.on_message(
+    filters.command(["Time","time","Date","Date"], prefixes=["/", ".", "?", "-", "", "!"])
+    & ~filters.private
+)
+def send_time(client, message):
+    time = get_current_time()
+    client.send_message(message.chat.id, f"Current time in India: {time}")
     
 @client.on_message(
     filters.command(["restart","reboot","reload"], prefixes=["/", ".", "?", "-", "", "!"])
