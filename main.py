@@ -151,10 +151,12 @@ TAGMES = [ " Hey Baby Kaha Ho 🥱🥺",
            " Me Masoom Hu Thoda Sa 🥺🥺",
            " Kal Maja Aaya Tha Na 🤭😅 ",
           """Ek Jokes For U 🤭🤭
+          
 beta - pita ji, aap bahut kismat vaale hain? 
 pita jee - vo kaise beta? 
-beta - kyonki main fail ho gaya hoon, 
-aapako mere liye nai kitaaben nahin kharidani padengi.""",
+beta - kyonki main fail ho gaya hoon.
+aapako mere liye nai kitaaben nahin kharidani padengi.
+💕💕💕💕💕💕""",
           """[EK Song AapKe Liya 🥺🥺](t.me/AM_YTBOTT)
           
 Ye jo halka halka suroor hai
