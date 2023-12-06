@@ -59,10 +59,15 @@ client = Client(STRING, API_ID, API_HASH)
 client_mongo = MongoClient(MONGO_URL)
 db = client_mongo.get_database("painkiller") 
 broadcast_collection = db.broadcast_data
-# Fetch groups and users data
 groups_data = broadcast_collection.find({"type": "group"})
 users_data = broadcast_collection.find({"type": "user"})
 
+async def save_user_id(message):
+    user_id = message.from_user.id
+    user_data = {"type": "user", "chat_id": user_id}
+    if not broadcast_collection.find_one(user_data):
+        broadcast_collection.insert_one(user_data)
+        
 async def send_broadcast(message_text, chat_id):
     try:
         await client.send_message(chat_id, message_text)
