@@ -12,3 +12,6 @@ gpytranslate
 openai==1.3.6
 gtts
 telegraph
+yt-dlp
+youtube-search
+youtube-search-python
