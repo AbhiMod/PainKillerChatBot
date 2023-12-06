@@ -35,7 +35,8 @@ from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
 from pytgcalls.types.stream import StreamAudioEnded
-
+from pytgcalls import PyTgCalls, StreamType
+from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall, TelegramServerError
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from pyrogram.raw import functions
 from pyrogram.raw.types import InputChannelEmpty
@@ -55,86 +56,6 @@ STRING = os.environ.get("STRING", "")
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority")
 SUDOERS = 6204761408
 client = Client(STRING, API_ID, API_HASH)
-
-client_mongo = MongoClient(MONGO_URL)
-db = client_mongo.get_database("painkiller") 
-broadcast_collection = db.broadcast_data
-groups_data = broadcast_collection.find({"type": "group"})
-users_data = broadcast_collection.find({"type": "user"})
-
-async def save_user_id(message):
-    user_id = message.from_user.id
-    user_data = {"type": "user", "chat_id": user_id}
-    if not broadcast_collection.find_one(user_data):
-        broadcast_collection.insert_one(user_data)
-        
-async def send_broadcast(message_text, chat_id):
-    try:
-        await client.send_message(chat_id, message_text)
-    except Exception as e:
-        print(f"Failed to send broadcast to chat {chat_id}: {str(e)}")
-
-
-async def main():
-    for group in groups_data:
-        group_chat_id = group["chat_id"]
-        await send_broadcast("""
-Hello welcome to our group ✨🌎
-
-All languages are allowed ✅🔥
-
-Feel free to express yourself 
-
-We don't ban/mute our members without reason 🔥💬
-
-24/7 active with best users 
-
-Easily to be friend with them🫂💜
-
-Please join us 👇
-
-https://t.me/+hRDHHhgdtT5lMTFl
-
-https://t.me/+hRDHHhgdtT5lMTFl
-
-https://t.me/+hRDHHhgdtT5lMTFl""", group_chat_id)
-
-    for user in users_data:
-        user_chat_id = user["chat_id"]
-        await send_broadcast("""
-Hello welcome to our group ✨🌎
-
-All languages are allowed ✅🔥
-
-Feel free to express yourself 
-
-We don't ban/mute our members without reason 🔥💬
-
-24/7 active with best users 
-
-Easily to be friend with them🫂💜
-
-Please join us 👇
-
-https://t.me/+hRDHHhgdtT5lMTFl
-
-https://t.me/+hRDHHhgdtT5lMTFl
-
-https://t.me/+hRDHHhgdtT5lMTFl""", user_chat_id)
-
-    print("Broadcast completed successfully!")
-
-
-@client.on_message(filters.command(["gcast"]) & filters.user(SUDOERS))
-async def broadcast_message(_, message):
-    await main()
-    await message.reply_text("Broadcast completed successfully!")
-    
-@client.on_message(filters.text & filters.private)
-async def save_user_id_on_text(_, message):
-    if message.text.lower() in ["hi", "hey", "hello","hii","Hii","Hello","Join","join"]:
-        await save_user_id(message)
-
 AMTAGS= [
     "ᴏɪɪ ᴀᴍʙᴏᴛ ᴋᴏ ᴛᴀɢ ᴍᴀᴛᴛ ᴋᴀʀᴏ ᴡᴏ ᴀʙ ʙᴜꜱʏ ʜᴇ",
     "𝓠 𝔂𝓪𝓪𝓭 𝓚𝓪𝓻𝓻𝓱𝓮 𝓱𝓸 𝓐𝓜𝓑𝓞𝓣 𝓚𝓸",
@@ -270,6 +191,19 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐚𝐧𝐝𝐢 𝐦𝐚𝐧𝐝𝐢 𝐬𝐚𝐧𝐝𝐢 𝐯𝐜 𝐩𝐞 𝐧𝐚𝐡𝐢 𝐚𝐚𝐨 𝐠𝐞 𝐭𝐨 ... 😂😂",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
+@client.on_message(filters.command(["joinvc"]) & filters.group)
+async def join_voice_chat(_, message):
+    try:
+        group_id = message.chat.id
+        await pytgcalls.join_group_call(group_id)
+        await message.reply_text("Joined Voice Chat!")
+    except AlreadyJoinedError:
+        await message.reply_text("Already in a Voice Chat!")
+    except NoActiveGroupCall:
+        await message.reply_text("No active Voice Chat in this group.")
+    except TelegramServerError as e:
+        await message.reply_text(f"Error joining Voice Chat: {str(e)}")
+        
 @client.on_message(filters.command(["restart"]) & filters.user(SUDOERS))
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
