@@ -209,7 +209,7 @@ async def check_user_history(client, message):
 
     catevent = await message.reply_text("Checking user history...")
 
-    async with client.conversation("@SangMata_BOT") as conv:
+    async with client.conversation("@SangMata_Beta_BOT") as conv:
         try:
             await conv.send_message(str(userinfo.id))
         except Exception as e:
