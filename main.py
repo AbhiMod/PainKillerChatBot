@@ -28,6 +28,8 @@ from pytgcalls.exceptions import (
     NoActiveGroupCall,
     TelegramServerError,
 )
+from youtubesearchpython import VideosSearch
+import yt_dlp
 from pyrogram.handlers import MessageHandler
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
@@ -190,52 +192,97 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
 
+@client.on_message(filters.command(["song"], ["/", "!", "."]))
+async def song(client: client, message: Message):
+    aux = await message.reply_text("**🔄 𝐏𝐫𝐨𝐜𝐞𝐬𝐬𝐢𝐧𝐠 ...**")
+    if len(message.command) < 2:
+        return await aux.edit(
+            "**🤖 𝐆𝐢𝐯𝐞 🙃 𝐌𝐮𝐬𝐢𝐜 💿 𝐍𝐚𝐦𝐞 😍\n💞 𝐓𝐨 🔊 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 🥀 𝐒𝐨𝐧𝐠❗**"
+        )
+    try:
+        song_name = message.text.split(None, 1)[1]
+        vid = VideosSearch(song_name, limit = 1)
+        song_title = vid.result()["result"][0]["title"]
+        song_link = vid.result()["result"][0]["link"]
+        ydl_opts = {
+            "format": "mp3/bestaudio/best",
+            "verbose": True,
+            "geo-bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3"
+                }
+            ],
+            "outtmpl": f"downloads/{song_title}",
+        }
+        await aux.edit("**𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 ...**")
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download(song_link)
+        await aux.edit("**𝐔𝐩𝐥𝐨𝐚𝐝𝐢𝐧𝐠 ...**")
+        await message.reply_audio(f"downloads/{song_title}.mp3")
+        try:
+            os.remove(f"downloads/{song_title}.mp3")
+        except:
+            pass
+        await aux.delete()
+    except Exception as e:
+        await aux.edit(f"**Error:** {e}")
 
-@Client.on_message(~filters.private & filters.command(["gstatus", "gstats"]), group=2)
-async def instatus(client, message):
-    start_time = time.perf_counter()
-    user = await client.get_chat_member(message.chat.id, message.from_user.id)
-    count = await client.get_chat_members_count(message.chat.id)
-    if user.status in (
-        ChatMembersFilter.ADMINISTRATOR,
-        ChatMembersFilter.OWNER,
-    ):
-        sent_message = await message.reply_text("GETTING INFORMATION...")
-        deleted_acc = 0
-        premium_acc = 0
-        banned = 0
-        bot = 0
-        uncached = 0
-        async for ban in client.get_chat_members(message.chat.id, filter=ChatMembersFilter.BANNED):
-            banned += 1
-        async for member in client.get_chat_members(message.chat.id):
-            user = member.user
-            if user.is_deleted:
-                deleted_acc += 1
-            elif user.is_bot:
-                bot += 1
-            elif user.is_premium:
-                premium_acc += 1
+
+###### INSTAGRAM REELS DOWNLOAD
+
+
+@client.on_message(filters.command(["ig"], ["/", "!", "."]))
+async def download_instareels(c: client, m: Message):
+    try:
+        reel_ = m.command[1]
+    except IndexError:
+        await m.reply_text("Give me an link to download it...")
+        return
+    if not reel_.startswith("https://www.instagram.com/reel/"):
+        await m.reply_text("In order to obtain the requested reel, a valid link is necessary. Kindly provide me with the required link.")
+        return
+    OwO = reel_.split(".",1)
+    Reel_ = ".dd".join(OwO)
+    try:
+        await m.reply_video(Reel_)
+        return
+    except Exception:
+        try:
+            await m.reply_photo(Reel_)
+            return
+        except Exception:
+            try:
+                await m.reply_document(Reel_)
+                return
+            except Exception:
+                await m.reply_text("I am unable to reach to this reel.")
+
+
+
+######
+
+@client.on_message(filters.command(["reel"], ["/", "!", "."]))
+async def instagram_reel(client, message):
+    if len(message.command) == 2:
+        url = message.command[1]
+        response = requests.post(f"https://lexica-api.vercel.app/download/instagram?url={url}")
+        data = response.json()
+
+        if data['code'] == 2:
+            media_urls = data['content']['mediaUrls']
+            if media_urls:
+                video_url = media_urls[0]['url']
+                await message.reply_video(f"{video_url}")
             else:
-                uncached += 1
-        end_time = time.perf_counter()
-        timelog = "{:.2f}".format(end_time - start_time)
-        await sent_message.edit(f"""
-**➖➖➖➖➖➖➖
-➲ NAME : {message.chat.title} ✅
-➲ MEMBERS : [ {count} ]🫂
-➖➖➖➖➖➖➖
-➲ BOTS : {bot}💡
-➲ ZOMBIES : {deleted_acc}🧟
-➲ BANNED : {banned}🚫
-➲ PREMIUM USERS : {premium_acc}🎁
-➖➖➖➖➖➖➖
-TIME TAKEN : {timelog} S**""")
+                await message.reply("No video found in the response. may be accountbis private.")
+        else:
+            await message.reply("Request was not successful.")
     else:
-        sent_message = await message.reply_text("ONLY ADMINS CAN USE THIS !")
-        await sleep(5)
-        await sent_message.delete()
-        
+        await message.reply("Please provide a valid Instagram URL using the /reels command.")
+     
 @client.on_message(
     filters.command(["dice","Dice"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
