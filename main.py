@@ -2,6 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram import Client, filters
 from pyrogram.types import ChatMember
+from pyrogram.raw.types import ChatMembersFilter
 import asyncio
 import psutil
 from pyrogram.types import *
@@ -190,14 +191,14 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
            ]
 
 
-@client.on_message(~filters.private & filters.command(["gstatus","gstats"]), group=2)
+@Client.on_message(~filters.private & filters.command(["gstatus", "gstats"]), group=2)
 async def instatus(client, message):
     start_time = time.perf_counter()
     user = await client.get_chat_member(message.chat.id, message.from_user.id)
     count = await client.get_chat_members_count(message.chat.id)
     if user.status in (
-        enums.ChatMemberStatus.ADMINISTRATOR,
-        enums.ChatMemberStatus.OWNER,
+        ChatMembersFilter.ADMINISTRATOR,
+        ChatMembersFilter.OWNER,
     ):
         sent_message = await message.reply_text("GETTING INFORMATION...")
         deleted_acc = 0
@@ -205,7 +206,7 @@ async def instatus(client, message):
         banned = 0
         bot = 0
         uncached = 0
-        async for ban in client.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.BANNED):
+        async for ban in client.get_chat_members(message.chat.id, filter=ChatMembersFilter.BANNED):
             banned += 1
         async for member in client.get_chat_members(message.chat.id):
             user = member.user
