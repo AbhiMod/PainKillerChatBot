@@ -191,7 +191,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐚𝐧𝐝𝐢 𝐦𝐚𝐧𝐝𝐢 𝐬𝐚𝐧𝐝𝐢 𝐯𝐜 𝐩𝐞 𝐧𝐚𝐡𝐢 𝐚𝐚𝐨 𝐠𝐞 𝐭𝐨 ... 😂😂",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
-pytgcalls = PyTgCalls()
+pytgcalls = PyTgCalls(client)
 
 @Client.on_message(filters.command(["joinvc"]))
 async def join_vc(_, message):
