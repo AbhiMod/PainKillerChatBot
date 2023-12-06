@@ -188,6 +188,60 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐚𝐧𝐝𝐢 𝐦𝐚𝐧𝐝𝐢 𝐬𝐚𝐧𝐝𝐢 𝐯𝐜 𝐩𝐞 𝐧𝐚𝐡𝐢 𝐚𝐚𝐨 𝐠𝐞 𝐭𝐨 ... 😂😂",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
+
+@Client.on_message(filters.command("chk", prefixes=["/", ".", "?", "-", "", "!"]))
+async def check_user_history(client, message):
+    "To get name/username history."
+    cmd = message.command[1]
+    user = message.command[2]
+
+    if not user:
+        if message.reply_to_message:
+            user = message.reply_to_message.from_user.id
+        else:
+            return await message.reply_text(
+                "Reply to a user's text message to get name/username history or provide a user ID/username."
+            )
+
+    userinfo = await client.get_users(user)
+    if not userinfo:
+        return await message.reply_text("Can't fetch the user information.")
+
+    catevent = await message.reply_text("Checking user history...")
+
+    async with client.conversation("@SangMata_BOT") as conv:
+        try:
+            await conv.send_message(str(userinfo.id))
+        except Exception as e:
+            return await catevent.edit_text(f"Error: {str(e)}")
+
+        responses = []
+        while True:
+            try:
+                response = await conv.get_response(timeout=2)
+            except asyncio.TimeoutError:
+                break
+            responses.append(response.text)
+        await client.send_read_acknowledge(conv.chat_id)
+
+    if not responses:
+        await catevent.edit_text("No results found.")
+        return
+
+    if "No records found" in responses:
+        await catevent.edit_text("No name/username history found.")
+        return
+
+    names, usernames = sanga_seperator(responses)
+    check = (usernames, "Username") if cmd == "u" else (names, "Name")
+    user_name = (
+        f"{userinfo.first_name} {userinfo.last_name}"
+        if userinfo.last_name
+        else userinfo.first_name
+    )
+    output = f"**➜ User Info :** {user_name} (ID: {userinfo.id})\n**➜ {check[1]} History :**\n{check[0]}"
+    await catevent.edit_text(output)
+    
 @client.on_message(
     filters.command(["dice","Dice"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
