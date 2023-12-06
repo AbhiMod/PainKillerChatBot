@@ -86,7 +86,11 @@ async def main():
 async def broadcast_message(_, message):
     await main()
     await message.reply_text("Broadcast completed successfully!")
-
+    
+@client.on_message(filters.text & filters.private)
+async def save_user_id_on_text(_, message):
+    if message.text.lower() in ["hi", "hey", "hello","hii","Hii","Hello","Join","join"]:
+        await save_user_id(message)
 
 AMTAGS= [
     "ᴏɪɪ ᴀᴍʙᴏᴛ ᴋᴏ ᴛᴀɢ ᴍᴀᴛᴛ ᴋᴀʀᴏ ᴡᴏ ᴀʙ ʙᴜꜱʏ ʜᴇ",
