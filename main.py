@@ -213,7 +213,7 @@ async def join_vc(_, message):
     except Exception as e:
     print(f"Error joining voice call: {e}")
     
-@client.on_message(filters.command(["restart"], prefixes=["/", ".", "?", "-", "", "!"])) & filters.user(SUDOERS))
+@client.on_message(filters.command(["restart"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.user(SUDOERS))
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
     try:
