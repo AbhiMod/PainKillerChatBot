@@ -189,59 +189,52 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
 
-@Client.on_message(filters.command("chk", prefixes="/"))
-async def check_user_history(client, message):
-    "To get name/username history."
-    cmd = message.command[1]
-    user = message.command[2]
 
-    if not user:
-        if message.reply_to_message:
-            user = message.reply_to_message.from_user.id
-        else:
-            return await message.reply_text(
-                "Reply to a user's text message to get name/username history or provide a user ID/username."
-            )
-
-    userinfo = await client.get_users(user)
-    if not userinfo:
-        return await message.reply_text("Can't fetch the user information.")
-
-    catevent = await message.reply_text("Checking user history...")
-
-    async with client.conversation("@SangMata_BOT") as conv:
-        try:
-            await conv.send_message(str(userinfo.id))
-        except Exception as e:
-            return await catevent.edit_text(f"Error: {str(e)}")
-
-        responses = []
-        while True:
-            try:
-                response = await conv.get_response(timeout=2)
-            except asyncio.TimeoutError:
-                break
-            responses.append(response.text)
-        await client.send_read_acknowledge(conv.chat_id)
-
-    if not responses:
-        await catevent.edit_text("No results found.")
-        return
-
-    if "No records found" in responses:
-        await catevent.edit_text("No name/username history found.")
-        return
-
-    names, usernames = sanga_seperator(responses)
-    check = (usernames, "Username") if cmd == "u" else (names, "Name")
-    user_name = (
-        f"{userinfo.first_name} {userinfo.last_name}"
-        if userinfo.last_name
-        else userinfo.first_name
-    )
-    output = f"**➜ User Info :** {user_name} (ID: {userinfo.id})\n**➜ {check[1]} History :**\n{check[0]}"
-    await catevent.edit_text(output)
-    
+@client.on_message(~filters.private & filters.command(["gstatus","gstats"]), group=2)
+async def instatus(client, message):
+    start_time = time.perf_counter()
+    user = await client.get_chat_member(message.chat.id, message.from_user.id)
+    count = await client.get_chat_members_count(message.chat.id)
+    if user.status in (
+        enums.ChatMemberStatus.ADMINISTRATOR,
+        enums.ChatMemberStatus.OWNER,
+    ):
+        sent_message = await message.reply_text("GETTING INFORMATION...")
+        deleted_acc = 0
+        premium_acc = 0
+        banned = 0
+        bot = 0
+        uncached = 0
+        async for ban in client.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.BANNED):
+            banned += 1
+        async for member in client.get_chat_members(message.chat.id):
+            user = member.user
+            if user.is_deleted:
+                deleted_acc += 1
+            elif user.is_bot:
+                bot += 1
+            elif user.is_premium:
+                premium_acc += 1
+            else:
+                uncached += 1
+        end_time = time.perf_counter()
+        timelog = "{:.2f}".format(end_time - start_time)
+        await sent_message.edit(f"""
+**➖➖➖➖➖➖➖
+➲ NAME : {message.chat.title} ✅
+➲ MEMBERS : [ {count} ]🫂
+➖➖➖➖➖➖➖
+➲ BOTS : {bot}💡
+➲ ZOMBIES : {deleted_acc}🧟
+➲ BANNED : {banned}🚫
+➲ PREMIUM USERS : {premium_acc}🎁
+➖➖➖➖➖➖➖
+TIME TAKEN : {timelog} S**""")
+    else:
+        sent_message = await message.reply_text("ONLY ADMINS CAN USE THIS !")
+        await sleep(5)
+        await sent_message.delete()
+        
 @client.on_message(
     filters.command(["dice","Dice"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
