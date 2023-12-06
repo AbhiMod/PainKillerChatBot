@@ -191,18 +191,24 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐚𝐧𝐝𝐢 𝐦𝐚𝐧𝐝𝐢 𝐬𝐚𝐧𝐝𝐢 𝐯𝐜 𝐩𝐞 𝐧𝐚𝐡𝐢 𝐚𝐚𝐨 𝐠𝐞 𝐭𝐨 ... 😂😂",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
-@client.on_message(filters.command(["joinvc"]) & filters.group)
-async def join_voice_chat(_, message):
+pytgcalls = PyTgCalls()
+
+@Client.on_message(filters.command(["joinvc"]))
+async def join_vc(_, message):
+    chat_id = message.chat.id
+
+    # Check if the bot is already in a call in the same chat
+    if pytgcalls.is_chat_joined(chat_id):
+        await message.reply_text("Already in the voice call!")
+        return
+
+    # Join the voice call
     try:
-        group_id = message.chat.id
-        await pytgcalls.join_group_call(group_id)
-        await message.reply_text("Joined Voice Chat!")
-    except AlreadyJoinedError:
-        await message.reply_text("Already in a Voice Chat!")
-    except NoActiveGroupCall:
-        await message.reply_text("No active Voice Chat in this group.")
-    except TelegramServerError as e:
-        await message.reply_text(f"Error joining Voice Chat: {str(e)}")
+        await pytgcalls.join_group_call(chat_id)
+        await message.reply_text("Joined the voice call!")
+    except Exception as e:
+        await message.reply_text(f"Failed to join the voice call: {str(e)}")
+
         
 @client.on_message(filters.command(["restart"]) & filters.user(SUDOERS))
 async def restart_(_, message):
