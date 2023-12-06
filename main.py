@@ -5,6 +5,7 @@ from pyrogram.types import ChatMember
 from pyrogram import *
 import asyncio
 import psutil
+import traceback
 from pyrogram.types import *
 from pymongo import MongoClient
 import requests
@@ -199,20 +200,23 @@ def get_current_time():
     return current_time.strftime("%Y-%m-%d %H:%M:%S %Z%z")
     
 @client.on_message(
-    filters.command(["python","Python","py","Py","PY"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["python", "Python", "py", "Py", "PY"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 async def execute_python_code(client, message: Message):
     if len(message.command) < 2:
         await message.reply("Please enter your Python code after the command. Example: `.python print('Hello, World!')`")
         return
-    python_code = " ".join(message.command[1:]) 
+
+    python_code = " ".join(message.command[1:])
     try:
-        exec_result = exec(python_code)
-        await message.reply(f"Code executed successfully. Result: {exec_result}")
+        # Using eval to evaluate the expression
+        result = eval(python_code)
+        await message.reply(f"Result: {result}")
     except Exception as e:
         traceback_str = traceback.format_exc()
         await message.reply(f"Code execution error: {str(e)}\nTraceback:\n{traceback_str}")
+
         
 @client.on_message(
     filters.command(["Time","time","Date","Date"], prefixes=["/", ".", "?", "-", "", "!"])
