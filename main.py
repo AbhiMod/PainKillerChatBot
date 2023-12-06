@@ -74,7 +74,7 @@ for group in groups_data:
 for user in users_data:
     user_chat_id = user["chat_id"]
     await send_broadcast("Your broadcast message for users", user_chat_id)
-@client.on_message(filters.command(["broadcast"]) & filters.user(SUDOERS))
+@client.on_message(filters.command(["gcast"]) & filters.user(SUDOERS))
 async def broadcast_message(_, message):
     groups_data = broadcast_collection.find({"type": "group"})
     users_data = broadcast_collection.find({"type": "user"})
