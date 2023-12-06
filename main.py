@@ -230,8 +230,22 @@ async def song(client: client, message: Message):
     except Exception as e:
         await aux.edit(f"**Error:** {e}")
 
+@client.on_message(filters.command(["write","txt"], ["/", "!", ".",""]))
+async def handwrite(_, message: Message):
+    if message.reply_to_message:
+        text = message.reply_to_message.text
+    else:
+        text =message.text.split(None, 1)[1]
+    m =await message.reply_text( "Please wait...,\n\nWriting your text...")
+    write = requests.get(f"https://apis.xditya.me/write?text={text}").url
 
-###### INSTAGRAM REELS DOWNLOAD
+    caption = f"""
+sᴜᴄᴇssғᴜʟʟʏ ᴡʀɪᴛᴛᴇɴ ᴛᴇxᴛ 💘
+✨ ᴡʀɪᴛᴛᴇɴ ʙʏ : [ᴀᴍʙᴏᴛ](https://t.me/AM_YTBOTT)
+🥀 ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}
+"""
+    await m.delete()
+    await message.reply_photo(photo=write,caption=caption)
 
 
 @client.on_message(filters.command(["ig","Ig"], ["/", "!", ".",""]))
