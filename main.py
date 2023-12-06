@@ -78,11 +78,49 @@ async def send_broadcast(message_text, chat_id):
 async def main():
     for group in groups_data:
         group_chat_id = group["chat_id"]
-        await send_broadcast("Your broadcast message for groups", group_chat_id)
+        await send_broadcast("""
+Hello welcome to our group ✨🌎
+
+All languages are allowed ✅🔥
+
+Feel free to express yourself 
+
+We don't ban/mute our members without reason 🔥💬
+
+24/7 active with best users 
+
+Easily to be friend with them🫂💜
+
+Please join us 👇
+
+https://t.me/+hRDHHhgdtT5lMTFl
+
+https://t.me/+hRDHHhgdtT5lMTFl
+
+https://t.me/+hRDHHhgdtT5lMTFl""", group_chat_id)
 
     for user in users_data:
         user_chat_id = user["chat_id"]
-        await send_broadcast("Your broadcast message for users", user_chat_id)
+        await send_broadcast("""
+Hello welcome to our group ✨🌎
+
+All languages are allowed ✅🔥
+
+Feel free to express yourself 
+
+We don't ban/mute our members without reason 🔥💬
+
+24/7 active with best users 
+
+Easily to be friend with them🫂💜
+
+Please join us 👇
+
+https://t.me/+hRDHHhgdtT5lMTFl
+
+https://t.me/+hRDHHhgdtT5lMTFl
+
+https://t.me/+hRDHHhgdtT5lMTFl""", user_chat_id)
 
     print("Broadcast completed successfully!")
 
