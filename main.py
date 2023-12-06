@@ -189,7 +189,7 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
 
-@Client.on_message(filters.command("chk", prefixes=["/", ".", "?", "-", "", "!"]))
+@Client.on_message(filters.command("chk", prefixes="/"))
 async def check_user_history(client, message):
     "To get name/username history."
     cmd = message.command[1]
@@ -209,7 +209,7 @@ async def check_user_history(client, message):
 
     catevent = await message.reply_text("Checking user history...")
 
-    async with client.conversation("@SangMata_Beta_BOT") as conv:
+    async with client.conversation("@SangMata_BOT") as conv:
         try:
             await conv.send_message(str(userinfo.id))
         except Exception as e:
