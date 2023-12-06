@@ -84,147 +84,121 @@ REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 ❥︎ [ɢʙᴀɴꜱ ʟᴏɢꜱ](https://t.me/Logs_Gban)
 
 𝗢𝗪𝗡𝗘𝗥 ❥︎ [ᴀᴍʙᴏᴛ](https://t.me/AM_YTBOTT)"""
-HELP = """ʜᴇʀᴇ ɪꜱ ᴄᴍᴅꜱ ꜰᴏʀ ᴛᴀɢᴀʟʟ\nᴜꜱᴇ ᴄᴍᴅꜱ ᴘʀᴇꜰɪxᴇꜱ : `.` `/` `?` `!` -\nᴜꜱᴇʀ,ɪɴᴠɪᴛᴇ - ᴛᴏ ʀᴀɴᴅᴏᴍ ᴛᴀɢꜱ ᴛᴏ ᴜꜱᴇʀꜱ\n\nᴄᴀɴᴄʟᴇ,ꜱᴛᴏᴘᴀʟʟ,ᴏꜰꜰ - ᴛᴏ ᴛᴀɢᴀʟʟ ꜱᴛᴏᴘ\n\nᴇxᴀᴍᴘʟᴇꜱ : `user hii` \nꜰᴏʀ ꜱᴛᴏᴘ ᴛᴀɢꜱ ᴜꜱᴇ : `off`\n\nᴀᴅᴅɪᴛɪᴏɴᴀʟ ᴄᴏᴍᴍᴀɴᴅꜱ :\n➻ `bots` : ʟɪꜱᴛ ᴀʟʟ ʙᴏᴛꜱ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ\n➻ `tgm` : ᴘɪᴄ 🇹ᴇʟᴇɢʀᴀᴘʜ ᴛᴏ ʟɪɴᴋ.\n➻ `afk ʀᴇᴀꜱᴏɴ` : ᴍᴀʀᴋ ʏᴏᴜʀꜱᴇʟꜰ ᴀꜱ ᴀꜰᴋ ᴀᴡᴀʏ ꜰʀᴏᴍ ᴋᴇʏʙᴏᴀʀᴅ.\n➻ `brb ʀᴇᴀꜱᴏɴ` : ꜱᴀᴍᴇ ᴀꜱ ᴛʜᴇ ᴀꜰᴋ ᴄᴏᴍᴍᴀɴᴅ - ʙᴜᴛ ɴᴏᴛ ᴀ ᴄᴏᴍᴍᴀɴᴅ.
-ᴡʜᴇɴ ᴍᴀʀᴋᴇᴅ ᴀꜱ ᴀꜰᴋ, ᴀɴʏ ᴍᴇɴᴛɪᴏɴꜱ ᴡɪʟʟ ʙᴇ ʀᴇᴘʟɪᴇᴅ ᴛᴏ ᴡɪᴛʜ ᴀ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ꜱᴀʏ ʏᴏᴜ'ʀᴇ ɴᴏᴛ ᴀᴠᴀɪʟᴀʙʟᴇ!\n➻ `stats` : ᴄʜᴇᴄᴋ ʙᴏᴛ ᴜᴘ ᴛᴏ ᴛɪᴍᴇ.\n➻ `tr` : ʏᴏᴜ ᴄᴀɴ ᴛʀᴀɴꜱʟᴀᴛᴇ ᴍᴇꜱꜱᴀɢᴇꜱ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ɪɴ ᴀ ꜱɪᴍᴘʟᴇ ᴡᴀʏ.\n➻ `admins` : ɢᴇᴛ ᴀʟʟ ɢʀᴏᴜᴘꜱ ᴀᴅᴍɪɴ ʟɪꜱᴛꜱ.\n➻ `bots` : ɢᴇᴛ ᴀʟʟ ɢʀᴏᴜᴘꜱ ʙᴏᴛꜱ ʟɪꜱᴛꜱ.\n➻ `info`,`me`,`id` : ɢᴇᴛ ɢʀᴏᴜᴘ ɪɴꜰᴏ ᴀɴᴅ ᴜꜱᴇʀꜱ ɪᴅ.\n➻ `repo` : ɢᴇᴛ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.\n➻ `bot` : ʜᴇʜᴇ.\n➻ `math ` : ᴍᴀᴛʜᴇᴍᴀᴛɪᴄꜱ.\n➻ ɢᴀᴍᴇꜱ : `dice` , `basket` , `jackpot` , `ball` , `football` \n➻ `AMBOT`,`am`,`@AM_YTBOTT` : ᴀᴍʙᴏᴛ ᴛᴀɢꜱ..\n\n💕 ᴛʜɪꜱ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ : @AMBOTYT..\n\n🩷 ᴍᴏʀᴇ ꜰᴜɴᴄᴛɪᴏɴꜱ ᴀʀᴇ ᴄᴏᴍɪɴɢ ꜱᴏᴏɴ...🩷 
+HELP = """ʜᴇʀᴇ ɪꜱ ᴄᴍᴅꜱ ꜰᴏʀ ᴛᴀɢᴀʟʟ\nᴜꜱᴇ ᴄᴍᴅꜱ ᴘʀᴇꜰɪxᴇꜱ : `.` `/` `?` `!` -\nᴜꜱᴇʀ,ɪɴᴠɪᴛᴇ - ᴛᴏ ʀᴀɴᴅᴏᴍ ᴛᴀɢꜱ ᴛᴏ ᴜꜱᴇʀꜱ\n\nᴄᴀɴᴄʟᴇ,ꜱᴛᴏᴘᴀʟʟ,ᴏꜰꜰ - ᴛᴏ ᴛᴀɢᴀʟʟ ꜱᴛᴏᴘ\n\nᴇxᴀᴍᴘʟᴇꜱ : `user hii` \nꜰᴏʀ ꜱᴛᴏᴘ ᴛᴀɢꜱ ᴜꜱᴇ : `off`\n\nᴀᴅᴅɪᴛɪᴏɴᴀʟ ᴄᴏᴍᴍᴀɴᴅꜱ :\n➻ `bots` : ʟɪꜱᴛ ᴀʟʟ ʙᴏᴛꜱ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ\n➻ `tgm` : ᴘɪᴄ 🇹ᴇʟᴇɢʀᴀᴘʜ ᴛᴏ ʟɪɴᴋ.\n➻ `stats` : ᴄʜᴇᴄᴋ ʙᴏᴛ ᴜᴘ ᴛᴏ ᴛɪᴍᴇ.\n➻ `tr` : ʏᴏᴜ ᴄᴀɴ ᴛʀᴀɴꜱʟᴀᴛᴇ ᴍᴇꜱꜱᴀɢᴇꜱ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ɪɴ ᴀ ꜱɪᴍᴘʟᴇ ᴡᴀʏ.\n➻ `admins` : ɢᴇᴛ ᴀʟʟ ɢʀᴏᴜᴘꜱ ᴀᴅᴍɪɴ ʟɪꜱᴛꜱ.\n➻ `bots` : ɢᴇᴛ ᴀʟʟ ɢʀᴏᴜᴘꜱ ʙᴏᴛꜱ ʟɪꜱᴛꜱ.\n➻ `info`,`me`,`id` : ɢᴇᴛ ɢʀᴏᴜᴘ ɪɴꜰᴏ ᴀɴᴅ ᴜꜱᴇʀꜱ ɪᴅ.\n➻ `repo` : ɢᴇᴛ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.\n➻ `bot` : ʜᴇʜᴇ.\n➻ `math ` : ᴍᴀᴛʜᴇᴍᴀᴛɪᴄꜱ.\n➻ ɢᴀᴍᴇꜱ : `dice` , `basket` , `jackpot` , `ball` , `football` \n➻ `AMBOT`,`am`,`@AM_YTBOTT` : ᴀᴍʙᴏᴛ ᴛᴀɢꜱ..\n➻ `Time` : ᴄᴜʀʀᴇɴᴛ ᴛɪᴍᴇ ɪɴ ɪɴᴅɪᴀ ..\n➻ `restart`,`reboot`,`reload` : ʀᴇꜱᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ꜰɪx ꜰᴏʀ ꜱʟᴏᴡ ᴄʜᴀᴛ..\n\n💕 ᴛʜɪꜱ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ : @AMBOTYT..\n\n🩷 ᴍᴏʀᴇ ꜰᴜɴᴄᴛɪᴏɴꜱ ᴀʀᴇ ᴄᴏᴍɪɴɢ ꜱᴏᴏɴ...🩷 
 """
+Ca = [
+    "Matt Karo Na",
+    "Me to BorHorahi hu",
+    "Areee 😣",
+    "Pls Yrr 😏",
+    "Ab To Pitoge 🤧",
+    "U Bad 💔",
+    "😳",
+]
 SPAM_CHATS = []
-TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
-           " **𝐎𝐲𝐞 𝐒𝐨 𝐆𝐲𝐞 𝐊𝐲𝐚 𝐎𝐧𝐥𝐢𝐧𝐞 𝐀𝐚𝐨😊** ",
-           " **𝐕𝐜 𝐂𝐡𝐚𝐥𝐨 𝐁𝐚𝐭𝐞𝐧 𝐊𝐚𝐫𝐭𝐞 𝐇𝐚𝐢𝐧 𝐊𝐮𝐜𝐡 𝐊𝐮𝐜𝐡😃** ",
-           " **𝐊𝐡𝐚𝐧𝐚 𝐊𝐡𝐚 𝐋𝐢𝐲𝐞 𝐉𝐢..??🥲** ",
-           " **𝐆𝐡𝐚𝐫 𝐌𝐞 𝐒𝐚𝐛 𝐊𝐚𝐢𝐬𝐞 𝐇𝐚𝐢𝐧 𝐉𝐢🥺** ",
-           " **𝐏𝐭𝐚 𝐇𝐚𝐢 𝐁𝐨𝐡𝐨𝐭 𝐌𝐢𝐬𝐬 𝐊𝐚𝐫 𝐑𝐡𝐢 𝐓𝐡𝐢 𝐀𝐚𝐩𝐤𝐨🤭** ",
-           " **𝐎𝐲𝐞 𝐇𝐚𝐥 𝐂𝐡𝐚𝐥 𝐊𝐞𝐬𝐚 𝐇𝐚𝐢..??🤨** ",
-           " **𝐌𝐞𝐫𝐢 𝐁𝐡𝐢 𝐒𝐞𝐭𝐭𝐢𝐧𝐠 𝐊𝐚𝐫𝐛𝐚 𝐃𝐨𝐠𝐞..??🙂** ",
-           " **𝐀𝐚𝐩𝐤𝐚 𝐍𝐚𝐦𝐞 𝐊𝐲𝐚 𝐡𝐚𝐢..??🥲** ",
-           " **𝐍𝐚𝐬𝐭𝐚 𝐇𝐮𝐚 𝐀𝐚𝐩𝐤𝐚..??😋** ",
-           " **𝐌𝐞𝐫𝐞 𝐊𝐨 𝐀𝐩𝐧𝐞 𝐆𝐫𝐨𝐮𝐩 𝐌𝐞 𝐊𝐢𝐝𝐧𝐚𝐩 𝐊𝐫 𝐋𝐨😍** ",
-           " **𝐀𝐚𝐩𝐤𝐢 𝐏𝐚𝐫𝐭𝐧𝐞𝐫 𝐀𝐚𝐩𝐤𝐨 𝐃𝐡𝐮𝐧𝐝 𝐑𝐡𝐞 𝐇𝐚𝐢𝐧 𝐉𝐥𝐝𝐢 𝐎𝐧𝐥𝐢𝐧𝐞 𝐀𝐲𝐢𝐚𝐞😅😅** ",
-           " **𝐌𝐞𝐫𝐞 𝐒𝐞 𝐃𝐨𝐬𝐭𝐢 𝐊𝐫𝐨𝐠𝐞..??🤔** ",
-           " **𝐒𝐨𝐧𝐞 𝐂𝐡𝐚𝐥 𝐆𝐲𝐞 𝐊𝐲𝐚🙄🙄** ",
-           " **𝐄𝐤 𝐒𝐨𝐧𝐠 𝐏𝐥𝐚𝐲 𝐊𝐫𝐨 𝐍𝐚 𝐏𝐥𝐬𝐬😕** ",
-           " **𝐀𝐚𝐩 𝐊𝐚𝐡𝐚 𝐒𝐞 𝐇𝐨..??🙃** ",
-           " **𝐇𝐞𝐥𝐥𝐨 𝐉𝐢 𝐍𝐚𝐦𝐚𝐬𝐭𝐞😛** ",
-           " **𝐇𝐞𝐥𝐥𝐨 𝐁𝐚𝐛𝐲 𝐊𝐤𝐫𝐡..?🤔** ",
-           " **𝐃𝐨 𝐘𝐨𝐮 𝐊𝐧𝐨𝐰 𝐖𝐡𝐨 𝐈𝐬 𝐌𝐲 𝐎𝐰𝐧𝐞𝐫.?** ",
-           " **𝐂𝐡𝐥𝐨 𝐊𝐮𝐜𝐡 𝐆𝐚𝐦𝐞 𝐊𝐡𝐞𝐥𝐭𝐞 𝐇𝐚𝐢𝐧.🤗** ",
-           " **𝐀𝐮𝐫 𝐁𝐚𝐭𝐚𝐨 𝐊𝐚𝐢𝐬𝐞 𝐇𝐨 𝐁𝐚𝐛𝐲😇** ",
+TAGMES = [ " Hey Baby Kaha Ho 🥱🥺",
+           " Oye So Gye Kya Online Aao Na 😊",
+           " Vc Chalo Bate Karte Hain Kuch Kuch 😃 ",
+           " Khana Kha Liya Ji ..??🥲 ",
+           " Ghar MeSab Kaise Hai Ji 🥺",
+           " Aapko Pata He Me Aapko Bahut Miss Karrahi Thi 🤭🙈",
+           " Oye HaalChal Kaise He..??🤨 ",
+           " Mere Se Setting Karoge ..??🙂 ",
+           " Aapka Nama Kya he ..??🥲 ",
+           " Naasta Huw Aapka ..??😋",
+           " Mere Ko Apne Group Me Kidnap Karlo Na 😍 ",
+           "𝐀𝐚𝐩𝐤𝐢 𝐏𝐚𝐫𝐭𝐧𝐞𝐫 𝐀𝐚𝐩𝐤𝐨 𝐃𝐡𝐮𝐧𝐝 𝐑𝐡𝐞 𝐇𝐚𝐢𝐧 𝐉𝐥𝐝𝐢 𝐎𝐧𝐥𝐢𝐧𝐞 𝐀𝐲𝐢𝐚𝐞😅😅 ",
+           "Mere Se Dosti Karoge..??🤔 ",
+           " Sone Chale Gaya Kya 🙄🙄 ",
+           " Aap Kaha Se Ho..??🙃 ",
+           " Hello Ji Namaste 😛 ",
+           " Hello Kkrh ..?🤔",
+           " Do You Know Who Is My Owner.?😜😜 ",
+           " Aur Batao Kaise Ho 😇 ",
            " **𝐓𝐮𝐦𝐡𝐚𝐫𝐢 𝐌𝐮𝐦𝐦𝐲 𝐊𝐲𝐚 𝐊𝐚𝐫 𝐑𝐚𝐡𝐢 𝐇𝐚𝐢🤭** ",
-           " **𝐌𝐞𝐫𝐞 𝐒𝐞 𝐁𝐚𝐭 𝐍𝐨𝐢 𝐊𝐫𝐨𝐠𝐞🥺🥺** ",
-           " **𝐎𝐲𝐞 𝐏𝐚𝐠𝐚𝐥 𝐎𝐧𝐥𝐢𝐧𝐞 𝐀𝐚 𝐉𝐚😶** ",
-           " **𝐀𝐚𝐣 𝐇𝐨𝐥𝐢𝐝𝐚𝐲 𝐇𝐚𝐢 𝐊𝐲𝐚 𝐒𝐜𝐡𝐨𝐨𝐥 𝐌𝐞..??🤔** ",
-           " **𝐎𝐲𝐞 𝐆𝐨𝐨𝐝 𝐌𝐨𝐫𝐧𝐢𝐧𝐠😜** ",
-           " **𝐒𝐮𝐧𝐨 𝐄𝐤 𝐊𝐚𝐦 𝐇𝐚𝐢 𝐓𝐮𝐦𝐬𝐞🙂** ",
-           " **𝐊𝐨𝐢 𝐒𝐨𝐧𝐠 𝐏𝐥𝐚𝐲 𝐊𝐫𝐨 𝐍𝐚😪** ",
-           " **𝐍𝐢𝐜𝐞 𝐓𝐨 𝐌𝐞𝐞𝐭 𝐔𝐡☺** ",
-           " **𝐇𝐞𝐥𝐥𝐨🙊** ",
-           " **𝐒𝐭𝐮𝐝𝐲 𝐂𝐨𝐦𝐥𝐞𝐭𝐞 𝐇𝐮𝐚??😺** ",
-           " **𝐁𝐨𝐥𝐨 𝐍𝐚 𝐊𝐮𝐜𝐡 𝐘𝐫𝐫🥲** ",
-           " **𝐒𝐨𝐧𝐚𝐥𝐢 𝐊𝐨𝐧 𝐇𝐚𝐢...??😅** ",
-           " **𝐓𝐮𝐦𝐡𝐚𝐫𝐢 𝐄𝐤 𝐏𝐢𝐜 𝐌𝐢𝐥𝐞𝐠𝐢..?😅** ",
-           " **𝐌𝐮𝐦𝐦𝐲 𝐀𝐚 𝐆𝐲𝐢 𝐊𝐲𝐚😆😆😆** ",
+           " Mere Se Baat Noi Katoge 🥺🥺",
+           " Oye Pagal Online Aa ja 😶 ",
+           " Oye Good Morning  😜",
+           " Suno Ek Kaam Hai Tumse 🙂 ",
+           " Nice To Meet Uh ☺ ",
+           " Hello 🙊 ",
+           " Bolo Na Kuch Yrr 🥲 ",
+           " Tiger Queen Kon Hai...??😅 ",
+           " Tumari Ek Pic Milgai ..?😅",
+           " Mummy Aa Gyi Kya 😆😆😆",
            " **𝐎𝐫 𝐁𝐚𝐭𝐚𝐨 𝐁𝐡𝐚𝐛𝐡𝐢 𝐊𝐚𝐢𝐬𝐢 𝐇𝐚𝐢😉** ",
-           " **𝐃𝐨 𝐘𝐨𝐮 𝐋𝐨𝐯𝐞 𝐌𝐞..?👀** ",
-           " **𝐑𝐚𝐤𝐡𝐢 𝐊𝐚𝐛 𝐁𝐚𝐧𝐝 𝐑𝐚𝐡𝐢 𝐇𝐨.??🙉** ",
-           " **𝐄𝐤 𝐒𝐨𝐧𝐠 𝐒𝐮𝐧𝐚𝐮..?😹** ",
+           " Do You Love Me ..?👀🙉",
+           " Ek Song Sunau Na Pls ..😻😻 ",
            " **𝐎𝐧𝐥𝐢𝐧𝐞 𝐀𝐚 𝐉𝐚 𝐑𝐞 𝐒𝐨𝐧𝐠 𝐒𝐮𝐧𝐚 𝐑𝐚𝐡𝐢 𝐇𝐮😻** ",
-           " **𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦 𝐂𝐡𝐚𝐥𝐚𝐭𝐞 𝐇𝐨..??🙃** ",
            " **𝐖𝐡𝐚𝐭𝐬𝐚𝐩𝐩 𝐍𝐮𝐦𝐛𝐞𝐫 𝐃𝐨𝐠𝐞 𝐀𝐩𝐧𝐚 𝐓𝐮𝐦..?😕** ",
            " **𝐓𝐮𝐦𝐡𝐞 𝐊𝐨𝐧 𝐒𝐚 𝐌𝐮𝐬𝐢𝐜 𝐒𝐮𝐧𝐧𝐚 𝐏𝐚𝐬𝐚𝐧𝐝 𝐇𝐚𝐢..?🙃** ",
-           " **𝐒𝐚𝐫𝐚 𝐊𝐚𝐦 𝐊𝐡𝐚𝐭𝐚𝐦 𝐇𝐨 𝐆𝐲𝐚 𝐀𝐚𝐩𝐤𝐚..?🙃** ",
-           " **𝐊𝐚𝐡𝐚 𝐒𝐞 𝐇𝐨 𝐀𝐚𝐩😊** ",
-           " **𝐒𝐮𝐧𝐨 𝐍𝐚🧐** ",
-           " **𝐌𝐞𝐫𝐚 𝐄𝐤 𝐊𝐚𝐚𝐦 𝐊𝐚𝐫 𝐃𝐨𝐠𝐞..?** ",
-           " **𝐁𝐲 𝐓𝐚𝐭𝐚 𝐌𝐚𝐭 𝐁𝐚𝐭 𝐊𝐚𝐫𝐧𝐚 𝐀𝐚𝐣 𝐊𝐞 𝐁𝐚𝐝😠** ",
-           " **𝐌𝐨𝐦 𝐃𝐚𝐝 𝐊𝐚𝐢𝐬𝐞 𝐇𝐚𝐢𝐧..?❤** ",
-           " **𝐊𝐲𝐚 𝐇𝐮𝐚..?👱** ",
-           " **𝐁𝐨𝐡𝐨𝐭 𝐘𝐚𝐚𝐝 𝐀𝐚 𝐑𝐡𝐢 𝐇𝐚𝐢 🤧❣️** ",
-           " **𝐁𝐡𝐮𝐥 𝐆𝐲𝐞 𝐌𝐮𝐣𝐡𝐞😏😏** ",
-           " **𝐉𝐮𝐭𝐡 𝐍𝐡𝐢 𝐁𝐨𝐥𝐧𝐚 𝐂𝐡𝐚𝐡𝐢𝐲𝐞🤐** ",
-           " **𝐊𝐡𝐚 𝐋𝐨 𝐁𝐡𝐚𝐰 𝐌𝐚𝐭 𝐊𝐫𝐨 𝐁𝐚𝐚𝐭😒** ",
-           " **𝐊𝐲𝐚 𝐇𝐮𝐚😮😮** "
-           " **𝐇𝐢𝐢👀** ",
-           " **𝐀𝐚𝐩𝐤𝐞 𝐉𝐚𝐢𝐬𝐚 𝐃𝐨𝐬𝐭 𝐇𝐨 𝐒𝐚𝐭𝐡 𝐌𝐞 𝐅𝐢𝐫 𝐆𝐮𝐦 𝐊𝐢𝐬 𝐁𝐚𝐭 𝐊𝐚 🙈** ",
-           " **𝐀𝐚𝐣 𝐌𝐚𝐢 𝐒𝐚𝐝 𝐇𝐮 ☹️** ",
-           " **𝐌𝐮𝐬𝐣𝐡𝐬𝐞 𝐁𝐡𝐢 𝐁𝐚𝐭 𝐊𝐚𝐫 𝐋𝐨 𝐍𝐚 🥺🥺** ",
-           " **𝐊𝐲𝐚 𝐊𝐚𝐫 𝐑𝐚𝐡𝐞 𝐇𝐨👀** ",
-           " **𝐊𝐲𝐚 𝐇𝐚𝐥 𝐂𝐡𝐚𝐥 𝐇𝐚𝐢 🙂** ",
-           " **𝐊𝐚𝐡𝐚 𝐒𝐞 𝐇𝐨 𝐀𝐚𝐩..?🤔** ",
-           " **𝐂𝐡𝐚𝐭𝐭𝐢𝐧𝐠 𝐊𝐚𝐫 𝐋𝐨 𝐍𝐚..🥺** ",
-           " **𝐌𝐞 𝐌𝐚𝐬𝐨𝐨𝐦 𝐇𝐮 𝐍𝐚🥺🥺** ",
-           " **𝐊𝐚𝐥 𝐌𝐚𝐣𝐚 𝐀𝐲𝐚 𝐓𝐡𝐚 𝐍𝐚🤭😅** ",
-           " **𝐆𝐫𝐨𝐮𝐩 𝐌𝐞 𝐁𝐚𝐭 𝐊𝐲𝐮 𝐍𝐚𝐡𝐢 𝐊𝐚𝐫𝐭𝐞 𝐇𝐨😕** ",
-           " **𝐀𝐚𝐩 𝐑𝐞𝐥𝐚𝐭𝐢𝐨𝐦𝐬𝐡𝐢𝐩 𝐌𝐞 𝐇𝐨..?👀** ",
-           " **𝐊𝐢𝐭𝐧𝐚 𝐂𝐡𝐮𝐩 𝐑𝐚𝐡𝐭𝐞 𝐇𝐨 𝐘𝐫𝐫😼** ",
-           " **𝐀𝐚𝐩𝐤𝐨 𝐆𝐚𝐧𝐚 𝐆𝐚𝐧𝐞 𝐀𝐚𝐭𝐚 𝐇𝐚𝐢..?😸** ",
-           " **𝐆𝐡𝐮𝐦𝐧𝐞 𝐂𝐡𝐚𝐥𝐨𝐠𝐞..??🙈** ",
-           " **𝐊𝐡𝐮𝐬 𝐑𝐚𝐡𝐚 𝐊𝐚𝐫𝐨 ✌️🤞** ",
-           " **𝐇𝐚𝐦 𝐃𝐨𝐬𝐭 𝐁𝐚𝐧 𝐒𝐚𝐤𝐭𝐞 𝐇𝐚𝐢...?🥰** ",
-           " **𝐊𝐮𝐜𝐡 𝐁𝐨𝐥 𝐊𝐲𝐮 𝐍𝐡𝐢 𝐑𝐚𝐡𝐞 𝐇𝐨..🥺🥺** ",
-           " **𝐊𝐮𝐜𝐡 𝐌𝐞𝐦𝐛𝐞𝐫𝐬 𝐀𝐝𝐝 𝐊𝐚𝐫 𝐃𝐨 🥲** ",
-           " **𝐒𝐢𝐧𝐠𝐥𝐞 𝐇𝐨 𝐘𝐚 𝐌𝐢𝐧𝐠𝐥𝐞 😉** ",
-           " **𝐀𝐚𝐨 𝐏𝐚𝐫𝐭𝐲 𝐊𝐚𝐫𝐭𝐞 𝐇𝐚𝐢𝐧😋🥳** ",
-           " **𝐇𝐞𝐦𝐥𝐨𝐨🧐** ",
-           " **𝐌𝐮𝐣𝐡𝐞 𝐁𝐡𝐮𝐥 𝐆𝐲𝐞 𝐊𝐲𝐚🥺** ",
-           " **𝐓𝐫𝐮𝐭𝐡 𝐀𝐧𝐝 𝐃𝐚𝐫𝐞 𝐊𝐡𝐞𝐥𝐨𝐠𝐞..? 😊** ",
-           " **𝐀𝐚𝐣 𝐌𝐮𝐦𝐦𝐲 𝐍𝐞 𝐃𝐚𝐭𝐚 𝐘𝐫🥺🥺** ",
-           " **𝐄𝐤 𝐃𝐢𝐥 𝐇𝐚𝐢 𝐄𝐤 𝐃𝐢𝐥 𝐇𝐢 𝐓𝐨 𝐇𝐚𝐢😗😗** ",
-           " **𝐓𝐮𝐦𝐡𝐚𝐫𝐞 𝐃𝐨𝐬𝐭 𝐊𝐚𝐡𝐚 𝐆𝐲𝐞🥺** ",
-           " **𝐊𝐚𝐡𝐚 𝐊𝐡𝐨𝐲𝐞 𝐇𝐨 𝐉𝐚𝐚𝐧😜** ",
-           " **𝐆𝐨𝐨𝐝 𝐍8 𝐉𝐢 𝐁𝐡𝐮𝐭 𝐑𝐚𝐭 𝐇𝐨 𝐠𝐲𝐢🥰** ",
-          " **𝐎𝐢𝐢 𝐕𝐜 𝐚𝐚𝐣𝐚𝐨 𝐁𝐚𝐫𝐧𝐚𝐚 𝐌𝐞 𝐓𝐮𝐦𝐤𝐨** 🤭🤭",
-          " **𝐀𝐚𝐩 𝐎𝐧𝐥𝐢𝐧𝐞 𝐐 𝐧𝐚𝐡𝐢 𝐀𝐚𝐭𝐚 𝐡𝐞**🥺🥺 ",
-          " 𝐌𝐞 𝐀𝐚𝐩 𝐒𝐞 𝐁𝐚𝐡𝐮𝐭 𝐆𝐡𝐮𝐬𝐬𝐚 𝐇𝐮 😣🙁😡",
-          " 𝐀𝐚𝐩𝐤𝐨 𝐩𝐚𝐭𝐚 𝐡𝐞 𝐤𝐲𝐚 🙊🙊",
-          " 𝐔𝐥𝐥𝐞 😳😳",
-          "𝐓𝐮𝐦𝐚𝐫𝐢 𝐅𝐫𝐢𝐞𝐧𝐝 𝐧𝐞 𝐭𝐲𝐦𝐤𝐨 𝐰𝐨 𝐝𝐢𝐲𝐚 𝐭𝐡𝐚 𝐧𝐚𝐚...😳😳",
-          "𝐀𝐚𝐣𝐚 𝐓𝐨 𝐇𝐨𝐠𝐚 𝐩𝐚𝐫𝐭𝐲 𝐖𝐨 𝐯 𝐓𝐮𝐦𝐚𝐫𝐞 𝐓𝐚𝐫𝐟𝐬𝐞 😜😂😂",
-          "𝐁𝐚𝐛𝐲 𝐁𝐚𝐧𝐚𝐥𝐨 𝐍𝐚 𝐦𝐮𝐣𝐞 🙈🙈",
-          "𝐊𝐲𝐚 𝐀𝐚𝐩 𝐌𝐞𝐫𝐞 𝐒𝐞 𝐂𝐡𝐚𝐭 𝐊𝐚𝐫𝐨 𝐠𝐞 😋😋",
-          " 𝐀𝐚𝐣 𝐭𝐨 𝐌𝐞𝐫𝐞 𝐘𝐚𝐚𝐫 𝐊𝐢 𝐏𝐚𝐫𝐭𝐲 𝐇𝐞 🤫🤭🤭",
-          "𝐓𝐮𝐦𝐚𝐫𝐚 𝐈𝐝 𝐝𝐞𝐤𝐡𝐚 𝐭𝐨 𝐲𝐞𝐬𝐚 𝐥𝐚𝐠𝐚 𝐣𝐞𝐬𝐚 𝐄𝐤 𝐯 𝐓𝐚𝐠 𝐧𝐚 𝐤𝐚𝐫𝐮 😏😏",
-          " 𝐀𝐚𝐩 𝐧𝐞 𝐧𝐚𝐚𝐦 𝐂𝐡𝐚𝐧𝐠𝐞 𝐤𝐢𝐲𝐚 𝐤𝐲𝐚 😝😝",
-          " **𝐌𝐞𝐧𝐞 𝐃𝐞𝐤𝐡 𝐥𝐢𝐲𝐚 𝐬𝐚𝐛 👀🙈** ",
-          " **𝐌𝐞𝐫𝐢 𝐄𝐤 𝐅𝐫𝐢𝐞𝐧𝐝 𝐡𝐞 𝐰𝐨 𝐛𝐚𝐡𝐮𝐭 𝐟𝐥𝐢𝐫𝐭 𝐤𝐚𝐫𝐭𝐢 𝐡𝐞** 🥺🥺 ",
-          " 𝐇𝐨𝐰 𝐓𝐨 𝐌𝐚𝐤𝐞 𝐆𝐟 𝐒𝐢𝐤𝐤𝐧𝐚 𝐇𝐞 𝐤𝐲𝐚 𝐀𝐚𝐩𝐤𝐨 🤫🤫",
-          " 𝐀𝐚𝐩 𝐧𝐞 𝐦𝐮𝐣𝐞 𝐛𝐥𝐨𝐜𝐤 𝐪 𝐤𝐢𝐲𝐚 𝐦𝐞𝐧𝐞 𝐭𝐨 𝐛𝐚𝐬𝐬 𝐢 𝐥𝐨𝐯𝐞 𝐮 𝐛𝐨𝐥𝐚 𝐭𝐡𝐚 🥺🥺",
-          " 𝐌𝐮𝐣𝐞 𝐕 𝐀𝐝𝐦𝐢𝐧 𝐁𝐚𝐧𝐰𝐚 𝐝𝐨 𝐧𝐚 😔😔",
-          " @AM_YTBOTT 𝐈𝐬𝐤𝐨 𝐒𝐚𝐦𝐣𝐚 𝐝𝐨 𝐌𝐮𝐣𝐞 𝐧𝐚 𝐜𝐡𝐞𝐝𝐞 😢😭",
-          "𝐀𝐚𝐩𝐤𝐨 𝐆𝐟 𝐂𝐡𝐚𝐲𝐚 𝐊𝐲𝐚 𝐌𝐞 𝐒𝐞𝐥𝐥 𝐤𝐚𝐫𝐭𝐢 𝐇𝐮 𝟏𝟎𝐫𝐬 𝐤𝐚 𝐭𝐮𝐫𝐭𝐮𝐫𝐞 🤭🤭",
-          " 𝐚𝐧𝐝𝐢 𝐦𝐚𝐧𝐝𝐢 𝐬𝐚𝐧𝐝𝐢 𝐯𝐜 𝐩𝐞 𝐧𝐚𝐡𝐢 𝐚𝐚𝐨 𝐠𝐞 𝐭𝐨 ... 😂😂",
-          " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
+           " Sara Kaam Khatam Hogaya Kya aapka ..?🙃",
+           " Kaha Se Ho Aap 😊 ",
+           " Sunno Na 🧐🧐 ",
+           " Mera Ek Kaam Kardo Ge..?** ",
+           " Kya Huw ..?👱 ",
+           "Bahut Yaad Aarahe ho  🤧❣️ ",
+           " U Bhul gaya Mujte 😏😏",
+           " Jut Nahi Bolna Chaya Yrr  🤐 ",
+           "Kha Lo Bhaw Matt Karo Baat 😒😒 ",
+           " Hii 👀",
+           " Aaj Mai Sad Hu ☹️ ",
+           " Mujse V Cat Karlo Na 🥺🥺",
+           " Kya Karr Rahe Ho 👀",
+           " Kya Hal Chaal Hai 🙂",
+           " Kaha Se Ho Aap..?🤔** ",
+           " Chatt Karlo Na Group Me Mujse..🥺🥺",
+           " Me Masoom Hu Thoda Sa 🥺🥺",
+           " Kal Maja Aaya Tha Na 🤭😅 ",
+          """Ek Jokes For U 🤭🤭
+beta - pita ji, aap bahut kismat vaale hain? 
+pita jee - vo kaise beta? 
+beta - kyonki main fail ho gaya hoon, 
+aapako mere liye nai kitaaben nahin kharidani padengi.""",
+          """EK Song AapKe Liya 🥺🥺
+Ye jo halka halka suroor hai
+Ye teri nazar ka kusoor hai
+Ke sharaab peena sikha diya
+Tere pyaar ne teri chaah ne
+Teri behki behki nigaah ne
+Mujhe ek sharaabi bana diya
+k sharab peena sikha diya""",
+          "Me Telegram Delete Karne Wali Hu 🥺", 
+          "Aapka Pata He Kya Group Ka Owner kON hE",
+          "oii Date Pe Chalega Mere Sath..?🤭🙉",
+          "U Gannda Bachha Online Nahi Aate 🤭",
+          "Mera break up Hogaya Aaj 💔😣",
+          "Thoda Meri tarif Kardo Na 🤭🙉",
+          "Me AapKo Janti HuNa 😳",
+          "Me Dekhrahi hu 👀👀",
+          "Tumara V break up Hogaya He Kya ",
+          "AapKo Achha Nahi Laga Vc Pe 🥺",
+          "Suggest Kardo Na Group Me Kese Baad Karu ",
+          "Chiiii 🤧",
+          "[AMBOT Kon He Jaante Ho Kya 🤧](t.me/AM_YTBOTT)",
+          "AajKal Tum Bahut Ignore Karte Ho HamKo 🤔",
+          "Thoda Der Pehle Tumse Pyar Huw Ussi Time break up V Hogaya 🤭🤭",
+          "Dekho Kese Kese Log He Ider 🤭",
+          "Kya Huw Aapko 🥺🥺",
+          "Muje AapSe Baat Nahi Karni 🥺",
+          "Aapko Pata He Mere pass 10+ Dil He Ek Aapka V He 🤭",
+          "Me JarahiHu 💔😣",
+          "chalo Chalte He 🤭 ",
+          "U 💔💔💔💔💔💔",
+          
+          
            ]
 def get_current_time():
     tz = pytz.timezone('Asia/Kolkata')  # Setting the timezone to India (Kolkata)
     current_time = datetime.now(tz)
-    return current_time.strftime("%Y-%m-%d %H:%M:%S %Z%z")
-    
-@client.on_message(
-    filters.command(["python", "Python", "py", "Py", "PY"], prefixes=["/", ".", "?", "-", "", "!"])
-    & ~filters.private
-)
-async def execute_python_code(client, message: Message):
-    if len(message.command) < 2:
-        await message.reply("Please enter your Python code after the command. Example: `.python print('Hello, World!')`")
-        return
-
-    python_code = " ".join(message.command[1:])
-    try:
-        # Using eval to evaluate the expression
-        result = eval(python_code)
-        await message.reply(f"Result: {result}")
-    except Exception as e:
-        traceback_str = traceback.format_exc()
-        await message.reply(f"Code execution error: {str(e)}\nTraceback:\n{traceback_str}")
-
-        
+    return current_time.strftime("%Y-%m-%d %H:%M:%S %Z%z") 
 @client.on_message(
     filters.command(["Time","time","Date","Date"], prefixes=["/", ".", "?", "-", "", "!"])
     & ~filters.private
 )
 def send_time(client, message):
     time = get_current_time()
-    client.send_message(message.chat.id, f"Current time in India: {time}")
+    client.send_message(message.chat.id, f"ᴄᴜʀʀᴇɴᴛ ᴛɪᴍᴇ ɪɴ ɪɴᴅɪᴀ :\n {time}")
     
 @client.on_message(
     filters.command(["restart","reboot","reload"], prefixes=["/", ".", "?", "-", "", "!"])
@@ -439,7 +413,8 @@ async def cancelcmd(_, message):
             SPAM_CHATS.remove(chat_id)
         except Exception:
             pass
-        return await message.reply_text("**Ok Yrr Ab Yesa Lagraha me spam karr jesa ab nahi tag karraha me kisi ko!**")
+            off = random.choice(Ca)
+        return await message.reply_text(off)
     else:
         await message.reply_text("**No ongoing process!**")
         return
