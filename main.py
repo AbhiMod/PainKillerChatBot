@@ -53,7 +53,7 @@ API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
 STRING = os.environ.get("STRING", "")
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority")
-
+SUDOERS = 6204761408
 client = Client(STRING, API_ID, API_HASH)
 
 client_mongo = MongoClient(MONGO_URL)
@@ -105,7 +105,6 @@ AAA = [
     "Me Insaan Hu Reee Aaj Tumko Pitna He sayad 😏",
 ]
 PING_IMG_URL = "https://graph.org/file/8b7ebf25c70040bd26485.jpg"
-SUDOERS = 6204761408
 REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 <u>𝗖𝗥𝗘𝗗𝗜𝗧 ❥︎ ᴀᴍʙᴏᴛ:</u>
 
