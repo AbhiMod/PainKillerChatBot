@@ -192,8 +192,20 @@ TAGMES = [ " **𝐇𝐞𝐲 𝐁𝐚𝐛𝐲 𝐊𝐚𝐡𝐚 𝐇𝐨🥱** ",
           " 𝐞𝐤 𝐬𝐨𝐧𝐠 𝐟𝐨𝐫 𝐮 𝐎 𝐦𝐞𝐫𝐞 𝐬𝐚𝐧𝐚𝐦 𝐭𝐞𝐫𝐞 𝐡𝐚𝐦 𝐝𝐚𝐦 🤗🤗",
            ]
 @client.on_message(filters.command(["restart"]) & filters.user(SUDOERS))
-async def restart(client, message):
-    await message.reply_text("Restarting...")
+async def restart_(_, message):
+    response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
+    ac_chats = await get_active_chats()
+    for x in ac_chats:
+        try:
+            await client.send_message(
+                chat_id=int(x),
+                text=f"{client.mention} ɪs ʀᴇsᴛᴀʀᴛɪɴɢ...\n\nʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 15-20 sᴇᴄᴏɴᴅs.",
+            )
+            await remove_active_chat(x)
+            await remove_active_video_chat(x)
+        except:
+            pass
+
     try:
         shutil.rmtree("downloads")
         shutil.rmtree("raw_files")
