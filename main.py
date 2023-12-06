@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram import Client, filters
 from pyrogram.types import ChatMember
-from pyrogram.raw.types import ChatMembersFilter
+from pyrogram import *
 import asyncio
 import psutil
 from pyrogram.types import *
