@@ -55,6 +55,43 @@ STRING = os.environ.get("STRING", "")
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority")
 
 client = Client(STRING, API_ID, API_HASH)
+
+client_mongo = MongoClient(MONGO_URL)
+db = client_mongo.get_database("painkiller") 
+broadcast_collection = db.broadcast_data
+# Fetch groups and users data
+groups_data = broadcast_collection.find({"type": "group"})
+users_data = broadcast_collection.find({"type": "user"})
+
+async def send_broadcast(message_text, chat_id):
+    try:
+        await client.send_message(chat_id, message_text)
+    except Exception as e:
+        print(f"Failed to send broadcast to chat {chat_id}: {str(e)}")
+for group in groups_data:
+    group_chat_id = group["chat_id"]
+    await send_broadcast("Your broadcast message for groups", group_chat_id)
+for user in users_data:
+    user_chat_id = user["chat_id"]
+    await send_broadcast("Your broadcast message for users", user_chat_id)
+@client.on_message(filters.command(["broadcast"]) & filters.user(SUDOERS))
+async def broadcast_message(_, message):
+    groups_data = broadcast_collection.find({"type": "group"})
+    users_data = broadcast_collection.find({"type": "user"})
+
+    # Broadcast to groups
+    for group in groups_data:
+        group_chat_id = group["chat_id"]
+        await send_broadcast("Your broadcast message for groups", group_chat_id)
+
+    # Broadcast to users
+    for user in users_data:
+        user_chat_id = user["chat_id"]
+        await send_broadcast("Your broadcast message for users", user_chat_id)
+
+    await message.reply_text("Broadcast completed successfully!")
+
+
 AMTAGS= [
     "ᴏɪɪ ᴀᴍʙᴏᴛ ᴋᴏ ᴛᴀɢ ᴍᴀᴛᴛ ᴋᴀʀᴏ ᴡᴏ ᴀʙ ʙᴜꜱʏ ʜᴇ",
     "𝓠 𝔂𝓪𝓪𝓭 𝓚𝓪𝓻𝓻𝓱𝓮 𝓱𝓸 𝓐𝓜𝓑𝓞𝓣 𝓚𝓸",
