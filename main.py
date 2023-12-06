@@ -212,7 +212,25 @@ async def join_vc(_, message):
         await message.reply_text(f"Failed to join the voice call: {str(e)}")
     except Exception as e:
     
-@client.on_message(filters.command(["restart"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.user(SUDOERS))
+
+It seems there's an issue with indentation after the except statement. Please ensure that the code is properly indented. I'll provide the corrected snippet below:
+
+python
+Copy code
+import shutil
+import os
+from pyrogram import Client, filters
+
+API_ID = "your_api_id"
+API_HASH = "your_api_hash"
+STRING = os.environ.get("STRING", "")
+
+SUDOERS = [123456789]  # Replace with your user ID
+
+client = Client(STRING, API_ID, API_HASH)
+
+
+@client.on_message(filters.command(["restart","reboot","reload"], prefixes=["/", ".", "?", "-", "", "!"]) & filters.user(SUDOERS))
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
     try:
