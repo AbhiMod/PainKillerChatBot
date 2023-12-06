@@ -206,10 +206,13 @@ async def join_vc(_, message):
     try:
         await pytgcalls.join_group_call(chat_id)
         await message.reply_text("Joined the voice call!")
+    except AlreadyJoinedError:
+        await message.reply_text("Already in the voice call!")
     except Exception as e:
         await message.reply_text(f"Failed to join the voice call: {str(e)}")
-
-        
+    except Exception as e:
+    print(f"Error joining voice call: {e}")
+    
 @client.on_message(filters.command(["restart"]) & filters.user(SUDOERS))
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
