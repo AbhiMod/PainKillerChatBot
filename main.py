@@ -68,27 +68,23 @@ async def send_broadcast(message_text, chat_id):
         await client.send_message(chat_id, message_text)
     except Exception as e:
         print(f"Failed to send broadcast to chat {chat_id}: {str(e)}")
-for group in groups_data:
-    group_chat_id = group["chat_id"]
-    await send_broadcast("Your broadcast message for groups", group_chat_id)
-for user in users_data:
-    user_chat_id = user["chat_id"]
-    await send_broadcast("Your broadcast message for users", user_chat_id)
-@client.on_message(filters.command(["gcast"]) & filters.user(SUDOERS))
-async def broadcast_message(_, message):
-    groups_data = broadcast_collection.find({"type": "group"})
-    users_data = broadcast_collection.find({"type": "user"})
 
-    # Broadcast to groups
+
+async def main():
     for group in groups_data:
         group_chat_id = group["chat_id"]
         await send_broadcast("Your broadcast message for groups", group_chat_id)
 
-    # Broadcast to users
     for user in users_data:
         user_chat_id = user["chat_id"]
         await send_broadcast("Your broadcast message for users", user_chat_id)
 
+    print("Broadcast completed successfully!")
+
+
+@client.on_message(filters.command(["gcast"]) & filters.user(SUDOERS))
+async def broadcast_message(_, message):
+    await main()
     await message.reply_text("Broadcast completed successfully!")
 
 
