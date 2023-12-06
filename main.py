@@ -214,7 +214,7 @@ async def join_vc(_, message):
     
 @client.on_message(
     filters.command(["restart","reboot","reload"], prefixes=["/", ".", "?", "-", "", "!"])
-    & ~filters.user(SUDOERS)
+    & ~filters.private
 )
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
