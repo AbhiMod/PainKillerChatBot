@@ -155,14 +155,17 @@ beta - pita ji, aap bahut kismat vaale hain?
 pita jee - vo kaise beta? 
 beta - kyonki main fail ho gaya hoon, 
 aapako mere liye nai kitaaben nahin kharidani padengi.""",
-          """EK Song AapKe Liya 🥺🥺
+          """[EK Song AapKe Liya 🥺🥺](t.me/AM_YTBOTT)
+          
 Ye jo halka halka suroor hai
 Ye teri nazar ka kusoor hai
 Ke sharaab peena sikha diya
 Tere pyaar ne teri chaah ne
 Teri behki behki nigaah ne
 Mujhe ek sharaabi bana diya
-k sharab peena sikha diya""",
+k sharab peena sikha diya
+💕💕💕💕💕💕💕💕💕💕
+""",
           "Me Telegram Delete Karne Wali Hu 🥺", 
           "Aapka Pata He Kya Group Ka Owner kON hE",
           "oii Date Pe Chalega Mere Sath..?🤭🙉",
