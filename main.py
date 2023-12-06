@@ -210,7 +210,7 @@ async def join_vc(_, message):
         await message.reply_text("Already in the voice call!")
     except Exception as e:
         await message.reply_text(f"Failed to join the voice call: {str(e)}")
-    except Exception as e:
+
     
 @client.on_message(
     filters.command(["restart","reboot","reload"], prefixes=["/", ".", "?", "-", "", "!"])
