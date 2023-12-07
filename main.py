@@ -55,7 +55,7 @@ from pyrogram.types import *
 
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
-STRING = os.environ.get("STRING", "")
+STRING = os.environ.get("STRING", "BACvNVCJ1TiaYj1Kmyap0Oa6OySvEgzswXdvND_onj9XX_mDpBBUzJSkqryafLXn5iK1b3oUDVtf9qsgAIcVKiXWtPPt0n9NuLhCclRiQhHRka04hHUjcrDGPWXEUDVs4BBQP9WLlDAtDR8PQSb-2xoJYL0skBhPZXI2j5_3a0go5jcmd445PKsdlxj51iNLDrDS1azd_wh-Bs-88mqUENv5ShkeYxmOrOGbL-oBrPEd2fmVF4sEnlGTAkEmv_QW5rDWwJ1PqyK5aZrrOhl8gN96LmDuPp0DekoWUmXtXVTTLmAMhjf7Odd56NaQTRhkNE079o0dfhgAWcq3UiXY8H8wAAAAAZYb1hkA")
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority")
 SUDOERS = 6204761408
 client = Client(STRING, API_ID, API_HASH)
