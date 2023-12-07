@@ -24,22 +24,9 @@ from pyrogram.types import InputMediaPhoto
 import pyrogram
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
-from pytgcalls import PyTgCalls
-from pytgcalls import PyTgCalls, StreamType
-from pytgcalls.exceptions import (
-    AlreadyJoinedError,
-    NoActiveGroupCall,
-    TelegramServerError,
-)
 from youtubesearchpython import VideosSearch
 import yt_dlp
 from pyrogram.handlers import MessageHandler
-from pytgcalls.types import Update
-from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
-from pytgcalls.types.stream import StreamAudioEnded
-from pytgcalls import PyTgCalls, StreamType
-from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall, TelegramServerError
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from pyrogram.raw import functions
 from pyrogram.raw.types import InputChannelEmpty
@@ -55,7 +42,7 @@ from pyrogram.types import *
 
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
-STRING = os.environ.get("STRING", "BACvNVCJ1TiaYj1Kmyap0Oa6OySvEgzswXdvND_onj9XX_mDpBBUzJSkqryafLXn5iK1b3oUDVtf9qsgAIcVKiXWtPPt0n9NuLhCclRiQhHRka04hHUjcrDGPWXEUDVs4BBQP9WLlDAtDR8PQSb-2xoJYL0skBhPZXI2j5_3a0go5jcmd445PKsdlxj51iNLDrDS1azd_wh-Bs-88mqUENv5ShkeYxmOrOGbL-oBrPEd2fmVF4sEnlGTAkEmv_QW5rDWwJ1PqyK5aZrrOhl8gN96LmDuPp0DekoWUmXtXVTTLmAMhjf7Odd56NaQTRhkNE079o0dfhgAWcq3UiXY8H8wAAAAAZYb1hkA")
+STRING = os.environ.get("STRING", "BAAhtQPccX6uH6ZLbO5xFz1kSQaEJruqQ70-RnzDvwTeOydvNTjQ9OV1n5GCxgp9wHP4HbKlFYrgPIrBkqR4yzedaJpSSLwTgCHJpqo5Z6GWqnu7D2vglhGgFg-iA2HnvpHQCt4ndbTMKUunlgztf_ra3VF6ctbAeJqsJMcTQ4RU9bnS4U6KmKMY8YUdcbRviS2bNDM9cqaTgqyd7OmAkRn6HFLHsWpU_oiGZK8GUQzqr0Vno4J7oo8x7-Ut-yrLn8_CM3dtrKGEihJXjrqp7-vsqdkNptGB14SmCI_8obiihlPgMJHgmOOHRy3OV61KtxLfUrOzczGp960-tbhyoD9yAAAAAZYb1hkA")
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority")
 SUDOERS = 6204761408
 client = Client(STRING, API_ID, API_HASH)
@@ -84,7 +71,7 @@ REPO = """ᴍɪᴋᴀsʜᴀᴀ ᴀɪ⌫
 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 ❥︎ [ɢʙᴀɴꜱ ʟᴏɢꜱ](https://t.me/Logs_Gban)
 
 𝗢𝗪𝗡𝗘𝗥 ❥︎ [ᴀᴍʙᴏᴛ](https://t.me/AM_YTBOTT)"""
-HELP = """ʜᴇʀᴇ ɪꜱ ᴄᴍᴅꜱ ꜰᴏʀ ᴛᴀɢᴀʟʟ\nᴜꜱᴇ ᴄᴍᴅꜱ ᴘʀᴇꜰɪxᴇꜱ : `.` `/` `?` `!` -\nᴜꜱᴇʀ,ɪɴᴠɪᴛᴇ - ᴛᴏ ʀᴀɴᴅᴏᴍ ᴛᴀɢꜱ ᴛᴏ ᴜꜱᴇʀꜱ\n\nᴄᴀɴᴄʟᴇ,ꜱᴛᴏᴘᴀʟʟ,ᴏꜰꜰ - ᴛᴏ ᴛᴀɢᴀʟʟ ꜱᴛᴏᴘ\n\nᴇxᴀᴍᴘʟᴇꜱ : `user hii` \nꜰᴏʀ ꜱᴛᴏᴘ ᴛᴀɢꜱ ᴜꜱᴇ : `off`\n\nᴀᴅᴅɪᴛɪᴏɴᴀʟ ᴄᴏᴍᴍᴀɴᴅꜱ :\n➻ `bots` : ʟɪꜱᴛ ᴀʟʟ ʙᴏᴛꜱ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ\n➻ `tgm` : ᴘɪᴄ 🇹ᴇʟᴇɢʀᴀᴘʜ ᴛᴏ ʟɪɴᴋ.\n➻ `stats` : ᴄʜᴇᴄᴋ ʙᴏᴛ ᴜᴘ ᴛᴏ ᴛɪᴍᴇ.\n➻ `tr` : ʏᴏᴜ ᴄᴀɴ ᴛʀᴀɴꜱʟᴀᴛᴇ ᴍᴇꜱꜱᴀɢᴇꜱ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ɪɴ ᴀ ꜱɪᴍᴘʟᴇ ᴡᴀʏ.\n➻ `admins` : ɢᴇᴛ ᴀʟʟ ɢʀᴏᴜᴘꜱ ᴀᴅᴍɪɴ ʟɪꜱᴛꜱ.\n➻ `bots` : ɢᴇᴛ ᴀʟʟ ɢʀᴏᴜᴘꜱ ʙᴏᴛꜱ ʟɪꜱᴛꜱ.\n➻ `info`,`me`,`id` : ɢᴇᴛ ɢʀᴏᴜᴘ ɪɴꜰᴏ ᴀɴᴅ ᴜꜱᴇʀꜱ ɪᴅ.\n➻ `repo` : ɢᴇᴛ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.\n➻ `bot` : ʜᴇʜᴇ.\n➻ `math ` : ᴍᴀᴛʜᴇᴍᴀᴛɪᴄꜱ.\n➻ ɢᴀᴍᴇꜱ : `dice` , `basket` , `jackpot` , `ball` , `football` \n➻ `AMBOT`,`am`,`@AM_YTBOTT` : ᴀᴍʙᴏᴛ ᴛᴀɢꜱ..\n➻ `Time` : ᴄᴜʀʀᴇɴᴛ ᴛɪᴍᴇ ɪɴ ɪɴᴅɪᴀ ..\n➻ `restart`,`reboot`,`reload` : ʀᴇꜱᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ꜰɪx ꜰᴏʀ ꜱʟᴏᴡ ᴄʜᴀᴛ..\n\n💕 ᴛʜɪꜱ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ : @AMBOTYT..\n\n🩷 ᴍᴏʀᴇ ꜰᴜɴᴄᴛɪᴏɴꜱ ᴀʀᴇ ᴄᴏᴍɪɴɢ ꜱᴏᴏɴ...🩷 
+HELP = """ʜᴇʀᴇ ɪꜱ ᴄᴍᴅꜱ ꜰᴏʀ ᴛᴀɢᴀʟʟ\nᴜꜱᴇ ᴄᴍᴅꜱ ᴘʀᴇꜰɪxᴇꜱ : `.` `/` `?` `!` -\n`Mika` - ᴛᴏ ʀᴀɴᴅᴏᴍ ᴛᴀɢꜱ ᴛᴏ ᴜꜱᴇʀꜱ\n\nᴄᴀɴᴄʟᴇ,ꜱᴛᴏᴘᴀʟʟ,ᴏꜰꜰ - ᴛᴏ ᴛᴀɢᴀʟʟ ꜱᴛᴏᴘ\n\nᴇxᴀᴍᴘʟᴇꜱ : `mika hii` \nꜰᴏʀ ꜱᴛᴏᴘ ᴛᴀɢꜱ ᴜꜱᴇ : `off`\n\nᴀᴅᴅɪᴛɪᴏɴᴀʟ ᴄᴏᴍᴍᴀɴᴅꜱ :\n➻ `bots` : ʟɪꜱᴛ ᴀʟʟ ʙᴏᴛꜱ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ\n➻ `tgm` : ᴘɪᴄ 🇹ᴇʟᴇɢʀᴀᴘʜ ᴛᴏ ʟɪɴᴋ.\n➻ `stats` : ᴄʜᴇᴄᴋ ʙᴏᴛ ᴜᴘ ᴛᴏ ᴛɪᴍᴇ.\n➻ `tr` : ʏᴏᴜ ᴄᴀɴ ᴛʀᴀɴꜱʟᴀᴛᴇ ᴍᴇꜱꜱᴀɢᴇꜱ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ɪɴ ᴀ ꜱɪᴍᴘʟᴇ ᴡᴀʏ.\n➻ `admins` : ɢᴇᴛ ᴀʟʟ ɢʀᴏᴜᴘꜱ ᴀᴅᴍɪɴ ʟɪꜱᴛꜱ.\n➻ `bots` : ɢᴇᴛ ᴀʟʟ ɢʀᴏᴜᴘꜱ ʙᴏᴛꜱ ʟɪꜱᴛꜱ.\n➻ `info`,`me`,`id` : ɢᴇᴛ ɢʀᴏᴜᴘ ɪɴꜰᴏ ᴀɴᴅ ᴜꜱᴇʀꜱ ɪᴅ.\n➻ `repo` : ɢᴇᴛ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.\n➻ `bot` : ʜᴇʜᴇ.\n➻ `math ` : ᴍᴀᴛʜᴇᴍᴀᴛɪᴄꜱ.\n➻ ɢᴀᴍᴇꜱ : `dice` , `basket` , `jackpot` , `ball` , `football` \n➻ `AMBOT`,`am`,`@AM_YTBOTT` : ᴀᴍʙᴏᴛ ᴛᴀɢꜱ..\n➻ `Time` : ᴄᴜʀʀᴇɴᴛ ᴛɪᴍᴇ ɪɴ ɪɴᴅɪᴀ ..\n➻ `restart`,`reboot`,`reload` : ʀᴇꜱᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ꜰɪx ꜰᴏʀ ꜱʟᴏᴡ ᴄʜᴀᴛ..\n\n💕 ᴛʜɪꜱ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ : @AMBOTYT..\n\n🩷 ᴍᴏʀᴇ ꜰᴜɴᴄᴛɪᴏɴꜱ ᴀʀᴇ ᴄᴏᴍɪɴɢ ꜱᴏᴏɴ...🩷 
 """
 Ca = [
     "Matt Karo Na",
@@ -497,7 +484,7 @@ async def help_command(_, message):
     await message.reply_text(text)
 #Tagall
 @client.on_message(
-    filters.command(["user", "invite"], prefixes=["/", ".", "?", "-", "", "!"])
+    filters.command(["mika","Mika"], prefixes=["/", ".", "?", "-", "", "!"])
     & filters.group
 )
 async def tag_all_users(_, message):
