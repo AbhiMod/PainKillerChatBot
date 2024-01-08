@@ -42,7 +42,7 @@ from pyrogram.types import *
 
 API_ID = "6435225"
 API_HASH = "4e984ea35f854762dcde906dce426c2d"
-STRING = os.environ.get("STRING", "BACZhMtuazYiXwe6wwpX4U2phYDFTK1ctkPQEzX9nwnRsrRdY-hFEwJm27_r9IyXwNz4ttPmsJ6vYyNMgiKqK7eJduv1zDzAFZjcuN3JzTRMoomSsUGIU-JAsq1wK1XLYnaDsRLtX_7lRvlXOfqO8kpHoZg99YaMK65TRrkpGELZqDaKVni1-uRub006ZpGVHB92JLJRGdJ7rmEt1t64z45ZqhyV88lCMEJ0y5LbNhWQzc5kWQIumVvik675dcSCqL0c9dh4e9ObdLqAlp2Hpqqx2N-nUpqyUTJN7y4tvtrj0P9-lfHcZlMgiU60Vf8M_nM7GMdxZXv_bDLj4ZgnBj8kAAAAAZYb1hkA")
+STRING = os.environ.get("STRING", "BQBLlUGAKtdNjrrYweOhQ6uzmCFdQNufaKxCB12q3P6kajlwn59Vmn3wqRBj9pZZMmbhAdE0jt-CRE3bxCtLnTmikA7x8FkcF_Uap2t7WhS4DbMdjX_HgEhBg8ylNNr2oIwkAEaIHGv1W2aRMBhh2zhDWAZfiuswSQI8cDuL0GABoikIhGUZ6TFdWbpIZz2FYWn6765l-bO1Se2pCIZpfAIRpq3cFabkYv5D_Ucvs6zQnAMyPkKrSVycSsRaKI1gg2tDFyr-PLj7tMe0tdcgdmrmNH4xlEa_JY5V_9kYg38OEYXBLBxrlo8DaJm5KKfST4vR_tvywD3fBWWAbH5gS4LsHBZZ_wA")
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://kuldiprathod2003:kuldiprathod2003@cluster0.wxqpikp.mongodb.net/?retryWrites=true&w=majority")
 SUDOERS = 6204761408
 client = Client(STRING, API_ID, API_HASH)
