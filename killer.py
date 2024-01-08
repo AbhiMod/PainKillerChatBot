@@ -1,9 +1,44 @@
-import random
-from pyrogram.enums import ChatType, ChatMemberStatus
-from pyrogram.errors import UserNotParticipant
-from pyrogram.types import ChatPermissions
-import traceback
+from pyrogram import filters
+from pyrogram.types import Message
 from pyrogram import Client, filters
+from pyrogram.types import ChatMember
+from pyrogram import *
+import asyncio
+import psutil
+import traceback
+from pyrogram.types import *
+from pymongo import MongoClient
+import requests
+import os, time
+from datetime import datetime
+import pytz
+from gpytranslate import Translator
+from gtts import gTTS
+import random
+from pyrogram.errors import (
+    PeerIdInvalid,
+    ChatWriteForbidden
+)
+from telegraph import upload_file
+from pyrogram.types import InputMediaPhoto
+import pyrogram
+from pyrogram.types import Message
+from pyrogram.errors import FloodWait
+from youtubesearchpython import VideosSearch
+import yt_dlp
+from pyrogram.handlers import MessageHandler
+from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
+from pyrogram.raw import functions
+from pyrogram.raw.types import InputChannelEmpty
+from datetime import datetime
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
+from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
+import os
+import re
+from typing import Dict, Union
+from PIL import ImageDraw, Image, ImageFont, ImageChops
+from pyrogram import *
+from pyrogram.types import *
 
 STRING = os.environ.get("STRING", "BQBLlUGAKtdNjrrYweOhQ6uzmCFdQNufaKxCB12q3P6kajlwn59Vmn3wqRBj9pZZMmbhAdE0jt-CRE3bxCtLnTmikA7x8FkcF_Uap2t7WhS4DbMdjX_HgEhBg8ylNNr2oIwkAEaIHGv1W2aRMBhh2zhDWAZfiuswSQI8cDuL0GABoikIhGUZ6TFdWbpIZz2FYWn6765l-bO1Se2pCIZpfAIRpq3cFabkYv5D_Ucvs6zQnAMyPkKrSVycSsRaKI1gg2tDFyr-PLj7tMe0tdcgdmrmNH4xlEa_JY5V_9kYg38OEYXBLBxrlo8DaJm5KKfST4vR_tvywD3fBWWAbH5gS4LsHBZZ_wA")
 API_ID = "6435225"
